@@ -8,4 +8,6 @@ I never actually check the weather, so it'd be nice if I could get pertinent ale
 ------------
 https://developer.forecast.io/
 
+https://developer.forecast.io/docs/v2
+
 https://github.com/darkskyapp/forecast-ruby
