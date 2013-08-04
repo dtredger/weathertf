@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			render :create, notice: "well played"
 			UserTexter.welcome_text(@user).deliver
+			# render :create, notice: "well played"          so we can read the email
 		else
 			flash.now[:notice] = "nope"
 			render :new

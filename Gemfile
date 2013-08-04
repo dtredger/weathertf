@@ -26,6 +26,7 @@ group :development do
     gem 'binding_of_caller'
     gem 'annotate'
     gem 'coffee-rails-source-maps'
+    gem 'letter_opener'
 end
 
 group :test do
