@@ -2,5 +2,32 @@ WeatherTF
 
 Fer yer health!
 
-<%= javascript_include_tag "location", "data-turbolinks-track" => true %>
+<button data-reveal-id="signup">sign yr self up!</button>
+
+<div id="signup" class="reveal-modal">
+	<div class="row">
+		<div class="large-12 columns">
+			<%= form_for @user do |f| %>
+				<%= f.label "user name" %>
+				<%= f.text_field :username %>
+				<br>
+				<%= f.label "phone number" %>
+				<%= f.text_field :phone_number %>
+				<br>
+				<%= f.label "carrier" %>
+				<%= f.select :carrier, [[],["Bell"],["Telus"],["Rogers"]] %>
+				<br>
+				<%= f.label "password" %>
+				<%= f.password_field :password %>
+				<br>
+				<%= f.label "confirm password" %>
+				<%= f.password_field :password_confirmation %>
+				<br>
+				<%= f.submit "sign up", class: "button" %>
+			<% end %>
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
 

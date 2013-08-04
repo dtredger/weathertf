@@ -12,9 +12,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'forecast_io'
 gem 'sorcery'
-
-# gem "compass-rails", "~> 2.0.alpha.0"
-# gem 'zurb-foundation', '~> 4.0.0'
+gem "compass-rails", "~> 2.0.alpha.0"
+gem 'zurb-foundation', '~> 4.0.0'
 
 
 group :doc do
@@ -26,6 +25,7 @@ group :development do
     gem 'pry-rails'
     gem 'binding_of_caller'
     gem 'annotate'
+    gem 'coffee-rails-source-maps'
 end
 
 group :test do

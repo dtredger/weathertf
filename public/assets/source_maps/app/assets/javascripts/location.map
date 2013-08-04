@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "/assets/source_maps/app/assets/javascripts/location.coffee"
+  ],
+  "names": [],
+  "mappings": "AACA;CAAA,CAAA,CAAkB,EAAlB,GAAA,CAAkB;CAEjB,OAAA,4BAAA;CAAA,EAAe,CAAf,KAAe,GAAf;CAEY,CAA4C,OAA7C,EAAY,EAArB,KAAA;CAFF,IAAe;CAAf,EAOc,CAAd,IAAc,CAAC,EAAf;CACC,OAAA,EAAA;CAAA,EAAA,GAAA,EAAc;CAAd,EACA,GAAA,EAAc,CADd;CAEO,EAAW,CAAX,CAAP,OAAO,CAAP;CAVD,IAOc;CAPd,EAaY,CAAZ,KAAA,IAAY;CACX,GAAG,CAAiB,CAApB,OAAG;CAAH;MAAA,EAAA;CAAA,IAEqB,QAAhB,EAAA;QAHM;CAbZ,IAaY;CAMZ,UAAA,CAAA;CArBD,EAAkB;CAAlB"
+}

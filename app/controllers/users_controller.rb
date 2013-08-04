@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def index
+    @user = User.new
   end
 
   def show
@@ -20,4 +21,5 @@ class UsersController < ApplicationController
 
   def delete
   end
+
 end
