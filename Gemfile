@@ -14,11 +14,11 @@ gem 'forecast_io'
 
 
 group :doc do
-	gem 'sdoc', require: false
+    gem 'sdoc', require: false
 end
 
 group :test do
-	gem 'rspec-rails'
+    gem 'rspec-rails'
 end
 
 
