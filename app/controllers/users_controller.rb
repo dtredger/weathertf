@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			redirect_to :back, notice: "well played"
+			render :create, notice: "well played"
+			UserTexter.welcome_text(@user).deliver
 		else
 			flash.now[:notice] = "nope"
 			render :new
