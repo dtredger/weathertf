@@ -11,25 +11,28 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'forecast_io'
+gem 'sorcery'
+
+# gem "compass-rails", "~> 2.0.alpha.0"
+# gem 'zurb-foundation', '~> 4.0.0'
 
 
 group :doc do
     gem 'sdoc', require: false
 end
 
-group :test do
-    gem 'rspec-rails'
+group :development do
+    gem 'better_errors'
+    gem 'pry-rails'
+    gem 'binding_of_caller'
+    gem 'annotate'
 end
 
+group :test do
+    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :production do
+    gem 'pg'
+end
