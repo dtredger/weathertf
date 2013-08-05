@@ -11,6 +11,7 @@ $(document).ready () ->
 	loc_details = (position) ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
+		post_location(lat, lon)
 
 		#let's show a map or do something interesting!
 
@@ -20,9 +21,21 @@ $(document).ready () ->
 		else positionError ==2
 				#actual error
 
+	post_location = (lat, lon) ->
+		$.ajax
+	    	url: "/sub_comments",
+	    	type: "POST",
+	    	data:
+	            lat: lat, 
+	            lon: lon,
+	    success: (resp) ->
+	    	alert(resp)
 
 
-	$("#cool").click -> get_location()
+
+	$("#find_location").click -> get_location()
+
+
 
 
 #   google maps api to convert lat/longitude to city name ??
