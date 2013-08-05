@@ -86,6 +86,7 @@ GEM
       multi_json (>= 1.5)
     launchy (2.3.0)
       addressable (~> 2.3)
+    leaflet-js (0.6.beta4)
     letter_opener (1.1.2)
       launchy (~> 2.2)
     mail (2.5.4)
@@ -196,6 +197,7 @@ DEPENDENCIES
   forecast_io
   jbuilder (~> 1.2)
   jquery-rails
+  leaflet-js
   letter_opener
   pg
   pry-rails

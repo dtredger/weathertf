@@ -11,9 +11,10 @@ $(document).ready () ->
 	loc_details = (position) ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
-		post_location(lat, lon)
+		# post_location(lat, lon)
+		print_map(lat, lon)
 
-		#let's show a map or do something interesting!
+
 
 	loc_error = (positionError) ->
 		if positionError == 1
@@ -23,18 +24,27 @@ $(document).ready () ->
 
 	post_location = (lat, lon) ->
 		$.ajax
-	    	url: "/users",
-	    	type: "POST",
-	    	data:
-	            lat: lat,
-	            lon: lon,
-	    success: (resp) ->
-	    	alert(resp)
+		    	url: '/users',
+		    	type: "POST",
+		    	data:
+		            lat: lat,
+		            lon: lon
+            success: (resp) ->
+	    		alert(resp)
 
 
 
 	$("#find_location").click -> get_location()
 
+	print_map = (lat, lon) ->  L.map 'map',
+		center: [lat, lon]
+		zoom: 13
+
+	# cloudmade_api = $("#map").data("cloudmadekey")
+	# L.tileLayer("http://{s}.tile.cloudmade.com/#{cloudmade_api}/997/256/{z}/{x}/{y}.png",
+ #      	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+ #      	maxZoom: 18
+ #      .addTo(map)
 
 
 

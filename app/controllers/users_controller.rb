@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			UserTexter.welcome_text(@user).deliver
-			# render :create, notice: "well played"          so we can read the email
+			render :create, notice: "well played"
 		else
 			flash.now[:notice] = "nope"
 			render :new
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
 	end
 
 	def delete
+	end
+
+
+	def display_location
+		@lat = User.params(lat)
+		@lon = User.params(lon)
 	end
 
 
