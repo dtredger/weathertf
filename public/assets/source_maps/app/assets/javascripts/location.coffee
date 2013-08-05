@@ -11,7 +11,7 @@ $(document).ready () ->
 	loc_details = (position) ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
-		alert("you're at #{lat}, #{lon}")
+
 		#let's show a map or do something interesting!
 
 	loc_error = (positionError) ->
@@ -20,9 +20,9 @@ $(document).ready () ->
 		else positionError ==2
 				#actual error
 
-	get_location()
 
 
+	$("#cool").click -> get_location()
 
 
 #   google maps api to convert lat/longitude to city name ??

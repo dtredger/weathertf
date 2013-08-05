@@ -1,10 +1,13 @@
 <div class="row">
-	<%= image_tag("ansel_adams.jpg") %>
-	<div class="four columns push-4">
+	<%= image_tag(@background) %>
+	<div class="large-4 columns push-4" id="description">
 		<h1>WeatherTF</h1>
 		<h4>tell me what's up.</h4>
 		<button data-reveal-id="signup">sign yr self up!</button>
+		<button id="cool" data-reveal-id="locate">find me</button>
+
 	</div>
+
 </div>
 
 
@@ -34,3 +37,15 @@
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
+<div id="locate" class="reveal-modal">
+	<div class="row">
+		<div class="large-12 columns">
+			<p>text</p>
+			<script>
+				document.write("<p>You are located at " + lat + ", " + lon + ".</p>")
+			</script>
+
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>

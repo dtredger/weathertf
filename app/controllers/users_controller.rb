@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	def index
+		@background = ["1.jpg","2.jpg","3.jpg"].sample
 		@user = User.new
 	end
 
