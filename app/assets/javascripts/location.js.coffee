@@ -23,10 +23,10 @@ $(document).ready () ->
 
 	post_location = (lat, lon) ->
 		$.ajax
-	    	url: "/sub_comments",
+	    	url: "/users",
 	    	type: "POST",
 	    	data:
-	            lat: lat, 
+	            lat: lat,
 	            lon: lon,
 	    success: (resp) ->
 	    	alert(resp)

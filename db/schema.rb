@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804212939) do
+ActiveRecord::Schema.define(version: 20130805161041) do
 
   create_table "users", force: true do |t|
     t.string   "username",         null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20130804212939) do
     t.datetime "updated_at"
     t.integer  "phone_number"
     t.string   "carrier"
+    t.integer  "lat"
+    t.integer  "lon"
   end
 
 end
