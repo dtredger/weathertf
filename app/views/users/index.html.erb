@@ -18,10 +18,17 @@
 				<%= f.text_field :username %>
 				<br>
 				<%= f.label "phone number" %>
-				<%= f.text_field :phone_number %>
+				<div class="row collapse">
+					<div class="large-2 columns">
+						<span class="prefix">#</span>
+					</div>
+					<div class="large-10 columns">
+						<%= f.telephone_field :phone_number %>
+					</div>
+				</div>
 				<br>
 				<%= f.label "carrier" %>
-				<%= f.select :carrier, [[],["Bell"],["Telus"],["Rogers"]] %>
+				<%= f.select :carrier, [[],["Bell"],["Telus"],["Rogers"]], class: "select"%>
 				<br>
 				<%= f.label "password" %>
 				<%= f.password_field :password %>
