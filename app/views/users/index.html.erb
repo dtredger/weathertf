@@ -36,6 +36,12 @@
 				<%= f.label "confirm password" %>
 				<%= f.password_field :password_confirmation %>
 				<br>
+				<%= f.label "latitude" %>
+				<%= f.number_field :lat %>
+				<br>
+				<%= f.label "longitude" %>
+				<%= f.number_field :lon %>
+				<br>
 				<%= f.submit "sign up", class: "button" %>
 			<% end %>
 		</div>
