@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		sds
 		@user = User.new(user_params)
 		if @user.save
 			UserTexter.welcome_text(@user).deliver

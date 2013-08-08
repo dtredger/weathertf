@@ -6,7 +6,6 @@
 		<button data-reveal-id="signup">sign yr self up!</button>
 		<button id="find_location" data-reveal-id="locate">find me</button>
 	</div>
-	<button id="cool">cool</button>
 	<div id="results">results div</div>
 </div>
 
@@ -18,7 +17,7 @@
 				<%= f.label "user name" %>
 				<%= f.text_field :username %>
 				<br>
-				<%= f.label "phone number" %>
+				<%= f.label "phone" %>
 				<div class="row collapse">
 					<div class="large-2 columns">
 						<span class="prefix">#</span>
@@ -30,8 +29,7 @@
 					</div>
 				</div>
 				<br>
-				<%= f.label "carrier" %>
-				<%= f.select :carrier, [[],["Bell"],["Telus"],["Rogers"]], class: "select"%>
+				<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"]], class: "select"%>
 				<br>
 				<%= f.label "password" %>
 				<%= f.password_field :password %>
@@ -39,8 +37,27 @@
 				<%= f.label "confirm password" %>
 				<%= f.password_field :password_confirmation %>
 				<br>
-				<% f.hidden_field :lat, val: 100 %>
-				<% f.hidden_field :lon, val: -50 %>
+				<div class="row collapse">
+					<div class="large-6 columns">
+						<span class="prefix">
+							<%= f.label "longitude" %>
+						</span>
+					</div>
+					<div class="large-6 columns">
+						<%= f.telephone_field :lon, val: -50 %>
+					</div>
+				</div>
+				<div class="row collapse">
+					<div class="large-6 columns">
+						<span class="prefix">
+							<%= f.label "latitude" %>
+						</span>
+					</div>
+					<div class="large-6 columns">
+						<%= f.telephone_field :lat, val: -100 %>
+					</div>
+				</div>
+
 				<%= f.submit "sign up", class: "button" %>
 			<% end %>
 		</div>

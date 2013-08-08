@@ -13,14 +13,18 @@ $(document).ready () ->
 		lon = position.coords.longitude
 		# post_location(lat, lon)
 		print_map(lat, lon)
-
+		$('#locate').append("<p>you're at #{lat}, #{lon}</p>")
+		$('#user_lat').val(lat)
+		$('#user_lon').val(lon)
 
 
 	loc_error = (positionError) ->
-		if positionError == 1
-				#user said no to sharing!
-		else positionError ==2
-				#actual error
+		# if positionError == 1
+		# 	$('#locate').append("You say no??")
+		# 	#user said no to sharing!
+		# else positionError ==2
+		# 	$('#locate').append("mysterious error??")
+		# 	#actual error
 
 	post_location = (lat, lon) ->
 		$.ajax
@@ -34,11 +38,30 @@ $(document).ready () ->
 
 
 
-	$("#find_location").click -> get_location()
+
 
 	print_map = (lat, lon) ->  L.map 'map',
 		center: [lat, lon]
 		zoom: 13
+
+	$("#find_location").click -> get_location()
+
+	$("#signup").click -> get_location()
+
+
+# $("#cool").click -> $.ajax
+# 	url: '/users/new'
+# .done (html) ->
+# 	$('#locate').append html
+# 	console.log "cool clicked"
+
+
+
+
+
+
+
+
 
 	# cloudmade_api = $("#map").data("cloudmadekey")
 	# L.tileLayer("http://{s}.tile.cloudmade.com/#{cloudmade_api}/997/256/{z}/{x}/{y}.png",
