@@ -13,7 +13,7 @@
 <div id="signup" class="reveal-modal medium">
 	<div class="row">
 		<div class="large-12 columns">
-			<%= form_for @user do |f| %>
+			<%= form_for @user, html: {class: "custom"} do |f| %>
 				<%= f.label "user name" %>
 				<%= f.text_field :username %>
 				<br>
@@ -23,7 +23,9 @@
 						<span class="prefix">#</span>
 					</div>
 					<div class="large-10 columns">
-						<%= f.telephone_field :phone_number %>
+						<span data-tooltip="top" class="has-tip tip-top" title="enter your 10-digit number" >
+							<%= f.telephone_field :phone_number %>
+						</span>
 					</div>
 				</div>
 				<br>
@@ -36,6 +38,8 @@
 				<%= f.label "confirm password" %>
 				<%= f.password_field :password_confirmation %>
 				<br>
+				<% f.hidden_field :lat, val: 100 %>
+				<% f.hidden_field :lon, val: -50 %>
 				<%= f.submit "sign up", class: "button" %>
 			<% end %>
 		</div>
