@@ -3,7 +3,7 @@ class UserTexter < ActionMailer::Base
 
   def welcome_text(user)
   	@user = user
-  	mail(to: "??", subject: "hello")
+  	mail(to: @user.email, subject: "hello")
   end
 
 
