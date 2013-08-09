@@ -11,9 +11,14 @@ $(document).ready () ->
 	loc_details = (position) ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
+		
 		# post_location(lat, lon)
 		print_map(lat, lon)
+		console.log lat
 
+	print_map = (lat, lon) ->  L.map 'map',
+		center: [lat, lon]
+		zoom: 13
 
 
 	loc_error = (positionError) ->
@@ -36,9 +41,7 @@ $(document).ready () ->
 
 	$("#find_location").click -> get_location()
 
-	print_map = (lat, lon) ->  L.map 'map',
-		center: [lat, lon]
-		zoom: 13
+
 
 	# cloudmade_api = $("#map").data("cloudmadekey")
 	# L.tileLayer("http://{s}.tile.cloudmade.com/#{cloudmade_api}/997/256/{z}/{x}/{y}.png",
