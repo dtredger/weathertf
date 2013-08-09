@@ -3,7 +3,7 @@ $(document).ready () ->
 
 	get_location = ->
 		# if (Modernizr.geolocation)
-			navigator.geolocation.getCurrentPosition(loc_details, loc_error)
+		navigator.geolocation.getCurrentPosition(loc_details, loc_error)
 		# else
 		# 	alert("no suppert??")
 		# # no native support; maybe try a fallback?
@@ -11,17 +11,12 @@ $(document).ready () ->
 	loc_details = (position) ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
-		
-		# post_location(lat, lon)
-		print_map(lat, lon)
-
-	print_map = (lat, lon) ->  L.map 'map',
-		center: [lat, lon]
-		zoom: 13
-
-		$('#locate').append("<p>you're at #{lat}, #{lon}</p>")
+		#sets values to be inserted into the signup form
 		$('#user_lat').val(lat)
 		$('#user_lon').val(lon)
+
+		# post_location(lat, lon)
+		# print_map(lat, lon)
 
 
 	loc_error = (positionError) ->
@@ -32,15 +27,17 @@ $(document).ready () ->
 		# 	$('#locate').append("mysterious error??")
 		# 	#actual error
 
-	post_location = (lat, lon) ->
-		$.ajax
-		    	url: '/users',
-		    	type: "POST",
-		    	data:
-		            lat: lat,
-		            lon: lon
-            success: (resp) ->
-	    		alert(resp)
+
+# this is how you'd make an ajax request (you can specify type; ie .get)
+	# post_location = (lat, lon) ->
+	# 	$.ajax
+	# 	    	url: '/users',
+	# 	    	type: "POST",
+	# 	    	data:
+	# 	            lat: lat,
+	# 	            lon: lon
+ #            success: (resp) ->
+	#     		alert(resp)
 
 
 
@@ -50,7 +47,7 @@ $(document).ready () ->
 
 	$("#find_location").click -> get_location()
 
-	$("#signup").click -> get_location()
+	# $("#signup").click -> get_location()
 
 
 # $("#cool").click -> $.ajax
@@ -58,9 +55,6 @@ $(document).ready () ->
 # .done (html) ->
 # 	$('#locate').append html
 # 	console.log "cool clicked"
-
-
-
 
 
 

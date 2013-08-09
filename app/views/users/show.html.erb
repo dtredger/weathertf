@@ -1,35 +1,25 @@
 <div class="row">
 	<div class="large-8 push-2 columns">
-		<div> 
-			<br>
-			<br>
-			<h1>Upcoming Weather</h1>
-			<!-- only want times in the future  -->
-			<table>
-				<thead>
-					<tr>
-						<th width="250">Time</th>
-						<th width="200">time from now</th>
-						<th width="150">Precipitation %</th>
-						<th width="100">Temp (c)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @hour.each do |h| %>
-						<% if h.time > Time.now.to_i %>
-							<tr>
-								<td><%= Time.at(h.time).asctime %></td>
-								<td>in <%= distance_of_time_in_words(Time.now.to_i, h.time, include_seconds: true) %></td>
-								<td>% <%= (h.precipProbability * 100).to_i %></td>
-								<td><%= h.temperature %></td>
-							</tr>
-						<% end %>
-					<% end %>
-				</tbody>
-			</table>
-			
+		<br>
+		<br>
+		<div class="section-container auto" data-section>
+			<section>
+				<p class="title" data-section-title><a href="#panel1">Upcoming Weather</a></p>
+				<div class="content" data-section-content>
+					<%= render 'layouts/upcoming' %>
+				</div>
+
+			</section>
+			<section>
+				  <p class="title" data-section-title><a href="#panel2">SMS me now</a></p>
+				  <div class="content" data-section-content>
+				  	<br>
+
+					<%= link_to "really.", sms_path, class:"button" %>
+					<br><br>
+				  </div>
+			</section>
 		</div>
+
 	</div>
-</div>	
-
-
+</div>

@@ -6,10 +6,9 @@ class UsersController < ApplicationController
 	end
 
 	def show
-
 		@forecast = ForecastIO.forecast(
-			User.last.lat,        	#latitude
-			User.last.lon,       	#longitude
+			current_user.lat,        	#latitude
+			current_user.lon,       	#longitude
 			time: Time.now().to_i,  	#new(2013, 7, 31).to_i,
 			params: {
 				units: 'si',
@@ -25,8 +24,9 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			auto_login(@user)
 			UserTexter.welcome_text(@user).deliver
-			render :create, notice: "well played"
+			redirect_to user_path(@user)
 		else
 			flash.now[:notice] = "nope"
 			render :new
@@ -50,9 +50,10 @@ class UsersController < ApplicationController
 	end
 
 
-	def display_location
-		@lat = User.params(lat)
-		@lon = User.params(lon)
+	def sms
+		@user = current_user
+		UserTexter.welcome_text(@user).deliver
+		redirect_to user_path(@user)
 	end
 
 

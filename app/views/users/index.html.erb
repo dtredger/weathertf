@@ -4,10 +4,12 @@
 		<h1>WeatherTF</h1>
 		<h4>tell me what's up.</h4>
 		<button data-reveal-id="signup">sign yr self up!</button>
-		<button id="find_location" data-reveal-id="locate">find me</button>
+		<button data-reveal-id="let me in">already did</button>
 	</div>
 </div>
 
+
+<!-- ----------- sign-up form ------------- -->
 
 <div id="signup" class="reveal-modal medium">
 	<div class="row">
@@ -38,6 +40,7 @@
 				<%= f.label "confirm password" %>
 				<%= f.password_field :password_confirmation %>
 				<br>
+				<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
 				<div class="row collapse">
 					<div class="large-6 columns">
 						<span class="prefix">
@@ -65,6 +68,8 @@
 	</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
+
+<!-- ------------ map reveal form (no map) ---------- -->
 
 <div id="locate" class="reveal-modal">
 	<div class="row">

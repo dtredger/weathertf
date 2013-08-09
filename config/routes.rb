@@ -3,7 +3,7 @@ Weathertf::Application.routes.draw do
 	resources :users
 
 
-	# get 'users/display/:id' to: 'users#display_location', as: :post
+	get 'sms', to: 'users#sms'
 
 
 	root to: 'users#index'
