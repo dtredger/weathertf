@@ -1,16 +1,35 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-<% @hour.each do |h| %>
-	<div> 
-
-		<!-- only want times in the future  -->
-		<% if h.time > Time.now.to_i %> 
-			Time: <%= Time.at(h.time).to_datetime %> (<%= distance_of_time_in_words(Time.now.to_i, h.time, include_seconds: true) %>)
-			Precipitation %: <%= (h.precipProbability * 100).to_i %>
-			Temp: <%= h.temperature %>
-		<% end %>
-		
+<div class="row">
+	<div class="large-8 push-2 columns">
+		<div> 
+			<br>
+			<br>
+			<h1>Upcoming Weather</h1>
+			<!-- only want times in the future  -->
+			<table>
+				<thead>
+					<tr>
+						<th width="250">Time</th>
+						<th width="200">time from now</th>
+						<th width="150">Precipitation %</th>
+						<th width="100">Temp (c)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @hour.each do |h| %>
+						<% if h.time > Time.now.to_i %>
+							<tr>
+								<td><%= Time.at(h.time).asctime %></td>
+								<td>in <%= distance_of_time_in_words(Time.now.to_i, h.time, include_seconds: true) %></td>
+								<td>% <%= (h.precipProbability * 100).to_i %></td>
+								<td><%= h.temperature %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			
+		</div>
 	</div>
-<% end %>
+</div>	
+
 
