@@ -6,6 +6,17 @@ class UsersController < ApplicationController
 	end
 
 	def show
+
+		@forecast = ForecastIO.forecast(
+			User.last.lat,        	#latitude
+			User.last.lon,       	#longitude
+			time: Time.now().to_i,  	#new(2013, 7, 31).to_i,
+			params: {
+				units: 'si',
+				exclude: 'flags'
+			})
+		@hour = @forecast.hourly.data
+
 	end
 
 	def new

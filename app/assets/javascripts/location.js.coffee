@@ -14,18 +14,23 @@ $(document).ready () ->
 		
 		# post_location(lat, lon)
 		print_map(lat, lon)
-		console.log lat
 
 	print_map = (lat, lon) ->  L.map 'map',
 		center: [lat, lon]
 		zoom: 13
 
+		$('#locate').append("<p>you're at #{lat}, #{lon}</p>")
+		$('#user_lat').val(lat)
+		$('#user_lon').val(lon)
+
 
 	loc_error = (positionError) ->
-		if positionError == 1
-				#user said no to sharing!
-		else positionError ==2
-				#actual error
+		# if positionError == 1
+		# 	$('#locate').append("You say no??")
+		# 	#user said no to sharing!
+		# else positionError ==2
+		# 	$('#locate').append("mysterious error??")
+		# 	#actual error
 
 	post_location = (lat, lon) ->
 		$.ajax
@@ -39,7 +44,26 @@ $(document).ready () ->
 
 
 
+
+
+
+
 	$("#find_location").click -> get_location()
+
+	$("#signup").click -> get_location()
+
+
+# $("#cool").click -> $.ajax
+# 	url: '/users/new'
+# .done (html) ->
+# 	$('#locate').append html
+# 	console.log "cool clicked"
+
+
+
+
+
+
 
 
 

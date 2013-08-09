@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  ForecastIO.api_key = 'this-is-your-api-key'
+  ForecastIO.api_key = '7ae01f0b413da3017237ae750145a642'
+
+  
 
 end

@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$("#cool").click -> $.ajax
-	url: '/users/new'
-.done (html) ->
-	$('#results').append html
-	console.log "cool clicked"
+# $("#cool").click -> $.ajax
+# 	url: '/users/new'
+# .done (html) ->
+# 	$('#results').append html
+# 	console.log "cool clicked"

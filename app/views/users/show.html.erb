@@ -1,2 +1,16 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+
+<% @hour.each do |h| %>
+	<div> 
+
+		<!-- only want times in the future  -->
+		<% if h.time > Time.now.to_i %> 
+			Time: <%= Time.at(h.time).to_datetime %> (<%= distance_of_time_in_words(Time.now.to_i, h.time, include_seconds: true) %>)
+			Precipitation %: <%= (h.precipProbability * 100).to_i %>
+			Temp: <%= h.temperature %>
+		<% end %>
+		
+	</div>
+<% end %>
+

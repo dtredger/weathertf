@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
 	address: "smtp.gmail.com",
 	port: 587,
-	# domain: "coolmail.com",
-	# user_name: "chuckTesta",
-	# password: "nope!",
+	domain: "gmail.com",
+	user_name: "weathertf.via",       # seems to be wrong ... :E
+	password: "weathertf123",
 	authentication: "plain",
 	enable_starttls_auto: true
 }
