@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
 			})
 		@hourly = @forecast.hourly.data
 		@daily = @forecast.daily.data.first
+
+		@future_hrs = []
+
+		@hourly.each do |h|
+			if h.time > Time.now.to_i
+				@future_hrs << h
+			end
+		end
 	end
 
 
