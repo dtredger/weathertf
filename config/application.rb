@@ -31,6 +31,11 @@ module Weathertf
 			# g.fixture_replacement factory_girl:, dir: "test/factories"
 			g.integration_tool :rspec, fixture: true, views: true
 		end
+
+		config.to_prepare do
+			ActionMailer::Base.helper "application"
+		end
+
 	end
 
 end

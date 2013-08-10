@@ -12,10 +12,10 @@ I never actually check the weather, so it'd be nice if something would alert me 
 - background job to text user based on precipitation probability
 - method to determine how often to query API (more often when rain more likely)
 
-##resources:
+##Resources:
 Geolocation API:
-http://diveintohtml5.info/geolocation.html
+- http://diveintohtml5.info/geolocation.html
 Forecast.IO
-https://developer.forecast.io/
-https://developer.forecast.io/docs/v2
-https://github.com/darkskyapp/forecast-ruby
+- https://developer.forecast.io/
+- https://developer.forecast.io/docs/v2
+- https://github.com/darkskyapp/forecast-ruby
