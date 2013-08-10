@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 				exclude: 'flags'
 			})
 		@hour = @forecast.hourly.data
+		@daily = @forecast.daily.data
 	end
 
 
