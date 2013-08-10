@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 				units: 'si',
 				exclude: 'flags'
 			})
-		@hour = @forecast.hourly.data
-		@daily = @forecast.daily.data
+		@hourly = @forecast.hourly.data
+		@daily = @forecast.daily.data.first
 	end
 
 

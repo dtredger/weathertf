@@ -1,0 +1,41 @@
+<div>
+	<p><%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %></p>
+	<!-- only want times in the future  -->
+	<p><i><%= @daily.summary %></i></p>
+	<table>
+		<thead>
+			<tr>
+				<th width="120">Forecast For</th>
+				<th width="130">Precipitation %</th>
+				<th width="150">Avg. Humidity</th>
+				<th width="150">Avg. Pressure</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= Time.at(@daily.time).asctime[0..-14] %></td>
+				<td>% <%= (@daily.precipProbability * 100).to_i %></td>
+				<td><%= @daily.humidity %></td>
+				<td><%= @daily.pressure %></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<th width="120">Max Temp (c)</th>
+				<th width="130">Min Temp (c)</th>
+				<th width="150">Sunrise</th>
+				<th width="150">Sunset</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @daily.temperatureMax %></td>
+				<td><%= @daily.temperatureMin %></td>
+				<td><%= Time.at(@daily.sunriseTime).asctime[0..-9] %></td>
+				<td><%= Time.at(@daily.sunsetTime).asctime[0..-9] %></td>
+			</tr>
+		</tbody>
+
+	</table>
+
+</div>

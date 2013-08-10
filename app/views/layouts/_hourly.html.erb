@@ -1,0 +1,27 @@
+<div>
+	<p><%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %></p>
+	<!-- only want times in the future  -->
+	<table>
+		<thead>
+			<tr>
+				<th width="200">Time</th>
+				<th width="250">time from now</th>
+				<th width="150">Precipitation %</th>
+				<th width="100">Temp (c)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @hourly.each do |h| %>
+				<% if h.time > Time.now.to_i %>
+					<tr>
+						<td><%= Time.at(h.time).asctime[0..-9] %></td>
+						<td>in <%= distance_of_time_in_words(Time.now.to_i, h.time, include_seconds: true) %></td>
+						<td>% <%= (h.precipProbability * 100).to_i %></td>
+						<td><%= h.temperature %></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>
