@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   		@forecast = ForecastIO.forecast(
 			current_user.lat,        	#latitude
 			current_user.lon,       	#longitude
-			time: Time.now().to_i,  	#new(2013, 7, 31).to_i,
+			time: Time.now.to_i,  	#new(2013, 7, 31).to_i,
 			params: {
 				units: 'si',
 				exclude: 'flags'

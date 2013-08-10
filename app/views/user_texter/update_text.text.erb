@@ -1,6 +1,9 @@
-hi <%= @user.username %>
+For LAT: <%= @user.lat %>, LON: <%= @user.lon %>:
 
-You asked for an instant update!
-What's happening near <%= @user.lat %>, <%= @user.lon %>?
+<% @future_hrs[0..1].each do |hr| %>
+<%= Time.at(hr.time).asctime[0..-9] %> (in <%= distance_of_time_in_words(Time.now.to_i, hr.time) %>):
+%<%= (hr.precipProbability * 100).to_i %> chance of rain.
+<%= hr.temperature %> degrees.
 
-Well:
+<% end %>
+

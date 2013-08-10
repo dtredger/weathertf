@@ -1,5 +1,5 @@
 class UserTexter < ActionMailer::Base
-	helper :application
+	include MailerHelper
 	default from: "sms@weathertf.com"
 
 	def welcome_text(user)
@@ -8,13 +8,11 @@ class UserTexter < ActionMailer::Base
 	end
 
 	def update_text(user)
-		get_forecast
-
 		@user = user
 		number_suffix(@user.carrier)
-		asfdasdf
+		get_forecast(user)
 
-		mail(to:"#{@user.phone_number}#{@suffix}", subject: "Instant Update")
+		mail(to:"#{@user.phone_number}#{@suffix}", subject: "hi #{@user.username}")
 	end
 
 	def number_suffix(carrier)
@@ -33,6 +31,8 @@ class UserTexter < ActionMailer::Base
 				@suffix = "@sms.rogers.com"
 		end
 	end
+
+
 
 
 
