@@ -6,16 +6,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@forecast = ForecastIO.forecast(
-			current_user.lat,        	#latitude
-			current_user.lon,       	#longitude
-			time: Time.now().to_i,  	#new(2013, 7, 31).to_i,
-			params: {
-				units: 'si',
-				exclude: 'flags'
-			})
-		@hour = @forecast.hourly.data
-
+		get_forecast
 	end
 
 	def new
@@ -52,7 +43,7 @@ class UsersController < ApplicationController
 
 	def sms
 		@user = current_user
-		UserTexter.welcome_text(@user).deliver
+		UserTexter.update_text(@user).deliver
 		redirect_to user_path(@user)
 	end
 
