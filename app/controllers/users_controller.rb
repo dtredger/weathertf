@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 		if @user.save
 			auto_login(@user)
 			UserTexter.welcome_text(@user).deliver
+			# WeatherWorker.perform_async(@user)
 			redirect_to user_path(@user)
 		else
 			flash.now[:notice] = "nope"

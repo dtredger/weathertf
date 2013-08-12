@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 
+gem 'pg'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,6 +17,8 @@ gem "compass-rails", "~> 2.0.alpha.0"
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'leaflet-js'
 
+gem 'sidekiq'
+
 group :doc do
     gem 'sdoc', require: false
 end
@@ -27,7 +30,6 @@ group :development do
     gem 'annotate'
     gem 'coffee-rails-source-maps'
     gem 'letter_opener'
-    gem 'sqlite3'
 end
 
 group :test do
@@ -36,6 +38,6 @@ group :test do
     gem 'factory_girl_rails'
 end
 
-group :production do
-    gem 'pg'
-end
+# group :production do
+#     gem 'pg'
+# end
