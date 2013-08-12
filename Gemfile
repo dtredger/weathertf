@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 
-gem 'pg'
-
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -24,6 +22,7 @@ group :doc do
 end
 
 group :development do
+    gem 'sqlite3'
     gem 'better_errors'
     gem 'pry-rails'
     gem 'binding_of_caller'
@@ -38,6 +37,6 @@ group :test do
     gem 'factory_girl_rails'
 end
 
-# group :production do
-#     gem 'pg'
-# end
+group :production do
+    gem 'pg'
+end
