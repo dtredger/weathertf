@@ -15,18 +15,20 @@ gem "compass-rails", "~> 2.0.alpha.0"
 gem 'zurb-foundation', '~> 4.0.0'
 # gem 'leaflet-js'
 
+gem 'sidekiq'
+
 group :doc do
     gem 'sdoc', require: false
 end
 
 group :development do
+    gem 'sqlite3'
     gem 'better_errors'
     gem 'pry-rails'
     gem 'binding_of_caller'
     gem 'annotate'
     gem 'coffee-rails-source-maps'
     gem 'letter_opener'
-    gem 'sqlite3'
 end
 
 group :test do
@@ -37,4 +39,5 @@ end
 
 group :production do
     gem 'pg'
+    gem 'rails_12factor'
 end
