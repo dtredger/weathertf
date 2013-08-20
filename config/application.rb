@@ -28,7 +28,7 @@ module Weathertf
 
 		config.generators do |g|
 			g.test_framework :rspec, fixture: true, views: false
-			# g.fixture_replacement factory_girl:, dir: "test/factories"
+			g.fixture_replacement :factory_girl, dir: "spec/factories"
 			g.integration_tool :rspec, fixture: true, views: true
 		end
 
