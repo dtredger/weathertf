@@ -4,6 +4,9 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+require 'capybara/rspec'
+require 'capybara/rails'
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -27,8 +30,22 @@ RSpec.configure do |config|
 	# order dependency and want to debug it, you can fix the order by providing
 	# the seed, which is printed after each run.
 	#     --seed 1234
-	config.order = "random"
+	config.order = "random"	
 
-	
+	config.include Capybara::DSL
 
 end
+
+def sign_in(user)
+  visit users_path
+
+  fill_in "username",    with: user.email.upcase
+  fill_in "email", with: user.email
+  fill_in "phone_number", with: user.phone_number
+  fill_in "carrier", with: user.carrier
+  fill_in "lat", with: user.lat
+  fill_in "lon", with: user.lon
+
+  click_button "sign up"
+end
+

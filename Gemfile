@@ -35,6 +35,7 @@ group :test do
     gem 'pry-rails'
     gem 'sqlite3'
     gem 'rspec-rails'
+    gem 'capybara'
     gem 'factory_girl_rails'
     gem 'database_cleaner'
     gem 'dm-transactions'

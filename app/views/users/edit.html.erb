@@ -1,2 +1,55 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="row">
+	<%= form_for @user, html: {class: "custom"} do |f| %>
+		<div class="large-6 columns">
+			<%= f.label "user name" %>
+			<%= f.text_field :username %>
+
+			<%= f.label "email" %>
+			<%= f.email_field :email %>
+			<br>
+			<%= f.label "phone" %>
+			<div class="row collapse">
+				<div class="large-2 columns">
+					<span class="prefix">#</span>
+				</div>
+				<div class="large-10 columns">
+					<span data-tooltip="top" class="has-tip tip-top" title="enter your 10-digit number" >
+						<%= f.telephone_field :phone_number %>
+					</span>
+				</div>
+			</div>
+			<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>
+			<br>
+			<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
+			<div class="row collapse">
+				<div class="large-6 columns">
+					<span class="prefix">
+						<%= f.label "longitude" %>
+					</span>
+				</div>
+				<div class="large-6 columns">
+					<%= f.telephone_field :lon %>
+				</div>
+			</div>
+			<div class="row collapse">
+				<div class="large-6 columns">
+					<span class="prefix">
+						<%= f.label "latitude" %>
+					</span>
+				</div>
+				<div class="large-6 columns">
+					<%= f.telephone_field :lat %>
+				</div>
+			</div>
+		</div>
+		<div class="large-6 columns">
+			<%= f.label "password" %>
+			<%= f.password_field :password %>
+			<br>
+			<%= f.label "confirm password" %>
+			<%= f.password_field :password_confirmation %>
+			<br>
+			<%= f.submit "save changes", class: "button" %>
+		</div>
+	<% end %>
+</div>

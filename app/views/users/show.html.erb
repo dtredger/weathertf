@@ -1,3 +1,4 @@
+<% provide(:title, "Local") %>
 <div class="row">
 	<div class="large-8 push-2 columns">
 		<br>
@@ -14,6 +15,13 @@
 				<p class="title" data-section-title><a href="#day">Daily Forecast</a></p>
 				<div class="content" data-section-content>
 					<%= render 'layouts/daily' %>
+				</div>
+			</section>
+
+			<section>
+				<p class="title" data-section-title><a href="#settings">My Settings</a></p>
+				<div class="content" data-section-content>
+					<%= render template: 'users/edit' %>
 				</div>
 			</section>
 		</div>
