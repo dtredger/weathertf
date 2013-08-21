@@ -32,9 +32,12 @@ group :development do
 end
 
 group :test do
+    gem 'pry-rails'
     gem 'sqlite3'
     gem 'rspec-rails'
     gem 'factory_girl_rails'
+    gem 'database_cleaner'
+    gem 'dm-transactions'
 end
 
 group :production do

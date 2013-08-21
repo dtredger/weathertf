@@ -1,6 +1,6 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe "users/show" do
+# describe "users/show" do
 
 
-end
+# end
