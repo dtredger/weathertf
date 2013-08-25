@@ -6,5 +6,5 @@
     "/assets/source_maps/app/assets/javascripts/users.coffee"
   ],
   "names": [],
-  "mappings": "AAAA;CAAA;CAAA"
+  "mappings": "AAYA;CAAA,CAAA,CAAkB,EAAlB,GAAA,CAAkB;CAChB,CAAA,CAAkC,CAAA,EAAA,GAAC,EAAnC,GAAA;CACE,EAA0B,GAA1B,MAAA,CAAA;CADF,CAEqB,CAAA,CAFrB,CAAkC,CAEb,GAAC,GAFtB;CAGE,KAAA,MAAA,CAAA,kBAAA;CAHF,IAEqB;CAHvB,EAAkB;CAAlB"
 }

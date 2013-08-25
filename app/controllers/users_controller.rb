@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      UserTexter.update_text(@user).deliver
+      UserTexter.welcome_text(@user).deliver
       # WeatherWorker.perform_async(@user)
       redirect_to user_path(@user)
     else
@@ -43,9 +43,12 @@ class UsersController < ApplicationController
   end
 
 
-  def mail_settings
-    # UserTexter.update_text(@user).deliver
-    # redirect_to user_path(@user)
+  def sms
+    if UserTexter.update_text(current_user).deliver
+      flash[:notice] = "msg sent"
+    else
+      flash[:alert] = "msg sending error"
+    end
   end
 
 

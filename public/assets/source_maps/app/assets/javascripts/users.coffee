@@ -8,3 +8,10 @@
 # .done (html) ->
 # 	$('#results').append html
 # 	console.log "cool clicked"
+
+
+$(document).ready ->
+  $(".send_sms").on("ajax:success", (e, data, status, xhr) ->
+    $(".alert-box").append xhr.responseText
+  ).bind "ajax:error", (e, xhr, status, error) ->
+    $(".alert-box").append "<p>Something's gone wrong</p>"
