@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :correct_user, only: [:show, :edit, :update, :delete, :sms]  
+  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings]  
 
   def index
     @background = ["1.jpg","2.jpg","3.jpg"].sample
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attriputes(user_params)
+    if @user.update_attributes(user_params)
       redirect_to :back, notice: "updated"
     else
       render :edit, alert: "error!"
@@ -43,16 +43,17 @@ class UsersController < ApplicationController
   end
 
 
-  def sms
+  def mail_settings
     # UserTexter.update_text(@user).deliver
-    redirect_to user_path(@user)
+    # redirect_to user_path(@user)
   end
 
 
   private
 
     def user_params
-      params.require(:user).permit(:username, :email, :phone_number, :carrier, :password, :lat, :lon)
+      params.require(:user).permit(:username, :email, 
+        :phone_number, :carrier, :password, :lat, :lon, :digest, :alert_percent)
     end
 
     def correct_user
