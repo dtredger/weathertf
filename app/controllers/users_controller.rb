@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    get_forecast
+    Thread.new { get_forecast }.join
   end
 
   def new
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      UserTexter.welcome_text(@user).deliver
+      Thread.new { UserTexter.welcome_text(@user).deliver }.join
       redirect_to user_path(@user)
     else
       flash[:notice] = "nope"
