@@ -14,6 +14,8 @@ $(document).ready () ->
 		#sets values to be inserted into the signup form
 		$('#user_lat').val(lat)
 		$('#user_lon').val(lon)
+		$('.spinner').fadeOut(300)
+
 
 		# post_location(lat, lon)
 		# print_map(lat, lon)

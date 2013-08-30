@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require location
+//= require spin
 //= require_tree .
 
 $(document).foundation();

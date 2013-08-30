@@ -39,15 +39,17 @@
 				<%= f.label "confirm password" %>
 				<%= f.password_field :password_confirmation %>
 				<br>
-				<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
-				<div class="row collapse">
-					<div class="large-6 columns">
-						<span class="prefix">
-							<%= f.label "longitude" %>
-						</span>
-					</div>
-					<div class="large-6 columns">
-						<%= f.telephone_field :lon %>
+				<div id="location_zone">
+					<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
+					<div class="row collapse">
+						<div class="large-6 columns">
+							<span class="prefix">
+								<%= f.label "longitude" %>
+							</span>
+						</div>
+						<div class="large-6 columns">
+							<%= f.telephone_field :lon %>
+						</div>
 					</div>
 				</div>
 				<div class="row collapse">

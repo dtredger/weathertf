@@ -4,10 +4,10 @@
 
 
 # $("#cool").click -> $.ajax
-# 	url: '/users/new'
+#   url: '/users/new'
 # .done (html) ->
-# 	$('#results').append html
-# 	console.log "cool clicked"
+#   $('#results').append html
+#   console.log "cool clicked"
 
 
 $(document).ready ->
@@ -15,3 +15,28 @@ $(document).ready ->
     $(".alert-box").append xhr.responseText
   ).bind "ajax:error", (e, xhr, status, error) ->
     $(".alert-box").append "<p>Something's gone wrong</p>"
+
+  opts = {
+    lines: 17
+    length: 0
+    width: 30
+    radius: 0
+    corners: 0.4
+    rotate: 0
+    direction: 1
+    color: '#000'
+    speed: 1.2
+    trail: 50
+    shadow: false
+    hwaccel: false
+    className: 'spinner'
+    zIndex: 2e9
+    top: 'auto'
+    left: 'auto'
+  };
+  target = document.getElementById('location_zone')
+  $('#find_location').click ->
+    spinner = new Spinner(opts).spin(target)
+    $('#location_zone').css("background-color", "black")
+
+
