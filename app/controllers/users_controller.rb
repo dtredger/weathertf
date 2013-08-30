@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      Thread.new { UserTexter.welcome_text(@user).deliver }.join
+      # Thread.new { UserTexter.welcome_text(@user).deliver }.join
       redirect_to user_path(@user)
     else
       flash[:notice] = "nope"

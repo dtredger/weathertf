@@ -15,7 +15,7 @@ gem "compass-rails", "~> 2.0.alpha.0"
 gem 'zurb-foundation', '~> 4.0.0'
 # gem 'leaflet-js'
 
-gem 'sidekiq'
+gem 'geocoder'
 
 group :doc do
     gem 'sdoc', require: false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825012504) do
+ActiveRecord::Schema.define(version: 20130830153811) do
 
   create_table "users", force: true do |t|
     t.string   "username",         null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20130825012504) do
     t.float    "lon"
     t.boolean  "digest"
     t.integer  "alert_percent"
+    t.string   "city"
   end
 
 end

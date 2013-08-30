@@ -37,6 +37,6 @@ $(document).ready ->
   target = document.getElementById('location_zone')
   $('#find_location').click ->
     spinner = new Spinner(opts).spin(target)
-    $('#location_zone').css("background-color", "black")
+    # $('#location_zone').css("background-color", "black")
 
 
