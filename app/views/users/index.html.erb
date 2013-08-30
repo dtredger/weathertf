@@ -7,6 +7,8 @@
 
 		<button class="success" data-reveal-id="signup">sign me up please</button>
 		<button data-reveal-id="login">login</button>
+		<br>
+		<br>
 	</div>
 </div>
 
@@ -89,7 +91,7 @@
 								</span>
 							</div>
 							<div class="large-3 columns">
-								<%= f.telephone_field :lon %>
+								<%= f.telephone_field :longitude %>
 							</div>
 
 							<div class="large-3 columns">
@@ -98,14 +100,14 @@
 								</span>
 							</div>
 							<div class="large-3 columns">
-								<%= f.telephone_field :lat %>
+								<%= f.telephone_field :latitude %>
 							</div>
 
 						</div>
 
 				</div> <!-- end of location_zone -->
 				<br>
-				<%= f.submit "sign me up", class: "button  expand success" %>
+				<%= f.submit "sign me up", class: "button expand success" %>
 
 			<% end %>
 

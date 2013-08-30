@@ -1,4 +1,4 @@
-For LAT: <%= @user.lat %>, LON: <%= @user.lon %>:
+For <%= @user.address %>:
 
 <% @future_hrs[0..1].each do |hr| %>
 <%= Time.at(hr.time).asctime[0..-9] %> (in <%= distance_of_time_in_words(Time.now.to_i, hr.time) %>):

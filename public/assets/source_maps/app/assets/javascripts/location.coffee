@@ -12,8 +12,8 @@ $(document).ready () ->
 		lat = position.coords.latitude
 		lon = position.coords.longitude
 		#sets values to be inserted into the signup form
-		$('#user_lat').val(lat)
-		$('#user_lon').val(lon)
+		$('#user_latitude').val(lat)
+		$('#user_longitude').val(lon)
 		$('.spinner').fadeOut(300)
 
 

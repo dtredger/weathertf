@@ -1,56 +1,100 @@
-<div class="row">
-	<br><br>
-	<div class="large-6 columns push-3">
-		<%= form_for @user, html: {class: "custom"} do |f| %>
-			<%= f.label "user name" %>
-			<%= f.text_field :username %>
-			<br>
-			<%= f.label "email" %>
-			<%= f.email_field :email %>
-			<br>
-			<%= f.label "phone" %>
-			<div class="row collapse">
-				<div class="large-2 columns">
-					<span class="prefix">#</span>
-				</div>
-				<div class="large-10 columns">
-					<span data-tooltip="top" class="has-tip tip-top" title="enter your 10-digit number" >
-						<%= f.telephone_field :phone_number %>
-					</span>
-				</div>
-			</div>
-			<br>
-			<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>
-			<br>
-			<%= f.label "password" %>
-			<%= f.password_field :password %>
-			<br>
-			<%= f.label "confirm password" %>
-			<%= f.password_field :password_confirmation %>
-			<br>
-			<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
-			<div class="row collapse">
-				<div class="large-6 columns">
-					<span class="prefix">
-						<%= f.label "longitude" %>
-					</span>
-				</div>
-				<div class="large-6 columns">
-					<%= f.telephone_field :lon %>
-				</div>
-			</div>
-			<div class="row collapse">
-				<div class="large-6 columns">
-					<span class="prefix">
-						<%= f.label "latitude" %>
-					</span>
-				</div>
-				<div class="large-6 columns">
-					<%= f.telephone_field :lat %>
-				</div>
-			</div>
+<br>
+<br>
+	<div class="row">
+		<div class="large-12 columns">
+			<%= form_for @user, html: {class: "custom"} do |f| %>
 
-			<%= f.submit "sign up", class: "button" %>
-		<% end %>
+				<div class="row collapse">
+					<div class="large-4 columns">
+						<span class="prefix">username</span>
+					</div>
+					<div class="large-8 columns">
+						<%= f.text_field :username %>
+					</div>
+				</div>
+
+				<div class="row collapse">
+					<div class="large-4 columns">
+						<span class="prefix">email</span>
+					</div>
+					<div class="large-8 columns">
+						<%= f.text_field :email %>
+					</div>
+				</div>
+				<br>
+
+				<div class="row collapse">
+					<div class="large-4 columns">
+						<span class="prefix">phone #</span>
+					</div>
+					<div class="large-8 columns">
+						<%= f.telephone_field :phone_number %>
+					</div>
+				</div>
+
+				<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>
+				<br>
+
+				<div class="row collapse">
+					<div class="large-4 columns">
+						<span class="prefix">password</span>
+					</div>
+					<div class="large-8 columns">
+						<%= f.text_field :password %>
+					</div>
+				</div>
+
+				<div class="row collapse">
+					<div class="large-4 columns">
+						<span class="prefix">again to confirm</span>
+					</div>
+					<div class="large-8 columns">
+						<%= f.text_field :password_confirmation %>
+					</div>
+				</div>
+				<br>
+
+				<div id="location_zone">
+
+					<!-- find location button and field for city to be filled by js -->
+					<div class="row collapse">
+						<div class="large-6 columns">
+							<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
+						</div>
+						<div class="large-6 columns">
+							<!-- insert the return value from geocoder here? -->
+						</div>
+					</div>
+
+						<!-- longitude and latitude filled by js -->
+						<div class="row collapse">
+
+							<div class="large-3 columns">
+								<span class="prefix">
+									<%= f.label "longitude" %>
+								</span>
+							</div>
+							<div class="large-3 columns">
+								<%= f.telephone_field :longitude %>
+							</div>
+
+							<div class="large-3 columns">
+								<span class="prefix">
+									<%= f.label "latitude" %>
+								</span>
+							</div>
+							<div class="large-3 columns">
+								<%= f.telephone_field :latitude %>
+							</div>
+
+						</div>
+
+				</div> <!-- end of location_zone -->
+				<br>
+				<%= f.submit "sign me up", class: "button expand success" %>
+
+			<% end %>
+
+		</div>
 	</div>
-</div>
+
