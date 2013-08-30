@@ -25,7 +25,7 @@ module ApplicationHelper
   end
 
   def random_bg
-    background = [image_path("1.jpg"),image_path("2.jpg"),image_path("3.jpg"),].sample
+    @background = [image_path("1.jpg"),image_path("2.jpg"),image_path("3.jpg"),].sample
   end
 
 end

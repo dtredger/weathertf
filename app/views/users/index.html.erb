@@ -1,9 +1,12 @@
-<div class="row" id="landing_box">
+<div class="row">
 	<div class="large-4 columns push-4" id="description">
-		<h1>WeatherTF</h1>
-		<h4>tell me what's up.</h4>
-		<button data-reveal-id="signup">Get yrself signed up!</button>
-		<button data-reveal-id="login">I am!</button>
+		<br>
+		<h1>WeatherPing</h1>
+		<br>
+		<h2><small>weather alerts by sms</small></h2>
+
+		<button class="success" data-reveal-id="signup">sign me up please</button>
+		<button data-reveal-id="login">login</button>
 	</div>
 </div>
 
@@ -57,7 +60,7 @@
 
 				<div class="row collapse">
 					<div class="large-4 columns">
-						<span class="prefix">confirm</span>
+						<span class="prefix">again to confirm</span>
 					</div>
 					<div class="large-8 columns">
 						<%= f.text_field :password_confirmation %>
@@ -77,32 +80,32 @@
 						</div>
 					</div>
 
-					<!-- longitude field filled by js-->
-					<div class="row collapse">
-						<div class="large-6 columns">
-							<span class="prefix">
-								<%= f.label "longitude" %>
-							</span>
-						</div>
-						<div class="large-6 columns">
-							<%= f.telephone_field :lon %>
-						</div>
-					</div>		
+						<!-- longitude and latitude filled by js -->
+						<div class="row collapse">
 
-					<!-- latitude field filled by js-->
-					<div class="row collapse">
-						<div class="large-6 columns">
-							<span class="prefix">
-								<%= f.label "latitude" %>
-							</span>
+							<div class="large-3 columns">
+								<span class="prefix">
+									<%= f.label "longitude" %>
+								</span>
+							</div>
+							<div class="large-3 columns">
+								<%= f.telephone_field :lon %>
+							</div>
+
+							<div class="large-3 columns">
+								<span class="prefix">
+									<%= f.label "latitude" %>
+								</span>
+							</div>
+							<div class="large-3 columns">
+								<%= f.telephone_field :lat %>
+							</div>
+
 						</div>
-						<div class="large-6 columns">
-							<%= f.telephone_field :lat %>
-						</div>
-					</div>
 
 				</div> <!-- end of location_zone -->
-				<%= f.submit "sign up", class: "button" %>
+				<br>
+				<%= f.submit "sign me up", class: "button  expand success" %>
 
 			<% end %>
 

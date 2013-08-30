@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 
+	require 'openssl'
+	OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 	ForecastIO.api_key = '7ae01f0b413da3017237ae750145a642'
 
 	def get_forecast
