@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
 	after_validation :geocode  # move into external process?
 
 
+
 end
