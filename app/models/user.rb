@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
 	authenticates_with_sorcery!
-	reverse_geocoded_by :lat, :lon
+
+	# reverse_geocoded_by :lat, :lon
 
 
 	validates_presence_of :password, on: :create
@@ -14,5 +15,6 @@ class User < ActiveRecord::Base
 
 
 	after_validation :geocode  # move into external process?
-	
+
+
 end
