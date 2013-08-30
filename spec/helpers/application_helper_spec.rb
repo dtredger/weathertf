@@ -9,7 +9,7 @@ describe ApplicationHelper do
     end
 
     it "has base title and hyphen" do
-      full_title("cool").should =~ /^WeatherTF - /
+      full_title("cool").should =~ /^WeatherPing - /
     end
 
     it "no hyphen without subtitle" do

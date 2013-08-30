@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Weathertf::Application.config.secret_key_base = 'd28f6c86943df0e793ecca84e479d8ad994538495837a16a9bf654f7b8a924ab59f5a9b38da22872bd16219b1219d0ec91eff2fac6ada450eeb5dc67e077e367'
+WeatherPing::Application.config.secret_key_base = 'd28f6c86943df0e793ecca84e479d8ad994538495837a16a9bf654f7b8a924ab59f5a9b38da22872bd16219b1219d0ec91eff2fac6ada450eeb5dc67e077e367'

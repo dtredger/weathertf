@@ -39,4 +39,8 @@ $(document).ready ->
     spinner = new Spinner(opts).spin(target)
     # $('#location_zone').css("background-color", "black")
 
+  # $('#settings').click -> 
+  #   $.ajax(url: "/users/edit").done (html) ->
+  #     $("#results").append html
+
 

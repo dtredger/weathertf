@@ -1,4 +1,4 @@
-##WeatherTF
+##WeatherPing
 I never actually check the weather, so it'd be nice if something would alert me when it's about to precipitate.
 - users enter their and phone details (number & carrier)
 - html Geolocation API fills their lat/lon into signup form (or they can specify specific coordinates)

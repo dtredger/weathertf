@@ -1,6 +1,6 @@
 <% provide(:title, "Local") %>
 <div class="row">
-	<div class="large-8 push-2 columns">
+	<div class="large-8 push-2 columns" id="show_pane">
 		<br>
 		<br>
 		<div class="section-container auto" data-section>
@@ -26,13 +26,15 @@
 			</section>
 
 			<section>
-				<p class="title" data-section-title><a href="#settings">My Account</a></p>
-				<div class="content" data-section-content>
+				<p class="title" data-section-title>
+					<a id="settings" href="#settings">My Account</a>
+				</p>
+				<div class="content" id="edit_tab" data-section-content>
 					<%= render template: 'users/edit' %>
 				</div>
 			</section>
 
-			<%= button_to "msg", sms_path, method: "get", remote: true, class: "button send_sms" %>
+			<!-- button_to "msg", sms_path, method: "get", remote: true, class: "button send_sms" -->
 			<!-- THIS LINK IS STILL ATTEMPTING TO FIND A VIEW FOR /SMS -->
 		</div>
 
