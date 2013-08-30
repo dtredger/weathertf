@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings]  
 
   def index
-    @background = ["1.jpg","2.jpg","3.jpg"].sample
     @user = User.new
   end
 

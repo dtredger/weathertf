@@ -16,11 +16,15 @@
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'favicon.ico' %>
 
+    <style type="text/css">
+      html { background: url(<%= random_bg %>) no-repeat center center fixed; }
+    </style>
+
   </head>
 
   <body>
 
-    <%= render 'layouts/notices' %>
+    <!-- render 'layouts/notices' -->
 
     <%= yield %>
 
