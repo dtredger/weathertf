@@ -2,11 +2,7 @@
 $(document).ready () ->
 
 	get_location = ->
-		# if (Modernizr.geolocation)
 		navigator.geolocation.getCurrentPosition(loc_details, loc_error)
-		# else
-		# 	alert("no suppert??")
-		# # no native support; maybe try a fallback?
 
 	loc_details = (position) ->
 		lat = position.coords.latitude

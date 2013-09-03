@@ -81,6 +81,9 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     ffi (1.9.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     forecast_io (2.0.0)
       faraday
       hashie
@@ -229,6 +232,7 @@ DEPENDENCIES
   database_cleaner
   dm-transactions
   factory_girl_rails
+  figaro
   forecast_io
   geocoder
   jbuilder (~> 1.2)

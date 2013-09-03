@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	require 'openssl'
 	OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-	ForecastIO.api_key = '7ae01f0b413da3017237ae750145a642'
+	ForecastIO.api_key = ENV["FORECASTIO_KEY"]
 
 	def get_forecast
   		@forecast = ForecastIO.forecast(
