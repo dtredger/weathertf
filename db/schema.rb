@@ -13,14 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20130905165008) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "users", force: true do |t|
-    t.string   "username",         null: false
+    t.string   "username",                   null: false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "phone_number"
+    t.integer  "phone_number",     limit: 8
     t.string   "carrier"
     t.float    "latitude"
     t.float    "longitude"
