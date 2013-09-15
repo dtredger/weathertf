@@ -17,6 +17,7 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'geocoder'
 gem 'figaro'
 gem 'google-analytics-rails'
+gem 'gibbon'
 
 group :doc do
     gem 'sdoc', require: false

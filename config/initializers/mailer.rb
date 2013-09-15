@@ -16,11 +16,11 @@
 # my actual gmail account works fine for sending.
 
 ActionMailer::Base.smtp_settings = {
-    address: "smtp.mandrill.com",
-    port: 25,
-    domain: "WeatherPing.herokuapp.com",
-    user_name: ENV["MANDRILL_USERNAME"],
-    password: ENV["MANDRILL_PASSWORD"],
-    authentication: "login",
-    enable_starttls_auto: true
-  }
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
+}
+ActionMailer::Base.delivery_method = :smtp

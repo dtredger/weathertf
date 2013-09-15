@@ -1,6 +1,7 @@
 class UserTexter < ActionMailer::Base
   include MailerHelper
   default from: "sms@WeatherPing.com"
+  gb = Gibbon::API.new
 
   def welcome_text(user)
     @user = user
@@ -14,6 +15,7 @@ class UserTexter < ActionMailer::Base
 
     mail(to:"#{@user.phone_number}#{@suffix}", subject: "hi #{@user.username}")
   end
+
 
 
   # necessary to find the correct phone number suffix amongs the different sms gateways
