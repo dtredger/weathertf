@@ -17,8 +17,10 @@
     <%= favicon_link_tag 'favicon.ico' %>
 
     <style type="text/css">
-      body { background: url(<%= random_bg %>) no-repeat center center fixed; }
+      body { background: url(<%= random_bg %>) no-repeat center  90% fixed; }
     </style>
+
+    <%= analytics_init if Rails.env.production? %>
 
   </head>
 

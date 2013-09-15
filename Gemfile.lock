@@ -90,6 +90,7 @@ GEM
       multi_json
     fssm (0.2.10)
     geocoder (1.1.8)
+    google-analytics-rails (0.0.4)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -234,6 +235,7 @@ DEPENDENCIES
   figaro
   forecast_io
   geocoder
+  google-analytics-rails
   jbuilder (~> 1.2)
   jquery-rails
   letter_opener
