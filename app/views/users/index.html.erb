@@ -16,19 +16,20 @@
 
 <!-- ----------- sign-up form ------------- -->
 
-<div id="signup" class="reveal-modal medium">
+<div id="signup" class="reveal-modal small">
 	<div class="row">
 		<div class="large-12 columns">
 			<%= form_for @user, html: {class: "custom"} do |f| %>
 
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">username</span>
-					</div>
-					<div class="large-8 columns">
-						<%= f.text_field :username %>
-					</div>
-				</div>
+
+				<!--<div class="row collapse">-->
+					<!--<div class="large-4 columns">-->
+						<!--<span class="prefix">username</span>-->
+					<!--</div>-->
+					<!--<div class="large-8 columns">-->
+						<!--<%= f.text_field :username %>-->
+					<!--</div>-->
+				<!--</div>-->
 
 				<div class="row collapse">
 					<div class="large-4 columns">
@@ -40,17 +41,17 @@
 				</div>
 				<br>
 
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">phone #</span>
-					</div>
-					<div class="large-8 columns">
-						<%= f.telephone_field :phone_number %>
-					</div>
-				</div>
+				<!--<div class="row collapse">-->
+					<!--<div class="large-4 columns">-->
+						<!--<span class="prefix">phone #</span>-->
+					<!--</div>-->
+					<!--<div class="large-8 columns">-->
+						<!--<%= f.telephone_field :phone_number %>-->
+					<!--</div>-->
+				<!--</div>-->
 
-				<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>
-				<br>
+				<!--<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>-->
+				<!--<br>-->
 
 				<div class="row collapse">
 					<div class="large-4 columns">
