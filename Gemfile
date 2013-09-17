@@ -9,15 +9,18 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-gem 'forecast_io'
 gem 'sorcery'
 gem "compass-rails", "~> 2.0.alpha.0"
 gem 'zurb-foundation', '~> 4.0.0'
 
-gem 'geocoder'
-gem 'figaro'
+gem 'forecast_io'     # for forecast.io API
+gem 'geocoder'        # for (reverse) geocoding
+gem 'figaro'          # for ENV variable setting
 gem 'google-analytics-rails'
-gem 'gibbon'
+gem 'gibbon'          # for Mandrill API
+gem 'ruby-sendhub'    # to use sendhub rather than TelAPI, since the free limit is higher
+
+gem 'passenger'       # phusion passenger because
 
 group :doc do
     gem 'sdoc', require: false

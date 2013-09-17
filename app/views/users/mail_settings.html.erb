@@ -1,5 +1,5 @@
 <div>
-	<p><%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %></p>
+	<p><%= current_user.username %> | <%= number_to_phone(current_user.phone_number) %></p>
 </div>
 
 <div class="row">
@@ -10,8 +10,8 @@
 
 	<%= form_for @user, html: {class: "custom"} do |f| %>
 		<div class="large-6 columns">
-			<%= f.check_box :digest %>
-			<%= f.label "morning_digest" %>
+			<!--<%= f.check_box :digest %>-->
+			<!--<%= f.label "morning_digest" %>-->
 			<br>
 			<br>
 			<br>
@@ -21,7 +21,7 @@
 						<span class="prefix">%</span>
 					</div>
 					<div class="large-6 pull-3 columns">
-						<%= f.select :alert_percent, [["60"],["70"],["80"],["90"],["100"]], class: "select"%>
+						<%= f.select :alert_percent, [["30"],["40"],["50"],["60"]], class: "select"%>
 					</div>
 				</div>
 			</div>
@@ -29,5 +29,9 @@
 		<br>
 		<%= f.submit "update", class: "button" %>
 	<% end %>
+
+    <%= link_to  "text me now", sms_path, class: "button" %>
+
+
 
 </div>
