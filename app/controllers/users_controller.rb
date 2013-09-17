@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      Thread.new { UserTexter.welcome_text(@user).deliver }.join
+      #Thread.new { UserTexter.welcome_text(@user).deliver }.join
       redirect_to user_path(@user)
     else
       flash[:notice] = "nope"
@@ -43,14 +43,10 @@ class UsersController < ApplicationController
 
   def sms
 
-    # TelAPI method
+    ## TelAPI method
     request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherPing", :Token => ENV['TELAPI_TOKEN'] }
     r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data)
     puts "TELAPI response: #{r}"
-
-    #SendHub method
-    sh = SendHub.new("your_api_key", "your_number")
-
 
     #if UserTexter.update_text(current_user).deliver
     #  flash[:notice] = "msg sent"

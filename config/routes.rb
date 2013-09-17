@@ -5,7 +5,7 @@ WeatherPing::Application.routes.draw do
 	resources :sessions, only: [:new, :create, :delete]
 
 
-	get 'sms', to: 'users#sms'
+	put 'sms', to: 'users#sms'
 
 
 	root to: 'users#index'

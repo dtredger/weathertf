@@ -30,7 +30,7 @@
 		<%= f.submit "update", class: "button" %>
 	<% end %>
 
-    <%= link_to  "text me now", sms_path, class: "button" %>
+    <%= link_to  "text me now", sms_path, :method => :put, remote: true, class: "button" %>
 
 
 

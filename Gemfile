@@ -20,7 +20,7 @@ gem 'google-analytics-rails'
 gem 'gibbon'          # for Mandrill API
 gem 'ruby-sendhub'    # to use sendhub rather than TelAPI, since the free limit is higher
 
-gem 'passenger'       # phusion passenger because
+gem 'passenger'       # phusion passenger because multiple workers on single dyno
 
 group :doc do
     gem 'sdoc', require: false
