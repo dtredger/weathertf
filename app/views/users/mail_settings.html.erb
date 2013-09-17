@@ -3,34 +3,39 @@
 </div>
 
 <div class="row">
-	<div class="large-6 columns">
-		<p>A Digest of hourly weather for the whole day will be sent every morning</p>
-		<p>Specify how likely rain should be before you are notified.</p>
-	</div>
+	<!--<div class="large-6 columns">-->
+		<!--<p>A Digest of hourly weather for the whole day will be sent every morning</p>-->
+		<!--<p>Specify how likely rain should be before you are notified.</p>-->
+	<!--</div>-->
 
-	<%= form_for @user, html: {class: "custom"} do |f| %>
-		<div class="large-6 columns">
-			<!--<%= f.check_box :digest %>-->
-			<!--<%= f.label "morning_digest" %>-->
-			<br>
-			<br>
-			<br>
-			<div class="large-7 columns">
-				<div class="row collapse">
-					<div class="large-3 columns">
-						<span class="prefix">%</span>
-					</div>
-					<div class="large-6 pull-3 columns">
-						<%= f.select :alert_percent, [["30"],["40"],["50"],["60"]], class: "select"%>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<%= f.submit "update", class: "button" %>
-	<% end %>
+	<!--<%= form_for @user, html: {class: "custom"} do |f| %>-->
+		<!--<div class="large-6 columns">-->
+			<!--&lt;!&ndash;<%= f.check_box :digest %>&ndash;&gt;-->
+			<!--&lt;!&ndash;<%= f.label "morning_digest" %>&ndash;&gt;-->
+			<!--<br>-->
+			<!--<br>-->
+			<!--<br>-->
+			<!--<div class="large-7 columns">-->
+				<!--<div class="row collapse">-->
+					<!--<div class="large-3 columns">-->
+						<!--<span class="prefix">%</span>-->
+					<!--</div>-->
+					<!--<div class="large-6 pull-3 columns">-->
+						<!--<%= f.select :alert_percent, [["30"],["40"],["50"],["60"]], class: "select"%>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<br>-->
+		<!--<%= f.submit "update", class: "button" %>-->
+	<!--<% end %>-->
 
-    <%= link_to  "text me now", sms_path, :method => :put, remote: true, class: "button textnow" %>
+    <div class="large-6 columns">
+      Check that your phone can receive texts from WeatherPing
+    </div>
+    <div class="large-6 columns">
+      <%= link_to  "text me now", sms_path, :method => :put, remote: true, class: "button textnow" %>
+    </div>
 
 
 

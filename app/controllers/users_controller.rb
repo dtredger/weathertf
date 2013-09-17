@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     # TelAPI method
     request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherPing", :Token => ENV['TELAPI_TOKEN'] }
-    r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data)
+    Thread.new { r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data) }.join
     puts "TELAPI response: #{r}"
 
     #if UserTexter.update_text(current_user).deliver
