@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
+  include FriendlyId
 
 	authenticates_with_sorcery!
-
-
 	reverse_geocoded_by :latitude, :longitude
+  #friendly_id :username, use: :slugged
 
 
 	validates_presence_of :password, on: :create

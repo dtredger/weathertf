@@ -18,7 +18,7 @@ gem 'geocoder'        # for (reverse) geocoding
 gem 'figaro'          # for ENV variable setting
 gem 'google-analytics-rails'
 gem 'gibbon'          # for Mandrill API
-gem 'ruby-sendhub'    # to use sendhub rather than TelAPI, since the free limit is higher
+gem 'friendly_id', '5.0.0.beta4'
 
 gem 'passenger'       # phusion passenger because multiple workers on single dyno
 

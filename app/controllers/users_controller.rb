@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings]  
+  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings]
+  respond_to :js, :html
 
   def index
     @user = User.new
@@ -43,10 +44,14 @@ class UsersController < ApplicationController
 
   def sms
 
+    respond_to do |format|
+      format.js
+    end
+
     ## TelAPI method
-    request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherPing", :Token => ENV['TELAPI_TOKEN'] }
-    r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data)
-    puts "TELAPI response: #{r}"
+    #request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherPing", :Token => ENV['TELAPI_TOKEN'] }
+    #r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data)
+    #puts "TELAPI response: #{r}"
 
     #if UserTexter.update_text(current_user).deliver
     #  flash[:notice] = "msg sent"

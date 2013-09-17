@@ -1,7 +1,7 @@
-#http://diveintohtml5.info/geolocation.html
 $(document).ready () ->
 
 	get_location = ->
+#    $('.find_loc').addClass("disabled")
 		navigator.geolocation.getCurrentPosition(loc_details, loc_error)
 
 	loc_details = (position) ->
