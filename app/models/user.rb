@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include FriendlyId
+  #include FriendlyId
 
 	authenticates_with_sorcery!
 	reverse_geocoded_by :latitude, :longitude
