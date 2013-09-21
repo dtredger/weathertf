@@ -12,5 +12,7 @@ WeatherPing::Application.routes.draw do
 
   mount Resque::Server, at: '/resque'
 
+  get '*path' => redirect('/')  unless Rails.env.development?
+
 
 end
