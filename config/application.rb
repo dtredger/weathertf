@@ -34,7 +34,9 @@ module WeatherPing
 
 		config.to_prepare do
 			ActionMailer::Base.helper "application"
-		end
+    end
+
+    config.assets.initialize_on_precompile = false
 
 	end
 
