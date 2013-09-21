@@ -1,14 +1,14 @@
-class UserTexter < ActionMailer::Base
+class UserMailer < ActionMailer::Base
   include MailerHelper
   default from: "sms@WeatherPing.com"
   gb = Gibbon::API.new
 
-  def welcome_text(user)
+  def welcome_email(user)
     @user = user
     mail(to: @user.email, subject: "update")
   end
 
-  def update_text(user)
+  def daily_email(user)
     @user = user
     number_suffix(@user.carrier)
     get_forecast(user)

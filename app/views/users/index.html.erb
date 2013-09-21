@@ -72,12 +72,19 @@
 				</div>
 				<br>
 
+
 				<div id="location_zone">
 
 					<!-- find location button and field for city to be filled by js -->
 					<div class="row collapse">
+                      <div class="large-2 columns">
+                        <%= image_tag 'globe.png' %>
+                      </div>
+
 						<div class="large-6 columns">
-							<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
+
+                          <%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
+
 						</div>
 						<div class="large-6 columns">
 							<!-- insert the return value from geocoder here? -->

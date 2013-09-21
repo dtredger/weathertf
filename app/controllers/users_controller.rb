@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings]
+  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings, :sms]
   respond_to :js, :html
 
   def index
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      Thread.new { UserTexter.welcome_text(@user).deliver }.join
+      Resque.enqueue(SendWelcomeEmail, @user.id)
       redirect_to user_path(@user)
     else
       flash[:notice] = "nope"
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     Thread.new { r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data) }.join
     puts "TELAPI response: #{r}"
 
-    #if UserTexter.update_text(current_user).deliver
+    #if UserMailer.update_text(current_user).deliver
     #  flash[:notice] = "msg sent"
     #else
     #  flash[:alert] = "msg sending error"

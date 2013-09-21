@@ -10,5 +10,7 @@ WeatherPing::Application.routes.draw do
 
 	root to: 'users#index'
 
+  mount Resque::Server, at: '/resque'
+
 
 end
