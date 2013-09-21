@@ -19,8 +19,9 @@ gem 'figaro'          # for ENV variable setting
 gem 'google-analytics-rails'
 gem 'gibbon'          # for Mandrill API
 gem 'friendly_id', '5.0.0.beta4'
+
 gem 'redis'
-gem 'resque', require: 'resque/server'    # for background jobs
+gem 'resque', "~> 1.22.0", require: 'resque/server'    # for background jobs
 
 gem 'passenger'       # phusion passenger because multiple workers on single dyno
 
