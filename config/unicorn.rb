@@ -8,7 +8,7 @@ preload_app true
 
 before_fork do |server, worker|
   @resque_pid ||= spawn("bundle exec rake " + \
-  "resque:work QUEUES=scrape,geocode,distance,mailer")
+  "resque:work QUEUES=email_queue")
 
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
