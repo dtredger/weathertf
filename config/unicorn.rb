@@ -1,5 +1,5 @@
 # config/unicorn.rb
-worker_processes 3
+worker_processes 2
 timeout 30
 preload_app true
 
@@ -7,8 +7,7 @@ preload_app true
 @resque_pid = nil
 
 before_fork do |server, worker|
-  @resque_pid ||= spawn("bundle exec rake " + \
-  "resque:work QUEUES=email_queue")
+  @resque_pid ||= spawn("bundle exec rake environment resque:work QUEUES=*")
 
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
