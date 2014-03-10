@@ -10,14 +10,14 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'sorcery'
-gem "compass-rails", "~> 2.0.alpha.0"
+gem "compass-rails" #, "~> 2.0.alpha.0"     don't think this is necessary anymore
 gem 'zurb-foundation', '~> 4.0.0'
 
 gem 'forecast_io'     # for forecast.io API
 gem 'geocoder'        # for (reverse) geocoding
 gem 'figaro'          # for ENV variable setting
 gem 'google-analytics-rails'
-gem 'gibbon'          # for Mandrill API
+# gem 'gibbon'          # for Mandrill API
 gem 'friendly_id', '5.0.0.beta4'
 
 gem 'redis'
