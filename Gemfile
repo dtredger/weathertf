@@ -10,7 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'sorcery'
-gem "compass-rails" #, "~> 2.0.alpha.0"     don't think this is necessary anymore
+gem "compass-rails", "~> 1.1.3" #, "~> 2.0.alpha.0"     don't think this is necessary anymore
 gem 'zurb-foundation', '~> 4.0.0'
 
 gem 'forecast_io'     # for forecast.io API
