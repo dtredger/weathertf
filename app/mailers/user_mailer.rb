@@ -1,7 +1,6 @@
 class UserMailer < ActionMailer::Base
   include MailerHelper
   default from: "sms@WeatherPing.com"
-  gb = Gibbon::API.new
 
   def welcome_email(user)
     @user = user
