@@ -20,3 +20,6 @@
 
 #rubymine
 /.idea
+
+# vagrant stuff
+/.vagrant
