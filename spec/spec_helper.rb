@@ -49,16 +49,16 @@ RSpec.configure do |config|
 
 end
 
-def sign_in(user)
-  visit users_path
+# def sign_in(user)
+#   visit users_path
 
-  fill_in "username",    with: user.email.upcase
-  fill_in "email", with: user.email
-  fill_in "phone_number", with: user.phone_number
-  fill_in "carrier", with: user.carrier
-  fill_in "lat", with: user.lat
-  fill_in "lon", with: user.lon
+#   fill_in "username",    with: user.email.upcase
+#   fill_in "email", with: user.email
+#   fill_in "phone_number", with: user.phone_number
+#   fill_in "carrier", with: user.carrier
+#   fill_in "lat", with: user.lat
+#   fill_in "lon", with: user.lon
 
-  click_button "sign up"
-end
+#   click_button "sign up"
+# end
 

@@ -42,12 +42,18 @@ group :development do
   gem 'letter_opener'
 end
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'dm-transactions'
+  gem 'faker'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do

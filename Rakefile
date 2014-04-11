@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-WeatherPing::Application.load_tasks
+WeatherTF::Application.load_tasks

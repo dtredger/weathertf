@@ -1,4 +1,4 @@
-WeatherPing::Application.routes.draw do
+WeatherTF::Application.routes.draw do
 
 	resources :users
 
