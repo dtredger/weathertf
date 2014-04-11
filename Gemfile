@@ -40,6 +40,7 @@ group :development do
   gem 'annotate'
   gem 'coffee-rails-source-maps'
   gem 'letter_opener'
+  gem 'spring'
 end
 
 group :development, :test do

@@ -16,10 +16,11 @@ class User < ActiveRecord::Base
     allow_blank: true
 
   validate :email_xor_phone_number
+
+  validates_uniqueness_of :email,
+    allow_blank: true
     
   #validates_presence_of :carrier
-
-  # before_validation :set_username
 
 
   # after_validation :reverse_geocode   # move into external process?
@@ -36,9 +37,6 @@ class User < ActiveRecord::Base
       end
     end
 
-  #   def set_username
-  #     self.username = self.email.split("@")[0]
-  #   end
 
 
 end
