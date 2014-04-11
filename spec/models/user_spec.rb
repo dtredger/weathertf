@@ -5,7 +5,12 @@ describe User do
   before do 
     @base_user = FactoryGirl.build(:base_user) 
     @full_user = FactoryGirl.build(:full_user)
+    @lou_user = User.create(
+      email: "lou@email.com",
+      password: 'cats'
+      ).save()
   end
+
 
   subject { @base_user }
   describe "model has right fields" do
@@ -22,6 +27,7 @@ describe User do
     it { should respond_to(:latitude) }
     it { should respond_to(:longitude) }
   end
+
 
   describe "password" do
     describe "does not exist" do
@@ -54,20 +60,21 @@ describe User do
 
     describe "email already used" do
       before do
-        User.create(username: 'lou', password: 'cats', 
-          email: "some_email@email.com"
-          ).save()
-        @duplicate_email_user = User.create(username: 'lou-two', 
-          password: 'somethin', email: "some_email@email.com"
+        @duplicate_lou_user = User.create(
+          password: 'somethin', 
+          email: "lou@email.com"
           )
       end
-      subject { @duplicate_email_user }
+      subject { @duplicate_lou_user }
       it { should_not be_valid }
       it { should have(1).errors_on(:email) }
     end
+
+    describe "username created by system" do
+      subject { @lou_user }
+      it { should have username == "lou@email.com"}
+    end
   end
-
-
 
 
 
