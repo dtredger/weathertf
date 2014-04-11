@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email,
     allow_blank: true
 
-  before_create :create_username
+  before_save :create_username
   
   reverse_geocoded_by :latitude, :longitude
 

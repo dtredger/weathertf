@@ -40,7 +40,6 @@ describe User do
       it { should_not be_valid }
     end
   end
-
   
   describe "contact info - " do
     describe "phone number not nil but less than 10 digits" do
@@ -71,9 +70,38 @@ describe User do
     end
 
     describe "username created by system" do
-      subject { @lou_user }
-      it { should have username == "lou@email.com"}
+      describe "for user with only@email.com" do
+        User.create(
+          email: "only@email.com",
+          password: 'cats'
+          ).save()
+        email_only = User.find_by_email("only@email.com")
+        subject { email_only.username }
+        it { should == "only@email.com" }
+      end
+
+      describe "for user with phone number 1112223333 only" do
+        User.create(
+          phone_number: 1112223333,
+          password: 'cats'
+          ).save()
+        phone_only = User.find_by_phone_number(1112223333)
+        subject { phone_only.username }
+        it { should == "1112223333" }
+      end
+
+      describe "for user with both email and phone number" do
+        User.create(
+          email: "prefer_email_over_phone@email.com",
+          phone_number: 1231231234,
+          password: 'cats'
+          ).save()
+        both = User.find_by_phone_number(1231231234)
+        subject { both.username }
+        it { should == "prefer_email_over_phone@email.com" }
+      end
     end
+
   end
 
 
