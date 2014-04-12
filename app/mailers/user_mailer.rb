@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   include MailerHelper
-  default from: "sms@WeatherPing.com"
+  default from: "sms@WeatherTF.com"
 
   def welcome_email(user)
     @user = user

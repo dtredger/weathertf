@@ -22,6 +22,7 @@ gem 'google-analytics-rails'
 # gem 'gibbon'          # for Mandrill API
 gem 'friendly_id', '5.0.0.beta4'
 
+gem 'pg'
 gem 'redis'
 gem 'resque', "~> 1.22.0", require: 'resque/server'    # for background jobs
 
@@ -29,30 +30,33 @@ gem 'unicorn'
 gem 'newrelic_rpm'    # monitoring
 
 group :doc do
-    gem 'sdoc', require: false
+  gem 'sdoc', require: false
 end
 
 group :development do
-    gem 'pg'
-    gem 'better_errors'
-    gem 'pry-rails'
-    gem 'binding_of_caller'
-    gem 'annotate'
-    gem 'coffee-rails-source-maps'
-    gem 'letter_opener'
+  gem 'better_errors'
+  gem 'pry-rails'
+  gem 'binding_of_caller'
+  gem 'annotate'
+  gem 'coffee-rails-source-maps'
+  gem 'letter_opener'
+  gem 'spring'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
-    gem 'pry-rails'
-    gem 'pg'
-    gem 'rspec-rails'
-    gem 'capybara'
-    gem 'factory_girl_rails'
-    gem 'database_cleaner'
-    gem 'dm-transactions'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'dm-transactions'
+  gem 'faker'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do
-    gem 'pg'
-    gem 'rails_12factor'
+  gem 'rails_12factor'
 end
