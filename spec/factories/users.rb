@@ -11,12 +11,17 @@ FactoryGirl.define do
       carrier { 'some_carrier' }
       latitude { Faker::Address.latitude }
       longitude { Faker::Address.longitude }
-      alert_percent 40
+      alert_percent 70
       address { Faker::Address.street_address + ", "+ 
         Faker::Address.city + ", " +
         Faker::Address.state_abbr 
       }
     end
+
+    factory :invalid_user do
+      email nil
+    end
+
 
   end
 

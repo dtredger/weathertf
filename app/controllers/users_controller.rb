@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
-  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+  before_filter :correct_user, 
+    only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+
   respond_to :js, :html
+
+  rescue_from ActiveRecord::RecordNotFound do
+    # whats all this then? 
+  end
 
   def index
     @user = User.new
@@ -19,8 +25,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      Resque.enqueue(SendWelcomeEmail, @user.id)
-      redirect_to user_path(@user)
+      begin
+        Resque.enqueue(SendWelcomeEmail, @user.id)  
+      rescue Exception => e
+        # some alert: "we'll email you later"
+      end
+      redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
       redirect_to new_user_path
