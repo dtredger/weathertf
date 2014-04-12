@@ -35,6 +35,15 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def reset_password_email(user)
+    # if using redis, won't above user have to be an id only, 
+    # which we will look up here?
+    @user = user
+    @url = edit_password_reset_url(user.reset_password_token)
+    mail(to:@user.email, subject: "Reset password")
+  end
+
+
 
 end
 
