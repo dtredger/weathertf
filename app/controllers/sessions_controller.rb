@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_back_or_to(:users, notice: "welcome")
     else
       flash.now[:alert] = "no"
-      render action: "new"
+      render root_url
     end
   end
 

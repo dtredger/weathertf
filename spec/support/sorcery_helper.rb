@@ -5,7 +5,7 @@ module Sorcery
 
     module Rails
 
-      def login_with_username_and_password(user, password)
+      def login_user(user, password)
         page.driver.post(user_sessions_url, { 
           username: user,
           password: password
