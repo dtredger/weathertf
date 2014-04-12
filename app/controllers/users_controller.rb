@@ -14,7 +14,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    Thread.new { get_forecast }.join
+    begin
+      Thread.new { get_forecast }.join
+    rescue Exception => e
+      # should conditions for display exist here or in view?
+      @hourly = []
+      @daily = []
+      @future_hrs = []
+    end
+    # @user = User.find(params[:id])
+    # because of the correct_user before_filter, @user should already be defined
   end
 
   def new
@@ -33,7 +42,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      redirect_to new_user_path
+      render :index
     end
   end
 
@@ -74,15 +83,17 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :email, 
-        :phone_number, :carrier, :password, :latitude, :longitude, :digest, :alert_percent)
+      params.require(:user).permit(:username, :email, :phone_number, :carrier, 
+        :password, :password_confirmation, :latitude, :longitude, :digest, :alert_percent)
     end
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user == @user
+      unless current_user == @user then
+        redirect_to root_path, 
+        notice: "login session expired. Please login again"
+      end
     end
-
 
 
 end

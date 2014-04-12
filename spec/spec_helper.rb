@@ -38,6 +38,9 @@ RSpec.configure do |config|
   # all factory_girl methods will need to be prefaced with FactoryGirl.
   config.include FactoryGirl::Syntax::Methods
 
+  # file created in spec/support/sorcery_helper, for sorcery 
+  config.include Sorcery::TestHelpers::Rails
+
   config.before(:suite) do
     begin
       DatabaseCleaner.start

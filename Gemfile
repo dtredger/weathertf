@@ -35,7 +35,6 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'pry-rails'
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'coffee-rails-source-maps'
@@ -44,6 +43,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end

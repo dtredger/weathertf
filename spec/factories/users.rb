@@ -6,6 +6,15 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
 
+    factory :default_user do
+      email "default_user@email.com"
+      password "default_password"     
+    end
+
+    factory :invalid_user do
+      email nil
+    end
+
     factory :full_user do
       phone_number { Faker::Number.number(10) }
       carrier { 'some_carrier' }
@@ -16,10 +25,6 @@ FactoryGirl.define do
         Faker::Address.city + ", " +
         Faker::Address.state_abbr 
       }
-    end
-
-    factory :invalid_user do
-      email nil
     end
 
 
