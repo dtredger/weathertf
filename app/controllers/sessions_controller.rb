@@ -1,14 +1,16 @@
 class SessionsController < ApplicationController
   
   def new
+    @user = User.new
   end
 
   def create
     user = login(params[:username], params[:password])
     if user
-      redirect_to user_path(user)
+      redirect_back_or_to(:users, notice: "welcome")
     else
-      redirect_to :root
+      flash.now[:alert] = "no"
+      render action: "new"
     end
   end
 
