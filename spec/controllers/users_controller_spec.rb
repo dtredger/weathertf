@@ -73,7 +73,6 @@ describe UsersController do
         # flash[:notice].should_not be_nil
         pending
       end
-
     end
   end
 
@@ -83,13 +82,7 @@ describe UsersController do
   end
 
 
-  context "#edit" do
-    pending
-  end 
-
-
   context "#create" do
-
     describe "with correct attributes" do
       before do
         post :create, user: attributes_for(:full_user)
@@ -129,16 +122,29 @@ describe UsersController do
 
   end
 
+
+  context "#edit" do
+    pending
+  end 
+
+
   context "#update" do
+    pending
   end
 
+
   context "#delete" do
-    pending
     # before :each do 
     #   @user = create(:full_user)
     # end
 
+    it "removes user from database" do
+      pending
+    end
 
+    it "redirects to index" do
+      pending
+    end
   end
 
 
