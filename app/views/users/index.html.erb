@@ -20,10 +20,11 @@
 	<div class="row">
 		<div class="large-12 columns">
 			
-			<%= render template: 'users/signup_form' %>	
+			<%= render template: 'users/forms/signup_form' %>	
 
 		</div>
 	</div>
+	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!--  login form    -->
@@ -31,25 +32,9 @@
 <div id="login" class="reveal-modal small">
 	<div class="row">
 		<div class="large-12 columns">
-			<%= form_tag sessions_path do %>
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">username</span>
-					</div>
-					<div class="large-8 columns">
-						<%=  text_field_tag :username, params[:username] %>
-					</div>
-				</div>
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">password</span>
-					</div>
-					<div class="large-8 columns">
-						<%= password_field_tag :password %>
-					</div>
-				</div>
-				<%= submit_tag "login", class:"button large-12 columns" %>
-			<% end %>
+
+			<%= render template: 'users/login_form' %>
+
 		</div>
 	</div>
 	<a class="close-reveal-modal">&#215;</a>
