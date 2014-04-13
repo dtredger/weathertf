@@ -2,12 +2,10 @@ class SessionsController < ApplicationController
   
   def new
     @user = User.new
-    binding.pry
   end
 
   def create
     @user = login(params[:username], params[:password])
-    binding.pry
     if @user
       redirect_back_or_to(:users, notice: "welcome")
     else

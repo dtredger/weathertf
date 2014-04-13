@@ -4,13 +4,10 @@ WeatherTF::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:create, :edit, :update]
 
-  #should password_resets be limited??
-
-  # put 'sms', to: 'users#sms'
-
+  #should password_resets be limited?? i did
 
   root 'users#index'
-  get '*path' => redirect('/')  unless Rails.env.development?
+
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
@@ -20,6 +17,6 @@ WeatherTF::Application.routes.draw do
   mount Resque::Server, at: '/resque'
 
 
-
+  get '*path' => redirect('/')  unless Rails.env.development?
 
 end

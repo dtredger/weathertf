@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     # whats all this then? 
   end
 
+
   def index
     @user = User.new
   end
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      render :index
+      redirect_to :index
       # TODO 
       # drop-down the sign-up modal automatically, showing errors
     end
