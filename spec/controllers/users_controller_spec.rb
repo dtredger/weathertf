@@ -47,22 +47,16 @@ describe UsersController do
     #   end
 
     # end
-
-
   end
 
   context "#new" do
-    
   end
 
   context "#edit" do
-    
   end 
 
 
-
   context "#create" do
-    before { @invalid_user = FactoryGirl.build(:invalid_user) }
 
     describe "with correct attributes" do
       before do
@@ -73,16 +67,17 @@ describe UsersController do
       #   #something
       # end
 
-      # figure out how to actually go to user_path(:full_user)...
+      # figure out how to actually go to user_path(:base_user)...
       # and this test is redundant
-      it "causes 302 redirect" do
-        response.status.should eq(302)
-      end
+
+      # this test takes like 20seconds
+      # it "causes 302 redirect" do
+      #   response.status.should eq(302)
+      # end
 
       it "shows welcome message" do
         flash[:notice].should eq("welcome")
       end
-
     end
 
     describe "with bad attributes" do
@@ -98,7 +93,6 @@ describe UsersController do
       it "shows flash error" do
         flash[:notice].should eq("nope")
       end
-
     end
 
   end
