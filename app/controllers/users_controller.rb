@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     # whats all this then? 
   end
 
+
   def index
     @user = User.new
   end
@@ -39,10 +40,13 @@ class UsersController < ApplicationController
       rescue Exception => e
         # some alert: "we'll email you later"
       end
+      flash[:notice] = "welcome"
       redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      render :index
+      redirect_to :index
+      # TODO 
+      # drop-down the sign-up modal automatically, showing errors
     end
   end
 
@@ -83,7 +87,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :email, :phone_number, :carrier, 
+      params.require(:user).permit(:username, :email, :phone_number, :carrier, :address,
         :password, :password_confirmation, :latitude, :longitude, :digest, :alert_percent)
     end
 

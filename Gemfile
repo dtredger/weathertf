@@ -46,6 +46,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :test do
@@ -53,7 +55,6 @@ group :test do
   gem 'database_cleaner'
   gem 'dm-transactions'
   gem 'faker'
-  gem 'guard-rspec'
   gem 'launchy'
 end
 
