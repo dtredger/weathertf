@@ -5,11 +5,12 @@ module Sorcery
 
     module Rails
 
-      def login_user(user, password)
-        page.driver.post(user_sessions_url, { 
-          username: user,
-          password: password
-          })
+      def login_user_post(user, password)
+        page.driver.post(sessions_url, { username: user, password: password}) 
+      end
+
+      def logout_user_get
+        page.driver.get(logout_url)
       end
 
 

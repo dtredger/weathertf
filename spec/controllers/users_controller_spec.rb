@@ -1,17 +1,14 @@
 require 'spec_helper'
 
-describe UsersController do #, type: :controller do
-  #integrates views into tests
-  render_views
+describe UsersController do
 
-  before do 
-    @base_user = FactoryGirl.build(:base_user) 
-    @full_user = FactoryGirl.build(:full_user)
-    @invalid_user = FactoryGirl.build(:invalid_user)
-    @user = User.create(
-      email: "lou@email.com",
-      password: 'cats'
-      ).save()
+  before(:each) do 
+    
+    
+    # @user = User.create(
+    #   email: "lou@email.com",
+    #   password: 'cats'
+    #   ).save()
   end
 
   context "#index" do
@@ -22,33 +19,34 @@ describe UsersController do #, type: :controller do
   end
 
   context "#show" do
-    # describe "logged-in users" do
-    #   before :each do
-    #     login_user("lou@email.com", "cats")
-    #   end
+    describe "logged-in users" do
+      before :each do
+        @default_user = FactoryGirl.build(:default_user)
+        login_user(@default_user)
+      end
 
-    #   it "returns show tempate" do
-    #     response.should render_template :show
-    #   end
-
-    #   it "returns welcome message" do
-
-    #   end
-
-    # end
-
-    describe "un-authenticated users" do
-      before { get :show }
-
-      # it "stays on index for un-authenticated" do
-      #   response.should render_template :index
+      # it "returns show tempate" do
+      #   response.should redirect_to(:user_path)
       # end
 
-      # it "alerts un-authenticated to log in" do
-      #   flash[:notice].should_not be_nil
+      # it "returns welcome message" do
+
       # end
 
     end
+
+    # describe "un-authenticated users" do
+    #   before { get(:show, {'id'=>'21'}) }
+
+    #   it "stays on index for un-authenticated" do
+    #     response.should render_template :index
+    #   end
+
+    #   it "alerts un-authenticated to log in" do
+    #     flash[:notice].should_not be_nil
+    #   end
+
+    # end
 
 
   end
@@ -64,14 +62,43 @@ describe UsersController do #, type: :controller do
 
 
   context "#create" do
+    before { @invalid_user = FactoryGirl.build(:invalid_user) }
+
     describe "with correct attributes" do
-      # expect(post :create, 
-      #   user: FactoryGirl.attributes_for(:base_user)
-      #   ).to change(User, :count).by(1)  
+      before do
+        post :create, user: attributes_for(:full_user)
+      end
+
+      # it "persists user to database" do
+      #   #something
+      # end
+
+      # figure out how to actually go to user_path(:full_user)...
+      # and this test is redundant
+      it "causes 302 redirect" do
+        response.status.should eq(302)
+      end
+
+      it "shows welcome message" do
+        flash[:notice].should eq("welcome")
+      end
+
     end
 
     describe "with bad attributes" do
-      #invalid
+      before do
+        @invalid_user_attrs = attributes_for(:invalid_user)
+        post :create, user: @invalid_user_attrs
+      end
+      
+      it "renders index page" do
+        response.should render_template :index
+      end
+
+      it "shows flash error" do
+        flash[:notice].should eq("nope")
+      end
+
     end
 
   end
@@ -79,14 +106,14 @@ describe UsersController do #, type: :controller do
   context "#edit" do
   end
 
-  context "#delete" do
-    before :each do 
-      @user = FactoryGirl.create(:full_user)
-    end
+  # context "#delete" do
+  #   before :each do 
+  #     @user = create(:full_user)
+  #   end
 
-    # ...
+  #   # ...
 
-  end
+  # end
 
 
 
