@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      redirect_to :index
+      redirect_to root_path
       # TODO 
       # drop-down the sign-up modal automatically, showing errors
     end

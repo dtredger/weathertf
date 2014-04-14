@@ -3,21 +3,27 @@
 	<div class="large-8 push-2 columns" id="show_pane">
 		<div class="section-container auto" data-section>
 			<section>
-				<p class="title" data-section-title><a href="#hour">Hourly Weather</a></p>
+				<p class="title" data-section-title>
+					<a href="#hour">Hourly Weather</a>
+				</p>
 				<div class="content" data-section-content>
 		<!-- render 'layouts/hourly' %>  -->
 				</div>
 			</section>
 
 			<section>
-				<p class="title" data-section-title><a href="#day">Daily Forecast</a></p>
+				<p class="title" data-section-title>
+					<a href="#day">Daily Forecast</a>
+				</p>
 				<div class="content" data-section-content>
 		<!-- render 'layouts/daily' %> -->
 				</div>
 			</section>
 
 			<section>
-				<p class="title" data-section-title><a href="#settings">Message Settings</a></p>
+				<p class="title" data-section-title>
+					<a href="#settings">Message Settings</a>
+				</p>
 				<div class="content" data-section-content>
 		<!-- render template: 'users/mail_settings' %> -->
 				</div>
@@ -30,6 +36,13 @@
 				<div class="content" id="edit_tab" data-section-content>
 					<%= render template: 'users/edit' %>
 				</div>
+			</section>
+
+			<section>
+				<p class="title" data-section-title>
+					<!-- <a href="">log out</a> -->
+					<%= link_to "log out", signout_path, class:"button alert" %>
+				</p>
 			</section>
 
 		</div>
