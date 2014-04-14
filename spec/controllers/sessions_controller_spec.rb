@@ -12,35 +12,44 @@ describe SessionsController do
         }
       end
 
-      it "renders page with error" do
-        pending
+      it "stays on index page" do
+        response.should redirect_to root_url
       end
 
       it "flashes error message" do
-        pending
-        expect(flash[:notice]).to match(/^nope/)    
+        flash[:alert].should eq("no")   
       end
     end
 
     describe "when password accurate" do
       before(:each) do
-        @user = FactoryGirl.create(:default_user)
+        @user = create(:default_user)
+        post :create, session: { 
+          username: "default_user@email.com", 
+          password: "default_password"
+        } 
       end
 
-      it "returns http success" do
-        pending
-        login(@user)
-        expect(response).to redirect_to user_path(@user)
-        expect(flash[:notice]).to match(/^welcome/)
-        expect(current_user).to eq @user   
-      end
+      pending "these params are getting rejected" do
+        
+      
+        it "redirects to user's path" do
+          response.should redirect_to user_path(@user) 
+        end
+
+        it "displays flash welcome" do
+          flash[:notice].should eq("welcome") 
+        end
+
+      end 
+
     end
   end
 
   context "#destroy" do
     before(:each) do
       @user = create(:full_user)
-      login_user
+      login_user(@user)
       get 'destroy'
     end
 
@@ -52,9 +61,8 @@ describe SessionsController do
       flash[:notice].should eq("logged out")
     end
 
-    it "should delete current_user" do
-      pending     
-      current_user.should == nil
+    it "should delete current_user" do    
+      pending
     end
   end
 

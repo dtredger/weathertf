@@ -4,23 +4,13 @@
 
 	<div class="row collapse">
 		<div class="large-4 columns">
-			<span class="prefix">username</span>
-		</div>
-		<div class="large-8 columns">
-			<%= f.text_field :username %>
-		</div>
-	</div>
-
-<!-- username auto-set by system -->
-<!-- 	<div class="row collapse">
-		<div class="large-4 columns">
 			<span class="prefix">email</span>
 		</div>
 		<div class="large-8 columns">
 			 f.text_field :email %>
 		</div>
 	</div>
-	<br> -->
+	<br>
 
 	<div class="row collapse">
 		<div class="large-4 columns">
@@ -39,7 +29,7 @@
 			<span class="prefix">password</span>
 		</div>
 		<div class="large-8 columns">
-			<%= f.text_field :password %>
+			<%= f.password_field :password %>
 		</div>
 	</div>
 
@@ -48,7 +38,7 @@
 			<span class="prefix">again to confirm</span>
 		</div>
 		<div class="large-8 columns">
-			<%= f.text_field :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
 		</div>
 	</div>
 	<br>

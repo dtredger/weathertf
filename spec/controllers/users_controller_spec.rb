@@ -42,36 +42,34 @@ describe UsersController do
 
 
   context "#show" do
-    describe "logged-in users" do
+    describe "with bad user params" do
+      before { get(:show, {'id'=>'21'}) }
+
+      it "stays on index for un-authenticated" do
+        response.should render_template :index
+      end
+
+      it "alerts user to log in" do
+        flash[:notice].should eq("nope")
+      end
+    end
+
+    describe "with good user params" do
       before(:each) do
-        @user = User.create(email: 'test@email.co', password: '1', password_confirmation: '1')
-        login_user(@user)
-        get :index
+        @user = User.create!(email: 'test@email.co', password: '1', password_confirmation: '1')
       end
 
       it "returns user's show page" do
         get :show, id: @user.id
-        assigns[:user].username.should == 'test@email.co'
-        # response.should redirect_to user_path(@user)
+        response.should render_template :show
+      end
+
+      it "returns correct user's page" do
+        assigns[:user].username.should eq('test@email.co')
       end
 
       it "returns welcome message" do
-        pending
-      end
-
-    end
-
-    describe "un-authenticated users" do
-      before { get(:show, {'id'=>'21'}) }
-
-      it "stays on index for un-authenticated" do
-        # response.should render_template :index
-        pending
-      end
-
-      it "alerts un-authenticated to log in" do
-        # flash[:notice].should_not be_nil
-        pending
+        flash[:notice].should eq("welcome")
       end
     end
   end
