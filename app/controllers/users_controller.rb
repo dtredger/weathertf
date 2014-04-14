@@ -1,14 +1,30 @@
 class UsersController < ApplicationController
 
-  before_filter :correct_user, only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+  before_filter :correct_user, 
+    only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+
   respond_to :js, :html
+
+  rescue_from ActiveRecord::RecordNotFound do
+    # whats all this then? 
+  end
+
 
   def index
     @user = User.new
   end
 
   def show
-    Thread.new { get_forecast }.join
+    begin
+      Thread.new { get_forecast }.join
+    rescue Exception => e
+      # should conditions for display exist here or in view?
+      @hourly = []
+      @daily = []
+      @future_hrs = []
+    end
+    # @user = User.find(params[:id])
+    # because of the correct_user before_filter, @user should already be defined
   end
 
   def new
@@ -19,11 +35,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      Resque.enqueue(SendWelcomeEmail, @user.id)
-      redirect_to user_path(@user)
+      begin
+        Resque.enqueue(SendWelcomeEmail, @user.id)  
+      rescue Exception => e
+        # some alert: "we'll email you later"
+      end
+      flash[:notice] = "welcome"
+      redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      redirect_to new_user_path
+      redirect_to :index
+      # TODO 
+      # drop-down the sign-up modal automatically, showing errors
     end
   end
 
@@ -49,7 +72,7 @@ class UsersController < ApplicationController
     end
 
     # TelAPI method
-    request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherPing", :Token => ENV['TELAPI_TOKEN'] }
+    request_data = { :To => current_user.phone_number, :Body => "Hello from WeatherTF", :Token => ENV['TELAPI_TOKEN'] }
     Thread.new { r = HTTParty.post("https://heroku.telapi.com/send_sms", :body => request_data) }.join
     puts "TELAPI response: #{r}"
 
@@ -64,15 +87,17 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :email, 
-        :phone_number, :carrier, :password, :latitude, :longitude, :digest, :alert_percent)
+      params.require(:user).permit(:username, :email, :phone_number, :carrier, :address,
+        :password, :password_confirmation, :latitude, :longitude, :digest, :alert_percent)
     end
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user == @user
+      unless current_user == @user then
+        redirect_to root_path, 
+        notice: "login session expired. Please login again"
+      end
     end
-
 
 
 end

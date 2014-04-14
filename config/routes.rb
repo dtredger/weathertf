@@ -1,18 +1,22 @@
-WeatherPing::Application.routes.draw do
+WeatherTF::Application.routes.draw do
 
-	resources :users
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets, only: [:create, :edit, :update]
 
-	resources :sessions, only: [:new, :create, :delete]
+  #should password_resets be limited?? i did
+
+  root 'users#index'
 
 
-	put 'sms', to: 'users#sms'
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
-
-	root to: 'users#index'
 
   mount Resque::Server, at: '/resque'
 
-  get '*path' => redirect('/')  unless Rails.env.development?
 
+  get '*path' => redirect('/')  unless Rails.env.development?
 
 end

@@ -23,3 +23,6 @@
 
 # vagrant stuff
 /.vagrant
+
+# redis
+/redis-2.8.8

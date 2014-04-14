@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="large-4 columns push-4" id="description">
 		<br>
-		<h1>WeatherPing</h1>
+		<h1>WeatherTF</h1>
         <%= @lists %>
 		<br>
 		<h2><small>weather alerts by sms</small></h2>
@@ -14,117 +14,19 @@
 </div>
 
 
-<!-- ----------- sign-up form ------------- -->
+<!--  sign-up form  -->
 
 <div id="signup" class="reveal-modal small">
 	<div class="row">
 		<div class="large-12 columns">
-			<%= form_for @user, html: {class: "custom"} do |f| %>
-
-
-				<!--<div class="row collapse">-->
-					<!--<div class="large-4 columns">-->
-						<!--<span class="prefix">username</span>-->
-					<!--</div>-->
-					<!--<div class="large-8 columns">-->
-						<!--<%= f.text_field :username %>-->
-					<!--</div>-->
-				<!--</div>-->
-
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">email</span>
-					</div>
-					<div class="large-8 columns">
-						<%= f.text_field :email %>
-					</div>
-				</div>
-				<br>
-
-				<!--<div class="row collapse">-->
-					<!--<div class="large-4 columns">-->
-						<!--<span class="prefix">phone #</span>-->
-					<!--</div>-->
-					<!--<div class="large-8 columns">-->
-						<!--<%= f.telephone_field :phone_number %>-->
-					<!--</div>-->
-				<!--</div>-->
-
-				<!--<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>-->
-				<!--<br>-->
-
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">password</span>
-					</div>
-					<div class="large-8 columns">
-						<%= f.text_field :password %>
-					</div>
-				</div>
-
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">again to confirm</span>
-					</div>
-					<div class="large-8 columns">
-						<%= f.text_field :password_confirmation %>
-					</div>
-				</div>
-				<br>
-
-
-				<div id="location_zone">
-
-					<!-- find location button and field for city to be filled by js -->
-					<div class="row collapse">
-                      <div class="large-2 columns">
-                        <%= image_tag 'globe.png' %>
-                      </div>
-
-						<div class="large-6 columns">
-
-                          <%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
-
-						</div>
-						<div class="large-6 columns">
-							<!-- insert the return value from geocoder here? -->
-						</div>
-					</div>
-
-						<!-- longitude and latitude filled by js -->
-						<div class="row collapse">
-
-							<div class="large-3 columns">
-								<span class="prefix">
-									<%= f.label "longitude" %>
-								</span>
-							</div>
-							<div class="large-3 columns">
-								<%= f.telephone_field :longitude %>
-							</div>
-
-							<div class="large-3 columns">
-								<span class="prefix">
-									<%= f.label "latitude" %>
-								</span>
-							</div>
-							<div class="large-3 columns">
-								<%= f.telephone_field :latitude %>
-							</div>
-
-						</div>
-
-				</div> <!-- end of location_zone -->
-				<br>
-				<%= f.submit "sign me up", class: "button expand success" %>
-
-			<% end %>
+			
+			<%= render template: 'users/signup_form' %>	
 
 		</div>
 	</div>
 </div>
 
-<!-- ------------ login reveal form   ---------- -->
+<!--  login form    -->
 
 <div id="login" class="reveal-modal small">
 	<div class="row">
