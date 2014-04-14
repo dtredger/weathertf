@@ -4,17 +4,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:username], params[:password])
-    binding.pry
-    if @user
-      redirect_back_or_to(:users, notice: "welcome")
+    user = login(params[:username], params[:password])
+    if user
+      redirect_to user_path(user), notice: "welcome"
     else
-      flash.now[:alert] = "no"
-      render root_url
+      flash[:alert] = "no"
+      redirect_back_or_to root_url
     end
   end
 
-  def delete
+  def destroy
     logout
     redirect_to root_url, notice: "logged out"
   end

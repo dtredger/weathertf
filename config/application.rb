@@ -45,6 +45,9 @@ module WeatherTF
 
     config.assets.initialize_on_precompile = false
 
+    # to re-enable assets logging (currently squelched in dev)
+    # config.quiet_assets = false
+
   end
 
 end
