@@ -48,6 +48,9 @@ module WeatherTF
 
     config.assets.initialize_on_precompile = false
 
+    # un-comment to stop squelching asset logging in rails server (or remove quiet_assets)
+    # config.quiet_assets = false
+
   end
 
 end

@@ -40,6 +40,7 @@ group :development do
   gem 'coffee-rails-source-maps'
   gem 'letter_opener'
   gem 'spring'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
