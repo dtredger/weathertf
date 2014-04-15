@@ -1,12 +1,12 @@
 require "spec_helper"
 
 describe UserMailer do
-  pending "add some examples to (or delete) #{__FILE__}"
-
+  before { clear_sent_email }
 
   describe "welcome_email" do
     it "sends email to user" do
-      pending
+      post :create, user: attributes_for(:full_user)
+      puts last_email
     end
     pending
   end 

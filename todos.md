@@ -7,3 +7,5 @@
 * if created users aren't valid, don't redraw index
 
 * when using guard with vagrant, file-updates aren't detected, so you need to have guard poll for changes: guard -p -l 10 (numbers < 10 are more frequent, more cpu)
+
+* letter-opener doesn't work with a VM: in that case, use http://mailcatcher.me
