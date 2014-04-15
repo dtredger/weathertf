@@ -5,16 +5,19 @@ describe UserMailer do
 
 
   describe "welcome_email" do
-   	pending
+    it "sends email to user" do
+      pending
+    end
+    pending
   end 
   
 
   describe "daily_email" do
-   	pending
+    pending
   end 
 
   describe "reset_password_email" do
-   	pending
+    pending
   end 
 
 

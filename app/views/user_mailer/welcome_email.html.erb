@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>hi <%= @user.username %></h1>
+    <p>Welcome to WeatherTF.</p>
+    <p>
+      We'll give you a daily schedule for the weather around <%= @user.address %>.
+      <br>
+    </p>
+    <p>If you'd like to opt-out, please log in to your WeatherTF account and change your preferences in the message settings tab.
+      <%= user_url(@user) %>
+    </p>
+    <p>
+      <%= url_for(controller: 'users', action: 'index', only_path: false) %>
+      WeatherTF 2014</p>
+  </body>
+</html>
+
+
+
+
+
+
+

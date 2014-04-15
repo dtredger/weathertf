@@ -43,6 +43,9 @@ module WeatherTF
       ActionMailer::Base.helper "application"
     end
 
+    # urls from ActionMailer will set the host as follows
+    config.action_mailer.default_url_options = { host: 'http://www.weathertf.com' }
+
     config.assets.initialize_on_precompile = false
 
   end
