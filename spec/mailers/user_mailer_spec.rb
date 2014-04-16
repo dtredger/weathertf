@@ -7,7 +7,7 @@ describe UserMailer do
     it "sends email to user" do
       pending
       post :create, user: attributes_for(:full_user)
-      puts last_email
+      # puts last_email
     end
   end 
   
