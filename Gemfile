@@ -19,8 +19,7 @@ gem 'forecast_io'     # for forecast.io API
 gem 'geocoder'        # for (reverse) geocoding
 gem 'figaro'          # for ENV variable setting
 gem 'google-analytics-rails'
-# gem 'gibbon'          # for Mandrill API
-gem 'friendly_id', '5.0.0.beta4'
+
 
 gem 'pg'
 gem 'redis'

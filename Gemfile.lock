@@ -95,8 +95,6 @@ GEM
       hashie
       multi_json
     formatador (0.2.4)
-    friendly_id (5.0.0.beta4)
-      activerecord (~> 4.0.0)
     fssm (0.2.10)
     geocoder (1.1.9)
     google-analytics-rails (0.0.5)
@@ -286,7 +284,6 @@ DEPENDENCIES
   faker
   figaro
   forecast_io
-  friendly_id (= 5.0.0.beta4)
   geocoder
   google-analytics-rails
   guard
