@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       begin
-        Resque.enqueue(SendWelcomeEmail, @user.id)  
+        # Resque.enqueue(SendWelcomeEmail, @user.id)
+        UserMailer.welcome_email(@user).deliver
       rescue Exception => e
         # some alert: "we'll email you later"
       end
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user) 
     else
       flash[:notice] = "nope"
-      redirect_to :index
+      redirect_to root_path
       # TODO 
       # drop-down the sign-up modal automatically, showing errors
     end
@@ -87,7 +88,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :email, :phone_number, :carrier, :address,
+      params.require(:user).permit(:email, :phone_number, :carrier, :address,
         :password, :password_confirmation, :latitude, :longitude, :digest, :alert_percent)
     end
 

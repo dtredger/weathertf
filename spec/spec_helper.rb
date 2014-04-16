@@ -41,6 +41,8 @@ RSpec.configure do |config|
   # file created in spec/support/sorcery_helper, for sorcery 
   config.include Sorcery::TestHelpers::Rails
 
+  # for testing the mailer, from support/user_mailer_spec_helper
+  config.include UserMailerSpecHelper
   config.before(:suite) do
     begin
       DatabaseCleaner.start
