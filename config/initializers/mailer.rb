@@ -2,8 +2,8 @@
 # 	address: "smtp.gmail.com",
 # 	port: 587,
 # 	domain: "gmail.com",
-# 	user_name: "d.tredger",
-# 	password: "",
+# 	user_name: "ENV['GMAIL_ADDR']",
+# 	password: ENV['GMAIL_PWD'],
 # 	authentication: "plain",
 # 	enable_starttls_auto: true
 # }
@@ -20,7 +20,7 @@ ActionMailer::Base.smtp_settings = {
     address:        'smtp.mandrillapp.com',
     user_name:      ENV['MANDRILL_USERNAME'],
     password:       ENV['MANDRILL_APIKEY'],
-    domain:         "localhost.com", #'heroku.com',
+    domain:         'heroku.com',
     authentication: :plain,
 }
 ActionMailer::Base.delivery_method = :smtp

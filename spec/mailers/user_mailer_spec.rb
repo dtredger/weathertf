@@ -5,10 +5,10 @@ describe UserMailer do
 
   describe "welcome_email" do
     it "sends email to user" do
+      pending
       post :create, user: attributes_for(:full_user)
       puts last_email
     end
-    pending
   end 
   
 
@@ -19,7 +19,6 @@ describe UserMailer do
   describe "reset_password_email" do
     pending
   end 
-
 
 
 end
