@@ -95,8 +95,6 @@ GEM
       hashie
       multi_json
     formatador (0.2.4)
-    friendly_id (5.0.0.beta4)
-      activerecord (~> 4.0.0)
     fssm (0.2.10)
     geocoder (1.1.9)
     google-analytics-rails (0.0.5)
@@ -161,6 +159,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -284,7 +284,6 @@ DEPENDENCIES
   faker
   figaro
   forecast_io
-  friendly_id (= 5.0.0.beta4)
   geocoder
   google-analytics-rails
   guard
@@ -296,6 +295,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   pry-rails
+  quiet_assets
   rails (= 4.0.0)
   rails_12factor
   redis
