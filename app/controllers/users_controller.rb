@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     begin
-      Thread.new { get_forecast }.join
+      Thread.new { get_current_forecast }.join
     rescue Exception => e
       # should conditions for display exist here or in view?
       @hourly = []
