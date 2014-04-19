@@ -92,7 +92,6 @@ describe UsersController do
     end
 
     describe "with correct attributes" do
-
       it "persists user to database" do
         expect{
           post :create, user: attributes_for(:full_user)
@@ -113,11 +112,19 @@ describe UsersController do
         flash[:notice].should eq("welcome")
       end
 
-      it "queues a welcome forecast" do
-        post :create, user: attributes_for(:full_user)
-        CurrentForecast.should have_queue_size_of(1)
-      end
+      describe "performs async actions" do
+        before(:each) { REDIS.flush }
 
+        it "queues a current forecast" do
+          post :create, user: attributes_for(:full_user)
+          CurrentForecast.should have_queue_size_of(1)
+        end
+
+        it "queues a welcome email" do
+          post :create, user: attributes_for(:full_user)
+          WelcomeEmail.should have_queue_size_of(1)
+        end
+      end
     end
 
   end
