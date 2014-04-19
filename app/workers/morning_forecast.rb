@@ -1,11 +1,11 @@
-require 'forecast_io'
-
 class MorningForecast
   @queue = :forecast_queue
 
   def self.perform(user_id)
     get_forecast(user_id)
   end
+
+  
 end
 
 

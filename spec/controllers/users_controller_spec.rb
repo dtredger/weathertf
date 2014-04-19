@@ -1,4 +1,5 @@
 require 'spec_helper'
+Resque.inline = true
 
 describe UsersController do
 
@@ -112,10 +113,9 @@ describe UsersController do
         flash[:notice].should eq("welcome")
       end
 
-      it "creates a welcome forecast" do
-        expect{
-          post :create, user: attributes_for(:full_user)
-        }.to change{Forecast.count}.by(1)
+      it "queues a welcome forecast" do
+        post :create, user: attributes_for(:full_user)
+        CurrentForecast.should have_queue_size_of(1)
       end
 
     end

@@ -56,6 +56,7 @@ group :test do
   gem 'dm-transactions'
   gem 'faker'
   gem 'launchy'
+  gem 'resque_spec'
 end
 
 group :production do

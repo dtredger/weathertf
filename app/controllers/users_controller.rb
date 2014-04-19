@@ -36,9 +36,8 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       begin
-        # Resque.enqueue(SendWelcomeEmail, @user.id)
-        UserMailer.welcome_email(@user).deliver
-        Forecast.get_current_forecast(@user)
+        Resque.enqueue(WelcomeEmail, @user.id)
+        Resque.enqueue(CurrentForecast, @user.id)
       rescue Exception => e
         # some alert: "we'll email you later"
       end
