@@ -38,11 +38,7 @@ class UsersController < ApplicationController
       begin
         # Resque.enqueue(SendWelcomeEmail, @user.id)
         UserMailer.welcome_email(@user).deliver
-        @user.forecasts.create(
-          time: Time.now.to_i,
-          latitude: 1,
-          longitude: 1
-          )
+        Forecast.get_current_forecast(@user)
       rescue Exception => e
         # some alert: "we'll email you later"
       end

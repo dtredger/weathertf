@@ -43,15 +43,11 @@ describe UsersController do
 
   context "#show" do
     describe "logged-in users" do
-      before(:each) do
-        @user = User.create(email: 'test@email.co', password: '1', password_confirmation: '1')
-        login_user(@user)
-        get :index
-      end
+      before(:each) { @user = create(:default_user) } 
 
       it "returns user's show page" do
         get :show, id: @user.id
-        assigns[:user].username.should == 'test@email.co'
+        assigns[:user].username.should == "default_user@email.com"
         # response.should redirect_to user_path(@user)
       end
 
@@ -62,7 +58,7 @@ describe UsersController do
     end
 
     describe "un-authenticated users" do
-      before { get(:show, {'id'=>'21'}) }
+      before { get(:show, {'id'=>'10101'}) }
 
       it "stays on index for un-authenticated" do
         # response.should render_template :index

@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                              :integer          not null, primary key
+#  username                        :string(255)      not null
+#  email                           :string(255)
+#  crypted_password                :string(255)
+#  salt                            :string(255)
+#  created_at                      :datetime
+#  updated_at                      :datetime
+#  phone_number                    :integer
+#  carrier                         :string(255)
+#  latitude                        :float
+#  longitude                       :float
+#  digest                          :boolean
+#  alert_percent                   :integer
+#  address                         :string(255)
+#  slug                            :string(255)
+#  reset_password_token            :string(255)
+#  reset_password_token_expires_at :datetime
+#  reset_password_email_sent_at    :datetime
+#
+
 class User < ActiveRecord::Base
   has_many :forecasts
   
@@ -10,12 +34,14 @@ class User < ActiveRecord::Base
     numericality: { only_integer: true },
     allow_blank: true
   validate :email_xor_phone_number
-  validates_uniqueness_of :email,
-    allow_blank: true
+  validates_uniqueness_of :email, allow_blank: true
+  validates :latitude, numericality: true
+  validates :longitude, numericality: true
 
   before_save :create_username
   
   reverse_geocoded_by :latitude, :longitude
+
 
 
   private
@@ -35,30 +61,6 @@ class User < ActiveRecord::Base
         self.username = phone_number.to_s
       end
     end
-
-    def get_current_forecast
-      require 'forecast_io'
-      @forecast = ForecastIO.forecast(
-        current_user.latitude,          #latitude
-        current_user.longitude,         #longitude
-        time: Time.now.to_i,    #new(2013, 7, 31).to_i,
-        params: {
-          units: 'si',
-          exclude: 'flags'
-        })
-      
-      @hourly = @forecast.hourly.data
-      @daily = @forecast.daily.data.first
-
-      @future_hrs = []
-
-      @hourly.each do |h|
-        if h.time > Time.now.to_i
-          @future_hrs << h
-        end
-      end
-    end
-
 
 
 end
