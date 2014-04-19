@@ -3,10 +3,6 @@ Resque.inline = true
 
 describe UsersController do
 
-  before(:each) do 
-  end
-
-
   context "404" do
     describe "for logged-in users" do
       it "redirects to show page" do
@@ -28,6 +24,7 @@ describe UsersController do
       end
     end
   end
+
 
   context "#index" do
     it "renders index template" do
@@ -112,17 +109,19 @@ describe UsersController do
         flash[:notice].should eq("welcome")
       end
 
-      describe "performs async actions" do
-        before(:each) { REDIS.flush }
-
-        it "queues a current forecast" do
-          post :create, user: attributes_for(:full_user)
-          CurrentForecast.should have_queue_size_of(1)
+      describe "performs async action" do
+        before(:each) do
+          ResqueSpec.reset!
         end
 
         it "queues a welcome email" do
           post :create, user: attributes_for(:full_user)
           WelcomeEmail.should have_queue_size_of(1)
+        end
+
+        it "queues a current forecast" do
+          post :create, user: attributes_for(:full_user)
+          CurrentForecast.should have_queue_size_of(1)
         end
       end
     end

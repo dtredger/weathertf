@@ -1,5 +1,4 @@
 class WelcomeEmail
-
   @queue = :email_queue
 
   def self.perform(user_id)
