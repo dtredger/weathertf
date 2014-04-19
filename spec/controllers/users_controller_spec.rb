@@ -83,13 +83,23 @@ describe UsersController do
 
 
   context "#create" do
-    describe "with correct attributes" do
-      before do
-        post :create, user: attributes_for(:full_user)
+    describe "with bad attributes" do
+      it "renders index page" do
+        expect(post :create, user: attributes_for(:invalid_user)).to redirect_to root_url
       end
 
+      it "shows flash error" do
+        post :create, user: attributes_for(:invalid_user)
+        flash[:notice].should eq("nope")
+      end
+    end
+
+    describe "with correct attributes" do
+
       it "persists user to database" do
-        pending
+        expect{
+          post :create, user: attributes_for(:full_user)
+        }.to change{User.count}.by(1)
       end
 
       # figure out how to actually go to user_path(:base_user)...
@@ -97,27 +107,21 @@ describe UsersController do
 
       # this test takes like 20seconds
       it "causes 302 redirect" do
+        post :create, user: attributes_for(:full_user)
         response.status.should eq(302)
       end
 
       it "shows welcome message" do
+        post :create, user: attributes_for(:full_user)
         flash[:notice].should eq("welcome")
       end
-    end
 
-    describe "with bad attributes" do
-      before do
-        post :create, user: attributes_for(:invalid_user)
-      end
-      
-      it "renders index page" do
-        pending
-        # response.should redirect_to :index
+      it "creates a welcome forecast" do
+        expect{
+          post :create, user: attributes_for(:full_user)
+        }.to change{Forecast.count}.by(1)
       end
 
-      it "shows flash error" do
-        flash[:notice].should eq("nope")
-      end
     end
 
   end

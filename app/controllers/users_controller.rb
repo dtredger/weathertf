@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :correct_user, 
-    only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+    only: [:show, :edit, :update, :delete, :mail_settings]
 
   respond_to :js, :html
 
@@ -38,6 +38,11 @@ class UsersController < ApplicationController
       begin
         # Resque.enqueue(SendWelcomeEmail, @user.id)
         UserMailer.welcome_email(@user).deliver
+        @user.forecasts.create(
+          time: Time.now.to_i,
+          latitude: 1,
+          longitude: 1
+          )
       rescue Exception => e
         # some alert: "we'll email you later"
       end
