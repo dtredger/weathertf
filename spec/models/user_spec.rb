@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                              :integer          not null, primary key
+#  username                        :string(255)      not null
+#  email                           :string(255)
+#  crypted_password                :string(255)
+#  salt                            :string(255)
+#  created_at                      :datetime
+#  updated_at                      :datetime
+#  phone_number                    :integer
+#  carrier                         :string(255)
+#  latitude                        :float
+#  longitude                       :float
+#  digest                          :boolean
+#  alert_percent                   :integer
+#  address                         :string(255)
+#  slug                            :string(255)
+#  reset_password_token            :string(255)
+#  reset_password_token_expires_at :datetime
+#  reset_password_email_sent_at    :datetime
+#
+
 require 'spec_helper'
 
 describe User do
@@ -8,7 +32,9 @@ describe User do
     @invalid_user = FactoryGirl.build(:invalid_user)
     @lou_user = User.create(
       email: "lou@email.com",
-      password: 'cats'
+      password: 'cats',
+      latitude: 100,
+      longitude: 53
       ).save()
   end
 
@@ -37,6 +63,18 @@ describe User do
 
     describe "does not match confirmation" do
       before { @base_user.password_confirmation = "different!" }
+      it { should_not be_valid }
+    end
+  end
+
+  context "coordinates" do
+    describe "missing latitude" do
+      before { no_latitude_user = build(:full_user, latitude: nil) }
+      it { should_not be_valid }
+    end
+
+    describe "missing longitude" do
+      before { no_longitude_user = build(:full_user, longitude: nil) }
       it { should_not be_valid }
     end
   end

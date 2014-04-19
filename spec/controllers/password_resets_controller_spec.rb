@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe PasswordResetsController do
 
+  pending
+
   describe "GET 'create'" do
     it "returns http success" do
+      pending
       get 'create'
       response.should be_success
     end

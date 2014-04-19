@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :correct_user, 
-    only: [:show, :edit, :update, :delete, :mail_settings, :sms]
+    only: [:show, :edit, :update, :delete, :mail_settings]
 
   respond_to :js, :html
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     begin
-      Thread.new { get_forecast }.join
+      Thread.new { get_current_forecast }.join
     rescue Exception => e
       # should conditions for display exist here or in view?
       @hourly = []
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
       begin
         # Resque.enqueue(SendWelcomeEmail, @user.id)
         UserMailer.welcome_email(@user).deliver
+        Forecast.get_current_forecast(@user)
       rescue Exception => e
         # some alert: "we'll email you later"
       end
