@@ -30,6 +30,8 @@ class Forecast < ActiveRecord::Base
   validates :longitude,
     numericality: true
 
+
+
   def self.get_current_forecast(user)
     @forecast = ForecastIO.forecast(
       user[:latitude],         
