@@ -24,6 +24,7 @@ gem 'google-analytics-rails'
 gem 'pg'
 gem 'redis'
 gem 'resque', "~> 1.22.0", require: 'resque/server'    # for background jobs
+gem 'resque-scheduler'
 
 gem 'unicorn'
 gem 'newrelic_rpm'    # monitoring
