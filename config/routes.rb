@@ -22,6 +22,9 @@
 #             signout DELETE /signout(.:format)                  sessions#destroy
 #       resque_server        /resque                             Resque::Server
 #
+require 'resque'
+require 'resque_scheduler'
+require 'resque_scheduler/server'
 
 WeatherTF::Application.routes.draw do
 

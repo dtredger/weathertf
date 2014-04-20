@@ -65,8 +65,5 @@ class Forecast < ActiveRecord::Base
   end
 
 
-  
-
-
 end
 

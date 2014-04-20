@@ -1,0 +1,19 @@
+# configuration of redis is in initializers/redis.rb
+# configuration of resque and resque-scheduler is in initializers/resque.rb
+
+
+
+
+# breakfast:
+#   cron: 0 8 * * *
+#   class: Eat
+#   args: scrambled egg
+#   description: Breakfast
+clear_leaderboards_moderator:
+  every:
+    - "5s"
+    - :first_in: '2s'
+  class: "PrintStuff"
+  args: "Hello and stay away"
+  queue: print_queue
+  description: "This job will execute PrintStuff every 30 seconds after 120 seconds after start"

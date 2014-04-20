@@ -8,3 +8,15 @@ class CurrentForecast
 
 
 end
+
+class PrintStuff
+  @queue = :print_queue
+
+  def self.perform(thing)
+    puts thing
+    print "!!#{thing}!!"
+    $stdout.flush
+  end
+
+end
+

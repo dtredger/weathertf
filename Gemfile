@@ -18,8 +18,6 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'forecast_io'     # for forecast.io API
 gem 'geocoder'        # for (reverse) geocoding
 gem 'figaro'          # for ENV variable setting
-gem 'google-analytics-rails'
-
 
 gem 'pg'
 gem 'redis'
