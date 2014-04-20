@@ -2,6 +2,10 @@ require 'spec_helper'
 Resque.inline = true
 
 describe UsersController do
+  before do
+    # database_cleaner seems to be not doing it
+    User.delete_all
+  end
 
   context "404" do
     describe "for logged-in users" do

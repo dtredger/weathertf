@@ -2,17 +2,29 @@ class UserMailer < ActionMailer::Base
   include MailerHelper
   default from: "sms@WeatherTF.com"
 
-  def welcome_email(user)
-    @user = user
-    mail(to: @user.email, subject: "update")
+
+  def welcome_email(user_id)
+    @user = User.find(user_id)
+    mail(to: @user.email, subject: "hello")
   end
 
-  def daily_email(user)
-    @user = user
-    number_suffix(@user.carrier)
-    get_forecast(user)
 
-    mail(to:"#{@user.phone_number}#{@suffix}", subject: "hi #{@user.username}")
+  def daily_forecast_email(user_id)
+    @user = User.find(user_id)
+    @latest_forecast = @user.forecasts.last
+    mail(
+      to:"#{@user.email}", 
+      subject: "forecast for #{Date.today}")
+  end
+
+
+  def daily_forecast_text(user_id)
+    @user = User.find(user_id)
+    @suffix = number_suffix(@user.carrier)
+    get_forecast(user)
+    mail(
+      to:"#{@user.phone_number}#{@suffix}", 
+      subject: "hi #{@user.username}")
   end
 
 
@@ -21,19 +33,20 @@ class UserMailer < ActionMailer::Base
   def number_suffix(carrier)
     case carrier
       when "Bell"
-        @suffix = "@txt.bell.ca"
+        return "@txt.bell.ca"
       when "Fido"
-        @suffix = "@sms.fido.ca"
+        return "@sms.fido.ca"
       when "Koodo"
-        @suffix = "@msg.telus.com"
+        return "@msg.telus.com"
       when "Wind"
-        @suffix = "@txt.windmobile.ca"
+        return "@txt.windmobile.ca"
       when "Telus"
-        @suffix = "@msg.telus.com"
+        return "@msg.telus.com"
       when "Rogers"
-        @suffix = "@sms.rogers.com"
+        return "@sms.rogers.com"
     end
   end
+
 
   def reset_password_email(user)
     # if using redis, won't above user have to be an id only, 

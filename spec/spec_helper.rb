@@ -45,6 +45,8 @@ RSpec.configure do |config|
   config.include UserMailerSpecHelper
   config.before(:suite) do
     begin
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
       DatabaseCleaner.start
       # FactoryGirl.lint  #what's up with this? tons of errors
     ensure
@@ -52,18 +54,9 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
-# def sign_in(user)
-#   visit users_path
-
-#   fill_in "username",    with: user.email.upcase
-#   fill_in "email", with: user.email
-#   fill_in "phone_number", with: user.phone_number
-#   fill_in "carrier", with: user.carrier
-#   fill_in "lat", with: user.lat
-#   fill_in "lon", with: user.lon
-
-#   click_button "sign up"
-# end
 
