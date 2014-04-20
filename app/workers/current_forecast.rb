@@ -6,17 +6,17 @@ class CurrentForecast
     Forecast.get_current_forecast(user)
   end
 
-
 end
 
-class PrintStuff
-  @queue = :print_queue
 
-  def self.perform(thing)
-    puts thing
-    print "!!#{thing}!!"
-    $stdout.flush
+class AllForecasts
+  @queue = :daily_queue
+
+  def self.perform
+    all_users = User.all
+    for user in all_users
+      Forecast.get_current_forecast(user)
+    end
   end
-
+  
 end
-
