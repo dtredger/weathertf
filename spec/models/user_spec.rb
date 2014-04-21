@@ -111,31 +111,32 @@ describe User do
 
     context "username created by system" do
       describe "for user with only@email.com" do
-        User.create(
+        FactoryGirl.create(:full_user,
           email: "only@email.com",
           password: 'cats'
-          ).save()
+          )
         email_only = User.find_by_email("only@email.com")
         subject { email_only.username }
         it { should == "only@email.com" }
       end
 
       describe "for user with phone number 1112223333 only" do
-        User.create(
+        FactoryGirl.create(:full_user,
           phone_number: 1112223333,
+          email: nil,
           password: 'cats'
-          ).save()
+          )
         phone_only = User.find_by_phone_number(1112223333)
         subject { phone_only.username }
         it { should == "1112223333" }
       end
 
       describe "for user with both email and phone number" do
-        User.create(
+        FactoryGirl.create(:full_user,
           email: "prefer_email_over_phone@email.com",
           phone_number: 1231231234,
           password: 'cats'
-          ).save()
+          )
         both = User.find_by_phone_number(1231231234)
         subject { both.username }
         it { should == "prefer_email_over_phone@email.com" }

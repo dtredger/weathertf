@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     length: { minimum: 10 }, 
     numericality: { only_integer: true },
     allow_blank: true
-  validate :email_xor_phone_number
+  validate :email_or_phone_number
   validates_uniqueness_of :email, allow_blank: true
   validates :latitude, numericality: true
   validates :longitude, numericality: true
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   private
 
-    def email_xor_phone_number
+    def email_or_phone_number
       if (email.blank?)
         validates_presence_of :phone_number
       else

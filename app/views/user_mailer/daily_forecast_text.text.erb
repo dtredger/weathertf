@@ -1,0 +1,18 @@
+<!-- daily_forecast_text.text.erb -->
+
+<!-- This should probably be shorter, if it's going to a phone? -->
+
+For <%= @user.address %> on <%= Date.today %>:
+
+latitude: <%= @latest_forecast.latitude %>
+longitude: <%= @latest_forecast.longitude %>
+
+summary: <%= @latest_forecast.summary %>
+
+humidity: <%= @latest_forecast.humidity %>
+temperature: <%= @latest_forecast.temperature %>
+
+visibility: <%= @latest_forecast.visibility %>
+precipitation Intensity: <%= @latest_forecast.precipIntensity %>
+precipitation Probability: <%= @latest_forecast.precipProbability %>
+precipitation Type: <%= @latest_forecast.precipType %>	

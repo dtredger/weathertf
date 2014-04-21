@@ -5,6 +5,7 @@ describe SessionsController do
   context "#create" do
     describe "when password invalid" do
       it "renders page with error" do
+        pending
         user = create(:default_user)
         post :create, session: { username: user.username, password: 'wrong!' }
         
@@ -18,6 +19,7 @@ describe SessionsController do
       end
 
       it "returns http success" do
+        pending
         # expect(response).to redirect_to user_path(user)
         # expect(flash[:notice]).to match(/^welcome/)
         # expect(current_user).to eq @user   
@@ -28,6 +30,7 @@ describe SessionsController do
 
   context "#delete" do
     it "returns http success" do
+      pending
       get 'delete'
       response.should be_success
     end

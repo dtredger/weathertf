@@ -18,12 +18,11 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'forecast_io'     # for forecast.io API
 gem 'geocoder'        # for (reverse) geocoding
 gem 'figaro'          # for ENV variable setting
-gem 'google-analytics-rails'
-
 
 gem 'pg'
 gem 'redis'
 gem 'resque', "~> 1.22.0", require: 'resque/server'    # for background jobs
+gem 'resque-scheduler'
 
 gem 'unicorn'
 gem 'newrelic_rpm'    # monitoring
@@ -56,6 +55,7 @@ group :test do
   gem 'dm-transactions'
   gem 'faker'
   gem 'launchy'
+  gem 'resque_spec'
 end
 
 group :production do
