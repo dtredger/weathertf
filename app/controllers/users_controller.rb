@@ -1,3 +1,6 @@
+require "email_workers"
+require "forecast_workers"
+
 class UsersController < ApplicationController
 
   before_filter :correct_user, 

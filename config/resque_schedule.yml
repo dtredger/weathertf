@@ -1,17 +1,11 @@
 # configuration of redis is in initializers/redis.rb
 # configuration of resque and resque-scheduler is in initializers/resque.rb
 
-
 # breakfast:
 #   cron: 0 7 * * *
 #   class: Eat
 #   args: scrambled egg
 #   description: Breakfast
-create_daily_forecast:
-  cron: 0 7 * * *
-  class: AllForecasts
-  queue: daily_queue
-  description: Delivers a forecast every day at 7am
 
 # send_daily_forecast:
 #   every:
@@ -22,9 +16,16 @@ create_daily_forecast:
 #   queue: daily_queue
 #   description: Delivers a forecast every day at 7am
 
-send_forecast_email:
-  cron: 55 11 * * *
-  class: WelcomeEmail
+
+create_daily_forecast:
+  cron: 0 7 * * *
+  class: AllForecasts
+  queue: daily_queue
+  description: creates a forecast every day at 7am
+
+send_daily_forecast_email:
+  cron: 35 19 * * *
+  class: DailyForecastEmail
   queue: email_queue
   args: 19
-  description: Delivers email
+  description: Delivers daily forecast email

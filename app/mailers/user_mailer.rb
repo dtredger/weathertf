@@ -1,3 +1,6 @@
+# todo - consider breaking this into separate mailers for account related 
+# tasks, and the actual forecast/text tasks
+
 class UserMailer < ActionMailer::Base
   include MailerHelper
   default from: "sms@WeatherTF.com"
@@ -7,6 +10,7 @@ class UserMailer < ActionMailer::Base
     @user = User.find(user_id)
     mail(to: @user.email, subject: "hello")
   end
+
 
 
   def daily_forecast_email(user_id)
