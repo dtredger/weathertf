@@ -72,6 +72,7 @@ describe UsersController do
         pending
       end
     end
+    after { User.delete_all }
   end
 
 

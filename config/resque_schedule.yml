@@ -24,7 +24,7 @@ create_daily_forecast:
   description: creates a forecast every day at 7am
 
 send_daily_forecast_email:
-  cron: 35 19 * * *
+  cron: 22 20 * * *
   class: DailyForecastEmail
   queue: email_queue
   args: 19
