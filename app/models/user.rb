@@ -1,4 +1,29 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                              :integer          not null, primary key
+#  username                        :string(255)      not null
+#  email                           :string(255)
+#  crypted_password                :string(255)
+#  salt                            :string(255)
+#  created_at                      :datetime
+#  updated_at                      :datetime
+#  phone_number                    :integer
+#  carrier                         :string(255)
+#  latitude                        :float
+#  longitude                       :float
+#  digest                          :boolean
+#  alert_percent                   :integer
+#  address                         :string(255)
+#  slug                            :string(255)
+#  reset_password_token            :string(255)
+#  reset_password_token_expires_at :datetime
+#  reset_password_email_sent_at    :datetime
+#
+
 class User < ActiveRecord::Base
+  has_many :forecasts
   
   authenticates_with_sorcery!
 
@@ -8,18 +33,20 @@ class User < ActiveRecord::Base
     length: { minimum: 10 }, 
     numericality: { only_integer: true },
     allow_blank: true
-  validate :email_xor_phone_number
-  validates_uniqueness_of :email,
-    allow_blank: true
+  validate :email_or_phone_number
+  validates_uniqueness_of :email, allow_blank: true
+  validates :latitude, numericality: true
+  validates :longitude, numericality: true
 
   before_save :create_username
   
   reverse_geocoded_by :latitude, :longitude
 
 
+
   private
 
-    def email_xor_phone_number
+    def email_or_phone_number
       if (email.blank?)
         validates_presence_of :phone_number
       else
@@ -34,7 +61,6 @@ class User < ActiveRecord::Base
         self.username = phone_number.to_s
       end
     end
-
 
 
 end

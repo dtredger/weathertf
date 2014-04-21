@@ -6,6 +6,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -44,7 +45,7 @@ module WeatherTF
     end
 
     # urls from ActionMailer will set the host as follows
-    config.action_mailer.default_url_options = { host: 'http://www.weathertf.com' }
+    config.action_mailer.default_url_options = { host: 'http://www.weathertf.herokuapp.com' }
 
     config.assets.initialize_on_precompile = false
 

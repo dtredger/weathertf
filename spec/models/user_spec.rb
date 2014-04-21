@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                              :integer          not null, primary key
+#  username                        :string(255)      not null
+#  email                           :string(255)
+#  crypted_password                :string(255)
+#  salt                            :string(255)
+#  created_at                      :datetime
+#  updated_at                      :datetime
+#  phone_number                    :integer
+#  carrier                         :string(255)
+#  latitude                        :float
+#  longitude                       :float
+#  digest                          :boolean
+#  alert_percent                   :integer
+#  address                         :string(255)
+#  slug                            :string(255)
+#  reset_password_token            :string(255)
+#  reset_password_token_expires_at :datetime
+#  reset_password_email_sent_at    :datetime
+#
+
 require 'spec_helper'
 
 describe User do
@@ -8,7 +32,9 @@ describe User do
     @invalid_user = FactoryGirl.build(:invalid_user)
     @lou_user = User.create(
       email: "lou@email.com",
-      password: 'cats'
+      password: 'cats',
+      latitude: 100,
+      longitude: 53
       ).save()
   end
 
@@ -37,6 +63,18 @@ describe User do
 
     describe "does not match confirmation" do
       before { @base_user.password_confirmation = "different!" }
+      it { should_not be_valid }
+    end
+  end
+
+  context "coordinates" do
+    describe "missing latitude" do
+      before { no_latitude_user = build(:full_user, latitude: nil) }
+      it { should_not be_valid }
+    end
+
+    describe "missing longitude" do
+      before { no_longitude_user = build(:full_user, longitude: nil) }
       it { should_not be_valid }
     end
   end
@@ -73,31 +111,32 @@ describe User do
 
     context "username created by system" do
       describe "for user with only@email.com" do
-        User.create(
+        FactoryGirl.create(:full_user,
           email: "only@email.com",
           password: 'cats'
-          ).save()
+          )
         email_only = User.find_by_email("only@email.com")
         subject { email_only.username }
         it { should == "only@email.com" }
       end
 
       describe "for user with phone number 1112223333 only" do
-        User.create(
+        FactoryGirl.create(:full_user,
           phone_number: 1112223333,
+          email: nil,
           password: 'cats'
-          ).save()
+          )
         phone_only = User.find_by_phone_number(1112223333)
         subject { phone_only.username }
         it { should == "1112223333" }
       end
 
       describe "for user with both email and phone number" do
-        User.create(
+        FactoryGirl.create(:full_user,
           email: "prefer_email_over_phone@email.com",
           phone_number: 1231231234,
           password: 'cats'
-          ).save()
+          )
         both = User.find_by_phone_number(1231231234)
         subject { both.username }
         it { should == "prefer_email_over_phone@email.com" }

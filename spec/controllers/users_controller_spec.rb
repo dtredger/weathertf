@@ -1,10 +1,11 @@
 require 'spec_helper'
+Resque.inline = true
 
 describe UsersController do
-
-  before(:each) do 
+  before do
+    # database_cleaner seems to be not doing it
+    User.delete_all
   end
-
 
   context "404" do
     describe "for logged-in users" do
@@ -28,6 +29,7 @@ describe UsersController do
     end
   end
 
+
   context "#index" do
     it "renders index template" do
       get :index
@@ -43,15 +45,11 @@ describe UsersController do
 
   context "#show" do
     describe "logged-in users" do
-      before(:each) do
-        @user = User.create(email: 'test@email.co', password: '1', password_confirmation: '1')
-        login_user(@user)
-        get :index
-      end
+      before(:each) { @user = create(:default_user) } 
 
       it "returns user's show page" do
         get :show, id: @user.id
-        assigns[:user].username.should == 'test@email.co'
+        assigns[:user].username.should == "default_user@email.com"
         # response.should redirect_to user_path(@user)
       end
 
@@ -62,7 +60,7 @@ describe UsersController do
     end
 
     describe "un-authenticated users" do
-      before { get(:show, {'id'=>'21'}) }
+      before { get(:show, {'id'=>'10101'}) }
 
       it "stays on index for un-authenticated" do
         # response.should render_template :index
@@ -74,6 +72,7 @@ describe UsersController do
         pending
       end
     end
+    after { User.delete_all }
   end
 
 
@@ -83,13 +82,22 @@ describe UsersController do
 
 
   context "#create" do
-    describe "with correct attributes" do
-      before do
-        post :create, user: attributes_for(:full_user)
+    describe "with bad attributes" do
+      it "renders index page" do
+        expect(post :create, user: attributes_for(:invalid_user)).to redirect_to root_url
       end
 
+      it "shows flash error" do
+        post :create, user: attributes_for(:invalid_user)
+        flash[:notice].should eq("nope")
+      end
+    end
+
+    describe "with correct attributes" do
       it "persists user to database" do
-        pending
+        expect{
+          post :create, user: attributes_for(:full_user)
+        }.to change{User.count}.by(1)
       end
 
       # figure out how to actually go to user_path(:base_user)...
@@ -97,26 +105,29 @@ describe UsersController do
 
       # this test takes like 20seconds
       it "causes 302 redirect" do
+        post :create, user: attributes_for(:full_user)
         response.status.should eq(302)
       end
 
       it "shows welcome message" do
+        post :create, user: attributes_for(:full_user)
         flash[:notice].should eq("welcome")
       end
-    end
 
-    describe "with bad attributes" do
-      before do
-        post :create, user: attributes_for(:invalid_user)
-      end
-      
-      it "renders index page" do
-        pending
-        # response.should redirect_to :index
-      end
+      describe "performs async action" do
+        before(:each) do
+          ResqueSpec.reset!
+        end
 
-      it "shows flash error" do
-        flash[:notice].should eq("nope")
+        it "queues a welcome email" do
+          post :create, user: attributes_for(:full_user)
+          WelcomeEmail.should have_queue_size_of(1)
+        end
+
+        it "queues a current forecast" do
+          post :create, user: attributes_for(:full_user)
+          CurrentForecast.should have_queue_size_of(1)
+        end
       end
     end
 
