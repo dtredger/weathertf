@@ -1,0 +1,37 @@
+<!-- login_form.html.erb -->
+<!-- 
+<%= form_tag sessions_path do %>
+	<div class="row collapse">
+		<div class="large-4 columns">
+			<span class="prefix">username</span>
+		</div>
+		<div class="large-8 columns">
+			<%=  text_field_tag :username, params[:username] %>
+		</div>
+	</div>
+	<div class="row collapse">
+		<div class="large-4 columns">
+			<span class="prefix">password</span>
+		</div>
+		<div class="large-8 columns">
+			<%= password_field_tag :password %>
+		</div>
+	</div>
+	<%= submit_tag "login", class:"button large-12 columns" %>
+<% end %> -->
+
+<form data-abide>
+  <div class="name-field">
+    <label>Email or Phone no. <small>required</small>
+      <input type="text" required pattern="(.*@.+\..*|\d{10})">
+    </label>
+    <small class="error">either email or 10-digit number</small>
+  </div>
+  <div class="email-field">
+    <label>Email <small>required</small>
+      <input type="email" required>
+    </label>
+    <small class="error">An email address is required.</small>
+  </div>
+  <button type="submit">Submit</button>
+</form>
