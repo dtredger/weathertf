@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
+    session[:return_to] ||= request.referer
     @user = login(params[:username], params[:password])
     if @user
       redirect_back_or_to(:users, notice: "welcome")
     else
-      flash.now[:alert] = "that must not be true"
-      render 'users/index'
-      # redirect_to root_url
+      flash[:alert] = "that must not be true"
+      redirect_to session.delete(:return_to)
     end
   end
 
