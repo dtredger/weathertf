@@ -47,7 +47,10 @@ class UsersController < ApplicationController
       flash[:notice] = "welcome"
       redirect_to user_path(@user) 
     else
-      flash[:notice] = "nope"
+      @user.errors.full_messages.each do |message|
+        flash[:notice] = message
+      end
+      
       redirect_to root_path
       # TODO 
       # drop-down the sign-up modal automatically, showing errors

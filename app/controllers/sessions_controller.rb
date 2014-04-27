@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
     if @user
       redirect_back_or_to(:users, notice: "welcome")
     else
-      flash.now[:alert] = "no"
-      render root_url
+      flash.now[:alert] = "that must not be true"
+      render 'users/index'
+      # redirect_to root_url
     end
   end
 
