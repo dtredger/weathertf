@@ -52,6 +52,9 @@ module WeatherTF
     # un-comment to stop squelching asset logging in rails server (or remove quiet_assets)
     # config.quiet_assets = false
 
+    # modernizr causing problems
+    config.assets.precompile += %w( vendor/custom.modernizr.js )
+
   end
 
 end

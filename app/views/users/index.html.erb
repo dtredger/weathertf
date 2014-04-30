@@ -2,55 +2,36 @@
 	<div class="large-4 columns push-4" id="description">
 		<br>
 		<h1>WeatherTF</h1>
-        <%= @lists %>
 		<br>
-		<h2><small>weather alerts by sms</small></h2>
-
-		<button class="success" data-reveal-id="signup">sign me up please</button>
-		<button data-reveal-id="login">login</button>
+		<h2>
+			<small>weather alerts by sms</small>
+		</h2>
+		<button class="success" data-reveal-id="signup">sign up</button>
+		<button data-reveal-id="login">log in</button>
 		<br>
 		<br>
 	</div>
 </div>
 
-
-<!--  sign-up form  -->
-
-<div id="signup" class="reveal-modal small">
+<!--  sign-up form  -->	
+<div id="signup" class="reveal-modal small" data-reveal>
 	<div class="row">
-		<div class="large-12 columns">
+		<div class="small-12 columns">
 			
-			<%= render template: 'users/signup_form' %>	
+			<%= render template: "users/forms/signup_form" %>	
 
 		</div>
 	</div>
 </div>
 
 <!--  login form    -->
-
-<div id="login" class="reveal-modal small">
+<div id="login" class="reveal-modal small" data-reveal>
 	<div class="row">
-		<div class="large-12 columns">
-			<%= form_tag sessions_path do %>
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">username</span>
-					</div>
-					<div class="large-8 columns">
-						<%=  text_field_tag :username, params[:username] %>
-					</div>
-				</div>
-				<div class="row collapse">
-					<div class="large-4 columns">
-						<span class="prefix">password</span>
-					</div>
-					<div class="large-8 columns">
-						<%= password_field_tag :password %>
-					</div>
-				</div>
-				<%= submit_tag "login", class:"button large-12 columns" %>
-			<% end %>
+		<div class="small-12 columns">
+
+
+			<%= render template: "users/forms/login_form" %>
+		
 		</div>
 	</div>
-	<a class="close-reveal-modal">&#215;</a>
 </div>

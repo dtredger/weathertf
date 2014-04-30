@@ -40,30 +40,32 @@ class Forecast < ActiveRecord::Base
       params: {
         units: 'si',
         exclude: 'flags'
-      })    
-    @hourly = @forecast.hourly.data
-    @daily = @forecast.daily.data.first
-    @future_hrs = []
-    @hourly.each do |h|
-      if h.time > Time.now.to_i
-        @future_hrs << h
+      })
+    begin
+      @hourly = @forecast.hourly.data
+      @daily = @forecast.daily.data.first
+      @future_hrs = []
+      @hourly.each do |h|
+        if h.time > Time.now.to_i
+          @future_hrs << h
+        end
       end
+
+      user.forecasts.create(
+        time: @forecast[:currently][:time],
+        latitude: @forecast[:latitude],
+        longitude: @forecast[:longitude],
+        precipIntensity: @forecast[:currently][:precipIntensity],  
+        precipProbability: @forecast[:currently][:precipProbability],
+        precipType: @forecast[:currently][:precipType],
+        humidity: @forecast[:currently][:humidity],
+        temperature: @forecast[:currently][:temperature],
+        visibility: @forecast[:currently][:visibility],
+        summary: @forecast[:currently][:summary] )    
+    rescue Exception => e
+      # what should happen here?
     end
-
-    user.forecasts.create(
-      time: @forecast[:currently][:time],
-      latitude: @forecast[:latitude],
-      longitude: @forecast[:longitude],
-      precipIntensity: @forecast[:currently][:precipIntensity],  
-      precipProbability: @forecast[:currently][:precipProbability],
-      precipType: @forecast[:currently][:precipType],
-      humidity: @forecast[:currently][:humidity],
-      temperature: @forecast[:currently][:temperature],
-      visibility: @forecast[:currently][:visibility],
-      summary: @forecast[:currently][:summary]
-    )
   end
-
 
 end
 

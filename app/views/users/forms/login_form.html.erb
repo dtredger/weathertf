@@ -1,0 +1,15 @@
+<%= form_tag sessions_path, data: {abide: ''} do %>
+<div class="name-field">
+	<label>Email or Phone no. <small>required</small>
+      	<%= text_field_tag :username, params[:username], html:{pattern: "email_or_phone"}, title: "sign in with your email. If you did not sign up with your email, use your phone number.", data:{tooltip: true} %>
+    </label>
+	<small class="error">either email or 10-digit number</small>
+</div>
+<div class="name-field">
+	<label>Password. <small>required</small>
+      	<%= password_field_tag :password, placeholder: "Password" %>
+    </label>
+	<small class="error">password please</small>
+</div>
+<%= submit_tag "login", class:"button secondary large login_button", title: 'fill in the required fields to log in', data:{tooltip:true} %>
+<% end %>
