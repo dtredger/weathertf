@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user) 
     else
       @user.errors.full_messages.each do |message|
-        flash[:notice] = message
+        flash[:alert] = message
       end
 
       redirect_to root_path

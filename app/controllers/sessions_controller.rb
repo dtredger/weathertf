@@ -8,9 +8,10 @@ class SessionsController < ApplicationController
     session[:return_to] ||= request.referer
     @user = login(params[:username], params[:password])
     if @user
+      flash[:notice] = "welcome"
       redirect_to user_path(@user)
     else
-      flash[:alert] = "that must not be true"
+      flash[:alert] = "username or password incorrect"
       redirect_to session.delete(:return_to)
     end
   end
