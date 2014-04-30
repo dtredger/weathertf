@@ -18,4 +18,11 @@
 //= require spin
 //= require_tree .
 
-$(document).foundation();
+$(document)
+  .foundation({
+    abide : {
+      patterns: {
+        email_or_phone: /(.*@.+\..*|\d{10})/
+      }
+    }
+  });
