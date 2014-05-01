@@ -5,7 +5,32 @@
 			<section>
 				<p class="title" data-section-title><a href="#hour">Hourly Weather</a></p>
 				<div class="content" data-section-content>
-		<%= render 'layouts/hourly' %> 
+					<div>
+						<p>
+							<%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %>
+						</p>
+							<table>
+								<thead>
+									<tr>
+										<th>humidity</th>
+										<th>precipIntensity</th>
+										<th>precipProbability</th>
+										<th>precipType</th>
+										<th>summary</th>
+										<th>temperature</th>
+										<th>time</th>
+										<th>visibility</th>
+										<th>latitude</th>
+										<th>longitude</th>
+										<th>user_id</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%= render partial: "layouts/forecast", collection: @forecasts %>
+								</tbody>
+							</table>
+						</div>	
+					</div>
 				</div>
 			</section>
 

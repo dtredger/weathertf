@@ -9,13 +9,10 @@ describe SessionsController do
   context "#create" do
     describe "when no credentials" do
       it "redirects to index" do
-        post :create, 
-          username: "default_user@email.com", 
-          password: 'wrong!'
+        post :create, user: attributes_for(:default_user)
         response.should redirect_to "index"
       end
     end
-
 
     describe "when password invalid" do
       it "redirects back to index" do
