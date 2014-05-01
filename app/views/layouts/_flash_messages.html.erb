@@ -1,12 +1,13 @@
 <!-- should be hidden by default -->
-
-<div class="row">
+<!-- 
+<div class="row"> -->
 	<br><br>
 	<div>  <!-- class="large-6 push-3 columns"> -->
 		
 		<% flash.each do |key, value| %>
-			<div class="alert-box <%= key %>">
-				<%= value %>
+			<div class="alert-box <%= key %>"  style="text-align: center;
+vertical-align: middle;">
+				<b><%= value %></b>
 				<a href="" class="close">&times;</a>
 			</div>
 		<% end %>
@@ -14,4 +15,4 @@
 	</div>
 
 
-</div>
+<!-- </div> -->

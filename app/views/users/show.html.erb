@@ -1,21 +1,20 @@
 <% provide(:title, "Local") %>
 <div class="row">
-	<div class="large-8 push-2 columns" id="show_pane">
+	<div class="large-8 push-2 columns">
 		<dl class="tabs" data-tab>
 			<dd class="active"><a href="#panel2-1">Forecasts</a></dd>
 			<dd><a href="#panel2-2">My Account</a></dd>
 			<dd><a href="#panel2-3">Tab 3</a></dd>
 			<dd><a href="#panel2-4">Tab 4</a></dd>
-			<dd><%= link_to "log out.", session_path, method: :delete %></dd>
-
+			<dd><%= button_to "log out.", session_path, class: "button alert", method: :delete, confirm: 'yea?'%></dd>
 		</dl>
 
 		<div class="tabs-content">
 			<div class="content active" id="panel2-1">
 				<div>
-					<p>
+					<!-- <p>
 						<%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %>
-					</p>
+					</p> -->
 					<table>
 						<thead>
 							<tr>
