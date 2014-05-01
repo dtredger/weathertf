@@ -9,16 +9,17 @@ class SessionsController < ApplicationController
     @user = login(params[:username], params[:password])
     if @user
       flash[:notice] = "welcome"
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), status: 418 #301
     else
       flash[:alert] = "username or password incorrect"
       redirect_to session.delete(:return_to)
     end
   end
 
-  def delete
+  def destroy
     logout
-    redirect_to root_url, notice: "logged out"
+    flash[:notice] = "logged out."
+    redirect_to root_url, status: 301
   end
 
 end
