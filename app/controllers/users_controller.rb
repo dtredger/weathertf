@@ -4,7 +4,7 @@ require "forecast_workers"
 class UsersController < ApplicationController
 
   before_filter :correct_user, 
-    only: [:show, :edit, :update, :delete, :mail_settings]
+    only: [:show, :edit, :update, :delete]
 
   respond_to :js, :html
 
@@ -47,7 +47,10 @@ class UsersController < ApplicationController
       flash[:notice] = "welcome"
       redirect_to user_path(@user) 
     else
-      flash[:notice] = "nope"
+      @user.errors.full_messages.each do |message|
+        flash[:alert] = message
+      end
+
       redirect_to root_path
       # TODO 
       # drop-down the sign-up modal automatically, showing errors
@@ -65,7 +68,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
   end
 
 
