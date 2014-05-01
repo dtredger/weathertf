@@ -1,22 +1,22 @@
 <!-- _signup_form.html.erb -->
 
-<%= form_for @user, html: {class: "custom"} do |f| %>
+<%= form_for @user, data: {abide:''}, html: {class: "custom"} do |f| %>
 
 	<div class="row collapse">
-		<div class="large-4 columns">
+		<div class="small-4 columns">
 			<span class="prefix">email</span>
 		</div>
-		<div class="large-8 columns">
-			<%= f.text_field :email %>
+		<div class="small-8 columns">
+			<%= f.text_field :email, html: {type:"email"} %>
 		</div>
 	</div>
 	<br>
 
 	<div class="row collapse">
-		<div class="large-4 columns">
+		<div class="small-4 columns">
 			<span class="prefix">phone #</span>
 		</div>
-		<div class="large-8 columns">
+		<div class="small-8 columns">
 			<%= f.telephone_field :phone_number %>
 		</div>
 	</div>
@@ -25,20 +25,20 @@
 	<br>
 
 	<div class="row collapse">
-		<div class="large-4 columns">
+		<div class="small-4 columns">
 			<span class="prefix">password</span>
 		</div>
-		<div class="large-8 columns">
-			<%= f.text_field :password %>
+		<div class="small-8 columns">
+			<%= f.password_field :password %>
 		</div>
 	</div>
 
 	<div class="row collapse">
-		<div class="large-4 columns">
+		<div class="small-4 columns">
 			<span class="prefix">again to confirm</span>
 		</div>
-		<div class="large-8 columns">
-			<%= f.text_field :password_confirmation %>
+		<div class="small-8 columns">
+			<%= f.password_field :password_confirmation %>
 		</div>
 	</div>
 	<br>
@@ -47,10 +47,10 @@
 
 		<!-- find location button and field for city to be filled by js
 		<div class="row collapse">
-			<div class="large-6 columns">
+			<div class="small-6 columns">
 				<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
 			</div>
-			<div class="large-6 columns">
+			<div class="small-6 columns">
 				<!-- insert the return value from geocoder here? -->
 			</div>
 		</div>
@@ -58,21 +58,21 @@
 			<!-- longitude and latitude filled by js -->
 			<div class="row collapse">
 
-				<div class="large-3 columns">
+				<div class="small-3 columns">
 					<span class="prefix">
 						<%= f.label "longitude" %>
 					</span>
 				</div>
-				<div class="large-3 columns">
+				<div class="small-3 columns">
 					<%= f.telephone_field :longitude %>
 				</div>
 
-				<div class="large-3 columns">
+				<div class="small-3 columns">
 					<span class="prefix">
 						<%= f.label "latitude" %>
 					</span>
 				</div>
-				<div class="large-3 columns">
+				<div class="small-3 columns">
 					<%= f.telephone_field :latitude %>
 				</div>
 

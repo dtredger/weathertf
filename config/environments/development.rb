@@ -20,7 +20,7 @@ WeatherTF::Application.configure do
   config.action_mailer.perform_deliveries = true
 
   # comment out this line to actually deliver mail (default smtp)
-  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -32,6 +32,7 @@ WeatherTF::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
 
 
 end

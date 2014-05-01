@@ -4,7 +4,7 @@ require "forecast_workers"
 class UsersController < ApplicationController
 
   before_filter :correct_user, 
-    only: [:show, :edit, :update, :delete, :mail_settings]
+    only: [:show, :edit, :update, :delete]
 
   respond_to :js, :html
 
@@ -18,16 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    begin
-      Thread.new { get_current_forecast }.join
-    rescue Exception => e
-      # should conditions for display exist here or in view?
-      @hourly = []
-      @daily = []
-      @future_hrs = []
-    end
-    # @user = User.find(params[:id])
-    # because of the correct_user before_filter, @user should already be defined
+    @forecasts = @user.forecasts
   end
 
   def new
@@ -47,7 +38,10 @@ class UsersController < ApplicationController
       flash[:notice] = "welcome"
       redirect_to user_path(@user) 
     else
-      flash[:notice] = "nope"
+      @user.errors.full_messages.each do |message|
+        flash[:alert] = message
+      end
+
       redirect_to root_path
       # TODO 
       # drop-down the sign-up modal automatically, showing errors
@@ -65,7 +59,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
   end
 
 
@@ -98,8 +92,7 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       unless current_user == @user then
-        redirect_to root_path, 
-        notice: "login session expired. Please login again"
+        redirect_to root_path, alert: "please log in."
       end
     end
 

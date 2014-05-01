@@ -1,36 +1,52 @@
 <% provide(:title, "Local") %>
-<div class="row">
-	<div class="large-8 push-2 columns" id="show_pane">
-		<div class="section-container auto" data-section>
-			<section>
-				<p class="title" data-section-title><a href="#hour">Hourly Weather</a></p>
-				<div class="content" data-section-content>
-		<%= render 'layouts/hourly' %> 
-				</div>
-			</section>
 
-			<section>
-				<p class="title" data-section-title><a href="#day">Daily Forecast</a></p>
-				<div class="content" data-section-content>
-		<!-- render 'layouts/daily' %> -->
-				</div>
-			</section>
+<div class="row large-10 push-1 columns">
+	<dl class="tabs" data-tab>
+		<dd class="active"><a href="#panel2-1">Forecasts</a></dd>
+		<dd><a href="#panel2-2">My Account</a></dd>
+	</dl>
+	<div class=" panel">
+		
+		<p>
+			<%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %>
+		</p>
 
-			<section>
-				<p class="title" data-section-title><a href="#settings">Message Settings</a></p>
-				<div class="content" data-section-content>
-		<!-- render template: 'users/mail_settings' %> -->
-				</div>
-			</section>
+		<div class="tabs-content">
+			<div class="content active" id="panel2-1">
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>Summary</th>
+								<th>precipitation Probability</th>
+								<th>precipitation Type</th>
+								<th>precipitation intensity</th>
+								<th>temperature</th>
+								<th>humidity</th>
+								<th>visibility</th>
+<!-- 								<th>latitude</th>
+								<th>longitude</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<%= render partial: "layouts/forecast", collection: @forecasts %>
+						</tbody>
+					</table>
+				</div>	
+			</div>
+			<div class="content" id="panel2-2">
+				<%= render template: 'users/edit' %>
+			</div>
+			<div class="content" id="panel2-3">
+				<p>Third panel content goes here...</p>
+			</div>
+			<div class="content" id="panel2-4">
+				<p>Fourth panel content goes here...</p>
+		  </div>
+		</div>
 
-			<section>
-				<p class="title" data-section-title>
-					<a id="settings" href="#settings">My Account</a>
-				</p>
-				<div class="content" id="edit_tab" data-section-content>
-					<%= render template: 'users/edit' %>
-				</div>
-			</section>
+
 
 		</div>
 

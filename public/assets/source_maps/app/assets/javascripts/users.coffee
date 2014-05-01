@@ -43,4 +43,5 @@ $(document).ready ->
   #   $.ajax(url: "/users/edit").done (html) ->
   #     $("#results").append html
 
+# $(".login_button").addClass('disabled');
 

@@ -49,7 +49,7 @@ describe UsersController do
 
       it "returns user's show page" do
         get :show, id: @user.id
-        assigns[:user].username.should == "default_user@email.com"
+        assigns[:user].username.should eq("default_user@email.com")
         # response.should redirect_to user_path(@user)
       end
 
@@ -60,24 +60,18 @@ describe UsersController do
     end
 
     describe "un-authenticated users" do
-      before { get(:show, {'id'=>'10101'}) }
 
       it "stays on index for un-authenticated" do
-        # response.should render_template :index
-        pending
+        get :show, id: 121
+        response.should redirect_to root_path
       end
 
       it "alerts un-authenticated to log in" do
-        # flash[:notice].should_not be_nil
-        pending
+        get :show, id: 121
+        flash[:alert].should eq("please log in.")
       end
     end
     after { User.delete_all }
-  end
-
-
-  context "#new" do
-    pending
   end
 
 
@@ -89,7 +83,7 @@ describe UsersController do
 
       it "shows flash error" do
         post :create, user: attributes_for(:invalid_user)
-        flash[:notice].should eq("nope")
+        flash[:alert].should_not be_nil
       end
     end
 

@@ -1,38 +1,70 @@
 require 'spec_helper'
 
 describe SessionsController do
+  before do
+    User.delete_all
+    @user = FactoryGirl.create(:default_user, password: 'pass')
+  end
 
   context "#create" do
+    describe "when no credentials" do
+      it "redirects to index" do
+        post :create, user: attributes_for(:default_user)
+        response.should redirect_to "index"
+      end
+    end
+
     describe "when password invalid" do
-      it "renders page with error" do
-        pending
-        user = create(:default_user)
-        post :create, session: { username: user.username, password: 'wrong!' }
-        
-        expect(flash[:notice]).to match(/^nope/)    
+      it "redirects back to index" do
+        post :create, session: { 
+          username: "default_user@email.com", 
+          password: 'wrong!' 
+        } 
+        # response.should redirect_to "index"
+        expect(flash[:alert]).to match(/^username or password incorrect/)    
       end
     end
 
     describe "when password accurate" do
-      before(:each) do
-        @user = FactoryGirl.create(:default_user)
+      it "redirects to users#show" do
+        pending
+        post :create, 
+          session: { username: "default_user@email.com", password: 'pass' } 
+        response.should redirect_to user_path(@user)
       end
 
-      it "returns http success" do
-        pending
-        # expect(response).to redirect_to user_path(user)
-        # expect(flash[:notice]).to match(/^welcome/)
-        # expect(current_user).to eq @user   
+      it "flashes welcome message" do
+        post :create, 
+          session: { username: "default_user@email.com", password: 'pass' }
+        expect(flash[:notice]).to match(/^welcome/)
+      end
+
+      it "sets current user correctly" do
+        post :create, 
+          session: { username: "default_user@email.com", password: 'pass' }
+        expect(current_user).to eq @user   
       end
     end
 
   end
 
-  context "#delete" do
-    it "returns http success" do
-      pending
-      get 'delete'
-      response.should be_success
+  context "#destroy" do
+    describe "for authenticated user" do
+      before do 
+        post :create, session: { 
+          username: "default_user@email.com",
+          password: "pass"
+        }
+      end
+
+      it "redirects to root path" do
+        get 'destroy'
+        response.should redirect_to root_path
+      end
+
+      it "prevents viewing users#show" do
+        get 'destroy'
+      end
     end
   end
 
