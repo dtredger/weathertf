@@ -1,6 +1,5 @@
 <!-- commented-out parts are contained in show.html.erb -->
 <!-- <div>
-	<p><%= current_user.username %> | phone: <%= number_to_phone(current_user.phone_number) %></p>
 	<table>
 		<thead>
 			<tr>
@@ -19,17 +18,16 @@
 		</thead>
 		<tbody> -->
 			<tr>
-				<td><%=forecast.humidity%></td>
-				<td><%=forecast.precipIntensity%></td>
+				<td><%=time_ago_in_words(Time.at(forecast.time).to_datetime)%> ago</td>
+				<td><%=forecast.summary%></td>
 				<td><%=forecast.precipProbability%></td>
 				<td><%=forecast.precipType%></td>
-				<td><%=forecast.summary%></td>
+				<td><%=forecast.precipIntensity%></td>
 				<td><%=forecast.temperature%></td>
-				<td><%=time_ago_in_words(Time.at(forecast.time).to_datetime)%> ago</td>
+				<td><%=forecast.humidity%></td>
 				<td><%=forecast.visibility%></td>
-				<td><%=forecast.latitude%></td>
-				<td><%=forecast.longitude%></td>
-				<td><%=forecast.user_id%></td>
+				<!-- <td><%=forecast.latitude%></td> -->
+				<!-- <td><%=forecast.longitude%></td> -->
 			</tr>
 	<!-- 	</tbody>
 	</table>
