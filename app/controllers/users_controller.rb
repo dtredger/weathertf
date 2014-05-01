@@ -18,16 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    begin
-      Thread.new { get_current_forecast }.join
-    rescue Exception => e
-      # should conditions for display exist here or in view?
-      @hourly = []
-      @daily = []
-      @future_hrs = []
-    end
-    # @user = User.find(params[:id])
-    # because of the correct_user before_filter, @user should already be defined
+    @forecasts = @user.forecasts
   end
 
   def new
@@ -101,8 +92,7 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       unless current_user == @user then
-        redirect_to root_path, 
-        notice: "login session expired. Please login again"
+        redirect_to root_path, alert: "please log in."
       end
     end
 
