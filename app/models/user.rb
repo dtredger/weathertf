@@ -40,12 +40,12 @@ class User < ActiveRecord::Base
 
   before_save :create_username
   
-  reverse_geocoded_by :latitude, :longitude
+  # reverse_geocoded_by :latitude, :longitude
   # todo create method that goes in whichever direction we don't have,
   # address or lat/lon
-  # geocoded_by :address
+  geocoded_by :address
 
-  after_validation :geocode #, :if => :address_changed?  
+  after_validation :geocode, :if => :address_changed?  
 
 
 
