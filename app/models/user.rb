@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   # address or lat/lon
   # geocoded_by :address
 
-  after_validation :geocode, :if => :address_changed?  
+  after_validation :geocode #, :if => :address_changed?  
 
 
 
