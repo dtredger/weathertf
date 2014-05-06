@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   validates :longitude, numericality: true
 
   before_save :create_username
+
+
+  # geocode_with_given_attrs
   
   # reverse_geocoded_by :latitude, :longitude
   # todo create method that goes in whichever direction we don't have,
@@ -64,6 +67,14 @@ class User < ActiveRecord::Base
         self.username = email
       else
         self.username = phone_number.to_s
+      end
+    end
+
+    def geocode_with_given_attrs
+      if !(latitude.blank? || longitude.blank?)
+        reverse_geocoded_by :latitude, :longitude
+      elsif !(address.blank?)
+        geocoded_by :address        
       end
     end
 
