@@ -52,6 +52,7 @@ describe User do
 
     it { should respond_to(:latitude) }
     it { should respond_to(:longitude) }
+    it { should respond_to(:address) }
   end
 
 
@@ -117,7 +118,7 @@ describe User do
           )
         email_only = User.find_by_email("only@email.com")
         subject { email_only.username }
-        it { should == "only@email.com" }
+        it { should eq("only@email.com") }
       end
 
       describe "for user with phone number 1112223333 only" do
@@ -128,7 +129,7 @@ describe User do
           )
         phone_only = User.find_by_phone_number(1112223333)
         subject { phone_only.username }
-        it { should == "1112223333" }
+        it { should eq("1112223333") }
       end
 
       describe "for user with both email and phone number" do
@@ -139,7 +140,7 @@ describe User do
           )
         both = User.find_by_phone_number(1231231234)
         subject { both.username }
-        it { should == "prefer_email_over_phone@email.com" }
+        it { should eq("prefer_email_over_phone@email.com") }
       end
     end
 
