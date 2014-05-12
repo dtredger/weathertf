@@ -69,25 +69,23 @@ describe User do
   end
 
   context "location" do
-    subject { @location_user }
     describe "not given" do
-      before { @location_user = build(:full_user, latitude: nil, address: nil) }
+      before { @contact_user = FactoryGirl.build(:full_user, latitude: nil, address: nil) }
+      subject { @contact_user } 
       it { should_not be_valid }
     end
 
     describe "has address but no longitude" do
-      before { @location_user = build(:full_user, longitude: nil) }
+      before { @contact_user = FactoryGirl.build(:full_user, longitude: nil) }
+      subject { @contact_user } 
       it { should be_valid }
     end
 
     describe "address only" do
-      it "is valid" do
-        before { @location_user = build(:full_user, longitude: nil, latitude: nil)}
-        it { should be_valid }
-      end
+      before { @contact_user = FactoryGirl.build(:full_user, longitude: nil, latitude: nil) }
+      subject { @contact_user } 
+      it { should be_valid } 
     end
-
-
   end
   
 
