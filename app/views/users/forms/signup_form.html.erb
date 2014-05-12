@@ -45,12 +45,16 @@
 
 	<div id="location_zone">
 
-		<!-- find location button and field for city to be filled by js
+		<!-- find location button and field for city to be filled by js -->
 		<div class="row collapse">
 			<div class="small-6 columns">
 				<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
 			</div>
 			<div class="small-6 columns">
+				<span class="prefix">
+					<%= f.label "address" %>
+				</span>	
+				<%= f.text_field "address" %>
 				<!-- insert the return value from geocoder here? -->
 			</div>
 		</div>

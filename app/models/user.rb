@@ -35,13 +35,13 @@ class User < ActiveRecord::Base
     allow_blank: true
   validate :email_or_phone_number
   validates_uniqueness_of :email, allow_blank: true
-  validates :latitude, numericality: true
-  validates :longitude, numericality: true
+  validate :address_or_coordinates
+  
+  # --- needs a Location model? ---
+  # http://stackoverflow.com/questions/14804651/rails-geocode-two-ways-in-model
+  # after_validation :geocode_with_given_attrs #, :if => :####?
 
   before_save :create_username
-  
-  reverse_geocoded_by :latitude, :longitude
-
 
 
   private
@@ -59,6 +59,23 @@ class User < ActiveRecord::Base
         self.username = email
       else
         self.username = phone_number.to_s
+      end
+    end
+
+    def geocode_with_given_attrs
+      if !(latitude.blank? and longitude.blank?)
+        reverse_geocoded_by :latitude, :longitude
+      elsif !(address.blank?)
+        geocoded_by :address        
+      end
+    end
+
+    def address_or_coordinates
+      if (latitude.blank? or longitude.blank?)
+        validates_presence_of :address
+      else
+        validates_presence_of :latitude, numericality: true
+        validates_presence_of :longitude, numericality: true
       end
     end
 
