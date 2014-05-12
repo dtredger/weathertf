@@ -68,16 +68,26 @@ describe User do
     end
   end
 
-  context "coordinates" do
-    describe "missing latitude" do
-      before { no_latitude_user = build(:full_user, latitude: nil) }
+  context "location" do
+    subject { @location_user }
+    describe "not given" do
+      before { @location_user = build(:full_user, latitude: nil, address: nil) }
       it { should_not be_valid }
     end
 
-    describe "missing longitude" do
-      before { no_longitude_user = build(:full_user, longitude: nil) }
-      it { should_not be_valid }
+    describe "has address but no longitude" do
+      before { @location_user = build(:full_user, longitude: nil) }
+      it { should be_valid }
     end
+
+    describe "address only" do
+      it "is valid" do
+        before { @location_user = build(:full_user, longitude: nil, latitude: nil)}
+        it { should be_valid }
+      end
+    end
+
+
   end
   
 

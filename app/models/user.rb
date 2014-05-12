@@ -35,21 +35,11 @@ class User < ActiveRecord::Base
     allow_blank: true
   validate :email_or_phone_number
   validates_uniqueness_of :email, allow_blank: true
-  validates :latitude, numericality: true
-  validates :longitude, numericality: true
+  validate :address_or_coordinates
+  
+  # after_validation :geocode_with_given_attrs #, :if => :####?
 
   before_save :create_username
-
-
-  # geocode_with_given_attrs
-  
-  # reverse_geocoded_by :latitude, :longitude
-  # todo create method that goes in whichever direction we don't have,
-  # address or lat/lon
-  geocoded_by :address
-
-  after_validation :geocode, :if => :address_changed?  
-
 
 
   private
@@ -71,10 +61,20 @@ class User < ActiveRecord::Base
     end
 
     def geocode_with_given_attrs
-      if !(latitude.blank? || longitude.blank?)
+      binding.pry
+      if !(latitude.blank? and longitude.blank?)
         reverse_geocoded_by :latitude, :longitude
       elsif !(address.blank?)
         geocoded_by :address        
+      end
+    end
+
+    def address_or_coordinates
+      if (latitude.blank? or longitude.blank?)
+        validates_presence_of :address
+      else
+        validates_presence_of :latitude, numericality: true
+        validates_presence_of :longitude, numericality: true
       end
     end
 
