@@ -41,34 +41,9 @@
 				</div>
 			</div>
 			<br>
-
-			<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
-
-			<%= f.text_area :address %>
-
-			<div class="row collapse">
-				<div class="small-6 columns">
-					<span class="prefix">
-						<%= f.label "longitude" %>
-					</span>
-				</div>
-				<div class="small-6 columns">
-					<%= f.telephone_field :longitude %>
-				</div>
-			</div>
-
-			<div class="row collapse">
-				<div class="small-6 columns">
-					<span class="prefix">
-						<%= f.label "latitude" %>
-					</span>
-				</div>
-				<div class="small-6 columns">
-					<%= f.telephone_field :latitude %>
-				</div>
-			</div>
+			<%= @location %>
+			<%= render partial: "layouts/location", collection: @location %>
 		</div>
-
 
 		<div class="small-6 columns">
 

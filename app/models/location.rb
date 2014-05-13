@@ -14,7 +14,11 @@
 class Location < ActiveRecord::Base
   belongs_to :user
 
+  reverse_geocoded_by :latitude, :longitude
+  
   validate :address_or_coordinates
+    
+  after_validation :reverse_geocode
 
   private
 

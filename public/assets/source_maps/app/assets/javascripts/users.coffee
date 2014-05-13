@@ -34,6 +34,7 @@ $(document).ready ->
     top: 'auto'
     left: 'auto'
   };
+  
   target = document.getElementById('location_zone')
   $('#find_location').click ->
     spinner = new Spinner(opts).spin(target)

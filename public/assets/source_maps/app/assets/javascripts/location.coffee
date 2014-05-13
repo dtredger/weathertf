@@ -1,7 +1,8 @@
 $(document).ready () ->
 
 	get_location = ->
-#    $('.find_loc').addClass("disabled")
+   $('#find_location').addClass("disabled")
+   $('#signup').addClass("disabled")
 		navigator.geolocation.getCurrentPosition(loc_details, loc_error)
 
 	loc_details = (position) ->
@@ -45,7 +46,7 @@ $(document).ready () ->
 
 	$("#find_location").click -> get_location()
 
-	# $("#signup").click -> get_location()
+	$("#signup").click -> get_location()
 
 
 # $("#cool").click -> $.ajax
