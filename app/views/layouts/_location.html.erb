@@ -1,29 +1,24 @@
-	<%= submit_tag 'find my location', :type => 'button', class:"button secondary", id:"find_location" %>
 
-
-<%= form_for @location, html: {class: "custom"} do |f| %>
-	<%= f.text_area :address %>
-
-	<div class="row collapse">
-		<div class="small-6 columns">
-			<span class="prefix">
-				<%= f.label "longitude" %>
-			</span>
-		</div>
-		<div class="small-6 columns">
-			<%= f.telephone_field :longitude %>
-		</div>
+<div class="row collapse">
+	<div class="small-6 columns">
+		<span class="prefix">
+			latitude
+		</span>
 	</div>
-
-	<div class="row collapse">
-		<div class="small-6 columns">
-			<span class="prefix">
-				<%= f.label "latitude" %>
-			</span>
-		</div>
-		<div class="small-6 columns">
-			<%= f.telephone_field :latitude %>
-		</div>
+	<div class="small-6 columns">
+		<%= @location.latitude %>
 	</div>
+</div>
 
-<% end %>
+<div class="row collapse">
+	<div class="small-6 columns">
+		<span class="prefix">
+			longitude
+		</span>
+	</div>
+	<div class="small-6 columns">
+		<textarea>
+		<%= @location.longitude %>
+		</textarea>
+	</div>
+</div>
