@@ -24,6 +24,11 @@
 
 class User < ActiveRecord::Base
   has_many :forecasts
+
+  # next step to make forecasts belong to locations
+  # has_many :forecasts, through: :locations
+
+  has_one :location
   
   authenticates_with_sorcery!
 
@@ -35,13 +40,11 @@ class User < ActiveRecord::Base
     allow_blank: true
   validate :email_or_phone_number
   validates_uniqueness_of :email, allow_blank: true
-  validates :latitude, numericality: true
-  validates :longitude, numericality: true
-
-  before_save :create_username
+  validate :address_or_coordinates
   
-  reverse_geocoded_by :latitude, :longitude
-
+  # before_create :build_location #, :if => :####?
+  before_save :create_username
+  after_save :build_location
 
 
   private
@@ -59,6 +62,34 @@ class User < ActiveRecord::Base
         self.username = email
       else
         self.username = phone_number.to_s
+      end
+    end
+
+    def build_location
+      if (!latitude.blank? and !longitude.blank?)
+        Location.create(
+          user_id: self.id,
+          longitude: self.longitude,
+          latitude: self.latitude,
+          address: self.address)
+        # User.build_location(
+        #   longitude: self.longitude,
+        #   latitude: self.latitude)
+      elsif !(address.blank?)
+        Location.create(
+          user_id: self.id,
+          address: self.address)
+        # User.build_location(address: self.address)    
+      end
+
+    end
+
+    def address_or_coordinates
+      if (latitude.blank? or longitude.blank?)
+        validates_presence_of :address
+      else
+        validates_presence_of :latitude, numericality: true
+        validates_presence_of :longitude, numericality: true
       end
     end
 

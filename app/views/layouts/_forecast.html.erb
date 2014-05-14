@@ -18,7 +18,8 @@
 		</thead>
 		<tbody> -->
 			<tr>
-				<td><%=time_ago_in_words(Time.at(forecast.time).to_datetime)%> ago</td>
+				<td title=<%=Time.at(forecast.time).to_datetime%> data-tooltip='true'> <%=time_ago_in_words(Time.at(forecast.time).to_datetime)%> ago
+				</td>
 				<td><%=forecast.summary%></td>
 				<td><%=forecast.precipProbability%></td>
 				<td><%=forecast.precipType%></td>

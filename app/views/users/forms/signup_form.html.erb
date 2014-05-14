@@ -21,7 +21,16 @@
 		</div>
 	</div>
 
-	<%= f.select :carrier, [["choose your mobile carrier"],["Bell"],["Telus"],["Rogers"],["Fido"],["Koodo"],["Wind"]], class: "select"%>
+	<%= f.select :carrier, [
+		["choose your mobile carrier"],
+		["Bell"],
+		["Telus"],
+		["Rogers"],
+		["Fido"],
+		["Koodo"],
+		["Wind"]
+		], 
+		class: "select"%>
 	<br>
 
 	<div class="row collapse">
@@ -45,43 +54,44 @@
 
 	<div id="location_zone">
 
-		<!-- find location button and field for city to be filled by js
+		<!-- find location button and field for city to be filled by js -->
 		<div class="row collapse">
 			<div class="small-6 columns">
-				<%= submit_tag 'find my location', type:'button', class:"button secondary", id:"find_location" %>
+				<%= submit_tag 'find my location', type:'button', class:"button", id:"find_location" %>
 			</div>
-			<div class="small-6 columns">
+<!-- 			<div class="small-6 columns">
+				<span class="prefix">
+					%= f.label "address" %>
+				</span>	
+				%= f.text_field "address" %> -->
 				<!-- insert the return value from geocoder here? -->
 			</div>
 		</div>
 
 			<!-- longitude and latitude filled by js -->
-			<div class="row collapse">
+		<div class="row collapse">
 
-				<div class="small-3 columns">
-					<span class="prefix">
-						<%= f.label "longitude" %>
-					</span>
-				</div>
-				<div class="small-3 columns">
-					<%= f.telephone_field :longitude %>
-				</div>
-
-				<div class="small-3 columns">
-					<span class="prefix">
-						<%= f.label "latitude" %>
-					</span>
-				</div>
-				<div class="small-3 columns">
-					<%= f.telephone_field :latitude %>
-				</div>
-
+			<div class="small-3 columns">
+				<span class="prefix">
+					<%= f.label "longitude" %>
+				</span>
+			</div>
+			<div class="small-3 columns">
+				<%= f.telephone_field :longitude %>
 			</div>
 
+			<div class="small-3 columns">
+				<span class="prefix">
+					<%= f.label "latitude" %>
+				</span>
+			</div>
+			<div class="small-3 columns">
+				<%= f.telephone_field :latitude %>
+			</div>
+
+		</div>
+		<%= f.submit "sign me up", class: "button success expand" %>
 	</div> <!-- end of location_zone -->
 	<br>
-	<%= f.submit "sign me up", class: "button success expand" %>
-	<!-- <button class="small">actually no thanks</button> -->
-<!-- it'd be nice if the no thanks button could take people to somewhere else -->
-<!-- maybe it could say 'too hungry for this now' and redirect to verdigris -->
+
 <% end %>

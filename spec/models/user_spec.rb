@@ -52,6 +52,7 @@ describe User do
 
     it { should respond_to(:latitude) }
     it { should respond_to(:longitude) }
+    it { should respond_to(:address) }
   end
 
 
@@ -67,15 +68,23 @@ describe User do
     end
   end
 
-  context "coordinates" do
-    describe "missing latitude" do
-      before { no_latitude_user = build(:full_user, latitude: nil) }
+  context "location" do
+    describe "not given" do
+      before { @contact_user = FactoryGirl.build(:full_user, latitude: nil, address: nil) }
+      subject { @contact_user } 
       it { should_not be_valid }
     end
 
-    describe "missing longitude" do
-      before { no_longitude_user = build(:full_user, longitude: nil) }
-      it { should_not be_valid }
+    describe "has address but no longitude" do
+      before { @contact_user = FactoryGirl.build(:full_user, longitude: nil) }
+      subject { @contact_user } 
+      it { should be_valid }
+    end
+
+    describe "address only" do
+      before { @contact_user = FactoryGirl.build(:full_user, longitude: nil, latitude: nil) }
+      subject { @contact_user } 
+      it { should be_valid } 
     end
   end
   
@@ -117,7 +126,7 @@ describe User do
           )
         email_only = User.find_by_email("only@email.com")
         subject { email_only.username }
-        it { should == "only@email.com" }
+        it { should eq("only@email.com") }
       end
 
       describe "for user with phone number 1112223333 only" do
@@ -128,7 +137,7 @@ describe User do
           )
         phone_only = User.find_by_phone_number(1112223333)
         subject { phone_only.username }
-        it { should == "1112223333" }
+        it { should eq("1112223333") }
       end
 
       describe "for user with both email and phone number" do
@@ -139,7 +148,7 @@ describe User do
           )
         both = User.find_by_phone_number(1231231234)
         subject { both.username }
-        it { should == "prefer_email_over_phone@email.com" }
+        it { should eq("prefer_email_over_phone@email.com") }
       end
     end
 
