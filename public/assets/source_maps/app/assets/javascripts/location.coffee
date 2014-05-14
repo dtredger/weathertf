@@ -33,8 +33,6 @@ $(document).ready () ->
 			alert "mysterious error..."
 			$('#find_location').removeClass("secondary")
 			$('#signup').addClass("secondary")
-		else
-			alert "something is askew..."
 		
 
 
