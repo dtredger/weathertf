@@ -24,6 +24,11 @@
 
 class User < ActiveRecord::Base
   has_many :forecasts
+
+  # next step to make forecasts belong to locations
+  # has_many :forecasts, through: :locations
+
+  has_one :location
   
   authenticates_with_sorcery!
 
@@ -37,11 +42,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, allow_blank: true
   validate :address_or_coordinates
   
-  # --- needs a Location model? ---
-  # http://stackoverflow.com/questions/14804651/rails-geocode-two-ways-in-model
-  # after_validation :geocode_with_given_attrs #, :if => :####?
-
+  # before_create :build_location #, :if => :####?
   before_save :create_username
+  after_save :build_location
 
 
   private
@@ -62,12 +65,23 @@ class User < ActiveRecord::Base
       end
     end
 
-    def geocode_with_given_attrs
-      if !(latitude.blank? and longitude.blank?)
-        reverse_geocoded_by :latitude, :longitude
+    def build_location
+      if (!latitude.blank? and !longitude.blank?)
+        Location.create(
+          user_id: self.id,
+          longitude: self.longitude,
+          latitude: self.latitude,
+          address: self.address)
+        # User.build_location(
+        #   longitude: self.longitude,
+        #   latitude: self.latitude)
       elsif !(address.blank?)
-        geocoded_by :address        
+        Location.create(
+          user_id: self.id,
+          address: self.address)
+        # User.build_location(address: self.address)    
       end
+
     end
 
     def address_or_coordinates

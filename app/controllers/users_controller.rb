@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @forecasts = @user.forecasts
+    @location = @user.location
   end
 
   def new
