@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require geoPosition
 //= require location
 //= require spin
 //= require_tree .

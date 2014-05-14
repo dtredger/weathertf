@@ -3,23 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-# $("#cool").click -> $.ajax
-#   url: '/users/new'
-# .done (html) ->
-#   $('#results').append html
-#   console.log "cool clicked"
-
-
 $(document).ready ->
-  $(".send_sms").on("ajax:success", (e, data, status, xhr) ->
-    $(".alert-box").append xhr.responseText
-  ).bind "ajax:error", (e, xhr, status, error) ->
-    $(".alert-box").append "<p>Something's gone wrong</p>"
 
-  opts = {
-    lines: 17
+  spin_opts = 
+    lines: 10
     length: 0
-    width: 30
+    width: 40
     radius: 0
     corners: 0.4
     rotate: 0
@@ -33,11 +22,10 @@ $(document).ready ->
     zIndex: 2e9
     top: 'auto'
     left: 'auto'
-  };
   
   target = document.getElementById('location_zone')
   $('#find_location').click ->
-    spinner = new Spinner(opts).spin(target)
+    spinner = new Spinner(spin_opts).spin(target)
     # $('#location_zone').css("background-color", "black")
 
   # $('#settings').click -> 
