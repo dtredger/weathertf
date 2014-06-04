@@ -22,15 +22,14 @@
 #  reset_password_email_sent_at    :datetime
 #
 
-require "faker"
 
 FactoryGirl.define do
 
   factory :base_user, class: User do
-    email { Faker::Internet.email }
-    password { Faker::Internet.password }      
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    email "base_user@email.com"
+    password "base_password"      
+    latitude 40
+    longitude -90
 
     factory :default_user do
       email "default_user@email.com"
@@ -44,13 +43,10 @@ FactoryGirl.define do
     end
 
     factory :full_user do
-      phone_number { Faker::Number.number(10) }
-      carrier { 'some_carrier' }
+      phone_number 1234567890
+      carrier 'telus'
       alert_percent 70
-      address { Faker::Address.street_address + ", "+ 
-        Faker::Address.city + ", " +
-        Faker::Address.state_abbr 
-      }
+      address "21 fake street, paris, texas"
     end
 
 

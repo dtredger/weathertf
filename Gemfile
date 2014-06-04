@@ -16,7 +16,7 @@ gem "foundation-rails"
 
 gem 'forecast_io'     # for forecast.io API
 gem 'geocoder'        # for (reverse) geocoding
-gem 'figaro'          # for ENV variable setting
+gem 'figaro'          # for ENV variable setting on heroku
 
 gem 'pg'
 gem 'redis'
@@ -51,8 +51,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'dm-transactions'
-  gem 'faker'
+  gem 'dm-transactions'  # why is this in here?
   gem 'launchy'
   gem 'resque_spec'
 end
