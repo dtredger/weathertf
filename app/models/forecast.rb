@@ -19,7 +19,7 @@
 #
 
 class Forecast < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :location
 
   validates :time,
     length: { minimum: 10 }, 

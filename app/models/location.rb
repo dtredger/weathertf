@@ -12,13 +12,14 @@
 #
 
 class Location < ActiveRecord::Base
-  belongs_to :user
+  has_many :users
+  has_many :forecasts
+
+  validate :address_or_coordinates
 
   reverse_geocoded_by :latitude, :longitude
-  
-  validate :address_or_coordinates
-    
   after_validation :reverse_geocode
+
 
   private
 

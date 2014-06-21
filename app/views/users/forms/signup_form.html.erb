@@ -1,6 +1,6 @@
 <!-- _signup_form.html.erb -->
 
-<%= form_for @user, data: {abide:''}, html: {class: "custom"} do |f| %>
+<%= form_for @user do |f| %>
 
 	<div class="row collapse">
 		<div class="small-4 columns">
@@ -68,30 +68,31 @@
 			</div>
 		</div>
 
-			<!-- longitude and latitude filled by js -->
+		<!-- longitude and latitude filled by js -->
 		<div class="row collapse">
+			<%= f.fields_for :location do |builder| %>
+				<div class="small-3 columns">
+					<span class="prefix">
+						<%= builder.label "longitude" %>
+					</span>
+				</div>
+				<div class="small-3 columns">
+					<%= builder.telephone_field :longitude %>
+				</div>
 
-			<div class="small-3 columns">
-				<span class="prefix">
-					<%= f.label "longitude" %>
-				</span>
-			</div>
-			<div class="small-3 columns">
-				<%= f.telephone_field :longitude %>
-			</div>
-
-			<div class="small-3 columns">
-				<span class="prefix">
-					<%= f.label "latitude" %>
-				</span>
-			</div>
-			<div class="small-3 columns">
-				<%= f.telephone_field :latitude %>
-			</div>
-
+				<div class="small-3 columns">
+					<span class="prefix">
+						<%= builder.label "latitude" %>
+					</span>
+				</div>
+				<div class="small-3 columns">
+					<%= builder.telephone_field :latitude %>
+				</div>
+			<% end %>
 		</div>
 		<%= f.submit "sign me up", class: "button success expand" %>
-	</div> <!-- end of location_zone -->
+	</div> 
+	<!-- end of location_zone -->
 	<br>
 
 <% end %>
