@@ -70,6 +70,7 @@
 
 		<!-- longitude and latitude filled by js -->
 		<div class="row collapse">
+			<% @user.build_location unless @user.location %>
 			<%= f.fields_for :location do |builder| %>
 				<div class="small-3 columns">
 					<span class="prefix">
@@ -77,7 +78,7 @@
 					</span>
 				</div>
 				<div class="small-3 columns">
-					<%= builder.telephone_field :longitude %>
+					<%= builder.telephone_field :longitude, class: "user_longitude" %>
 				</div>
 
 				<div class="small-3 columns">
@@ -86,7 +87,7 @@
 					</span>
 				</div>
 				<div class="small-3 columns">
-					<%= builder.telephone_field :latitude %>
+					<%= builder.telephone_field :latitude, class: "user_latitude" %>
 				</div>
 			<% end %>
 		</div>

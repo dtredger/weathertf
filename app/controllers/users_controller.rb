@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @location = @user.create_location(location_params)
     if @user.save
       auto_login(@user)
       begin
@@ -90,12 +89,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :phone_number, :carrier, :address,
-        :password, :password_confirmation, :latitude, :longitude, :digest, :alert_percent)
+        :password, :password_confirmation, :digest, :alert_percent, location_attributes: [:latitude, :longitude, :id])
     end
 
-    def location_params
-      params.require(:location).permit(:latitude, :longitude)
-    end
 
     def correct_user
       @user = User.find(params[:id])
