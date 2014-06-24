@@ -1,4 +1,4 @@
-require "email_workers"
+require "message_workers"
 require "forecast_workers"
 
 class UsersController < ApplicationController

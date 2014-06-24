@@ -11,7 +11,7 @@ send_daily_forecast_email:
   cron: 22 20 * * *
   class: DailyForecastEmail
   queue: email_queue
-  args: 19
+  args: 1
   description: Delivers daily forecast email
 
 
@@ -29,5 +29,5 @@ test_daily_forecast_email:
     - :first_in: '2s'
   class: DailyForecastEmail
   queue: email_queue
-  args: 19
+  args: 1
   description: Delivers daily forecast email

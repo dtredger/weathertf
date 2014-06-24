@@ -43,7 +43,7 @@
 			<br>
 			<%= submit_tag 'find my location', :type => 'button', class:"button", id:"find_location" %>
 
-			<%= f.text_area :address %>
+			<!-- %= f.text_area :address %> -->
 
 			<div class="row collapse">
 				<div class="small-6 columns">
@@ -75,7 +75,7 @@
 					<span class="prefix">password</span>
 				</div>
 				<div class="small-7 columns">
-					<%= f.text_field :password %>
+					<%= f.password_field :password %>
 				</div>
 			</div>
 
@@ -84,7 +84,7 @@
 					<span class="prefix">confirm to change</span>
 				</div>
 				<div class="small-7 columns">
-					<%= f.text_field :password_confirmation %>
+					<%= f.password_field :password_confirmation %>
 				</div>
 			</div>
 			<br>
