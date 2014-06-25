@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-WeatherTF::Application.config.secret_key_base = 'd28f6c86943df0e793ecca84e479d8ad994538495837a16a9bf654f7b8a924ab59f5a9b38da22872bd16219b1219d0ec91eff2fac6ada450eeb5dc67e077e367'
+WeatherTF::Application.config.secret_key_base = 'b92807772566ee9b655d74da919a03e4c9b963f300586924d40004562cf770112f119f1edd3a1a17b79b8df8ac4c91a97f288b5201dd736914b7bc870c33c0cd'

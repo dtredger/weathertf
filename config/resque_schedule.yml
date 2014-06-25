@@ -8,26 +8,25 @@ create_daily_forecast:
   description: creates a forecast every day at 7am
 
 send_daily_forecast_email:
-  cron: 22 20 * * *
+  cron: 0 8 * * *
   class: DailyForecastEmail
   queue: email_queue
-  args: 1
   description: Delivers daily forecast email
 
 
-test_daily_forecast:
-  every:
-    - 360s
-    - :first_in: '2s'
-  class: AllForecasts
-  queue: daily_queue
-  description: creates a forecast every day at 7am
+# test_daily_forecast:
+#   every:
+#     - 360s
+#     - :first_in: '2s'
+#   class: AllForecasts
+#   queue: daily_queue
+#   description: creates a forecast every day at 7am
 
-test_daily_forecast_email:
-  every:
-    - 360s
-    - :first_in: '2s'
-  class: DailyForecastEmail
-  queue: email_queue
-  args: 1
-  description: Delivers daily forecast email
+# test_daily_forecast_email:
+#   every:
+#     - 360s
+#     - :first_in: '2s'
+#   class: DailyForecastEmail
+#   queue: email_queue
+#   args: 1
+#   description: Delivers daily forecast email
