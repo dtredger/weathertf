@@ -4,9 +4,12 @@ preload_app true
 
 
 @resque_pid = nil
+@scheduler = nil
 
 before_fork do |server, worker|
   @resque_pid ||= spawn("bundle exec rake environment resque:work QUEUES=*")
+
+  @scheduler ||= spawn("bundle exec rake environment resque:scheduler")
 
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
