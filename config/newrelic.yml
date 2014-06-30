@@ -1,4 +1,5 @@
-#
+# config options now controlled in the newrelic web interface (mostly)
+
 # This file configures the New Relic Agent.  New Relic monitors
 # Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.
 # For more information, visit www.newrelic.com.
@@ -15,7 +16,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '5d09330164cdb105e004cbdffd724b74838cc9af'
+  license_key: <%= ENV['NEWRELIC_LICENSE_KEY'] %>
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
@@ -73,7 +74,7 @@ common: &default_settings
   # The encryption required by SSL introduces a nominal amount of CPU overhead,
   # which is performed asynchronously in a background thread.  If you'd prefer
   # to send your metrics over http uncomment the following line.
-  # ssl: false
+  ssl: false
 
   #============================== Browser Monitoring ===============================
   # New Relic Real User Monitoring gives you insight into the performance real users are
