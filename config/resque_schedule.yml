@@ -1,14 +1,16 @@
 # configuration of redis is in initializers/redis.rb
 # configuration of resque and resque-scheduler is in initializers/resque.rb
 
+# Heroku is on UTC time (EST + 4)
+
 create_daily_forecast:
-  cron: 0 7 * * *
+  cron: 0 11 * * *
   class: AllForecasts
   queue: daily_queue
   description: creates a forecast every day at 7am
 
 send_daily_forecast_email:
-  cron: 0 8 * * *
+  cron: 0 12 * * *
   class: DailyForecastEmail
   queue: email_queue
   description: Delivers daily forecast email
